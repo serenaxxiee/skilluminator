@@ -1,23 +1,17 @@
-#Requires -RunAsAdministrator
 <#
 .SYNOPSIS
     Sets up the Skilluminator agent on a Microsoft Dev Box (Windows).
-    Run this once after RDP-ing into the Dev Box.
+    No admin privileges required. Does NOT auto-start anything.
 
 .DESCRIPTION
-    1. Installs Node.js LTS (if missing)
-    2. Clones the skilluminator repo from GitHub
+    1. Checks that Node.js and git are available (tells you how to install if not)
+    2. Clones the skilluminator repo
     3. Installs npm dependencies
     4. Installs Claude Code CLI
-    5. Prompts for Claude auth
-    6. Registers a scheduled task to run the loop on startup
-    7. Starts the loop immediately
+    5. Verifies the build
+    6. Tells you how to authenticate and start the loop yourself
 
 .USAGE
-    Open PowerShell as Administrator on the Dev Box, then:
-    irm https://raw.githubusercontent.com/serenaxxiee/skilluminator/master/deploy/setup-devbox.ps1 | iex
-
-    Or copy this file to the Dev Box and run:
     .\setup-devbox.ps1
 #>
 
@@ -25,75 +19,73 @@ $ErrorActionPreference = "Stop"
 
 # ─── Configuration ─────────────────────────────────────────────────────────
 
-$REPO_URL      = "https://github.com/serenaxxiee/skilluminator.git"
-$INSTALL_DIR   = "C:\skilluminator"
-$LOG_DIR       = "C:\skilluminator\logs"
-$NODE_VERSION  = "22"  # LTS
-$TASK_NAME     = "SkilluminatorLoop"
+$REPO_URL    = "https://github.com/serenaxxiee/skilluminator.git"
+$INSTALL_DIR = "$HOME\skilluminator"
 
 # ─── Helper ────────────────────────────────────────────────────────────────
 
 function Write-Step { param([string]$msg) Write-Host "`n==> $msg" -ForegroundColor Cyan }
 
-# ─── 1. Install Node.js if missing ────────────────────────────────────────
+# ─── 1. Check prerequisites (don't install anything silently) ─────────────
 
-Write-Step "Checking Node.js..."
-$nodeInstalled = Get-Command node -ErrorAction SilentlyContinue
-if (-not $nodeInstalled) {
-    Write-Step "Installing Node.js $NODE_VERSION LTS via winget..."
-    winget install OpenJS.NodeJS.LTS --version $NODE_VERSION --accept-package-agreements --accept-source-agreements
-    # Refresh PATH for this session
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-} else {
-    Write-Host "  Node.js $(node --version) already installed."
+Write-Step "Checking prerequisites..."
+
+$missing = @()
+
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+    $missing += "Node.js - install via: winget install OpenJS.NodeJS.LTS"
+}
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    $missing += "Git - install via: winget install Git.Git"
 }
 
-# Verify npm is available
-$npmInstalled = Get-Command npm -ErrorAction SilentlyContinue
-if (-not $npmInstalled) {
-    Write-Host "ERROR: npm not found after Node.js install. Restart PowerShell and re-run." -ForegroundColor Red
+if ($missing.Count -gt 0) {
+    Write-Host "Missing required tools:" -ForegroundColor Red
+    foreach ($m in $missing) {
+        Write-Host "  - $m" -ForegroundColor Yellow
+    }
+    Write-Host "`nInstall them and re-run this script."
     exit 1
 }
 
-# ─── 2. Install Claude Code CLI ────────────────────────────────────────────
+Write-Host "  Node.js $(node --version) - OK"
+Write-Host "  Git $(git --version) - OK"
 
-Write-Step "Checking Claude Code CLI..."
-$claudeInstalled = Get-Command claude -ErrorAction SilentlyContinue
-if (-not $claudeInstalled) {
-    Write-Step "Installing Claude Code CLI..."
-    npm install -g @anthropic-ai/claude-code
-    # Refresh PATH
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-}
+# ─── 2. Clone or update the repo ──────────────────────────────────────────
 
-$claudeInstalled = Get-Command claude -ErrorAction SilentlyContinue
-if (-not $claudeInstalled) {
-    Write-Host "ERROR: claude CLI not found after install. Check npm global bin is in PATH." -ForegroundColor Red
-    exit 1
-}
-Write-Host "  Claude Code CLI ready: $(claude --version)"
+Write-Step "Setting up repository at $INSTALL_DIR..."
 
-# ─── 3. Clone or update the repo ──────────────────────────────────────────
-
-Write-Step "Setting up repository..."
 if (Test-Path "$INSTALL_DIR\.git") {
     Write-Host "  Repo exists, pulling latest..."
     Push-Location $INSTALL_DIR
     git pull origin master
     Pop-Location
 } else {
-    if (Test-Path $INSTALL_DIR) {
-        Remove-Item $INSTALL_DIR -Recurse -Force
-    }
     git clone $REPO_URL $INSTALL_DIR
 }
 
-# ─── 4. Install npm dependencies ──────────────────────────────────────────
+# ─── 3. Install npm dependencies ──────────────────────────────────────────
 
 Write-Step "Installing npm dependencies..."
 Push-Location $INSTALL_DIR
 npm install
 Pop-Location
+
+# ─── 4. Install Claude Code CLI (user-level, no admin) ────────────────────
+
+Write-Step "Checking Claude Code CLI..."
+if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
+    Write-Host "  Installing Claude Code CLI (npm global)..."
+    npm install -g @anthropic-ai/claude-code
+    # Refresh PATH
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
+
+if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
+    Write-Host "WARNING: claude not found in PATH. You may need to restart your terminal." -ForegroundColor Yellow
+} else {
+    Write-Host "  Claude Code CLI ready."
+}
 
 # ─── 5. Verify TypeScript compiles ────────────────────────────────────────
 
@@ -101,108 +93,40 @@ Write-Step "Verifying TypeScript build..."
 Push-Location $INSTALL_DIR
 npx tsc --noEmit
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "ERROR: TypeScript compilation failed. Fix errors before continuing." -ForegroundColor Red
+    Write-Host "ERROR: TypeScript compilation failed." -ForegroundColor Red
     Pop-Location
     exit 1
 }
 Write-Host "  Build: PASS"
 Pop-Location
 
-# ─── 6. Authenticate Claude Code ──────────────────────────────────────────
+# ─── 6. Create logs directory ─────────────────────────────────────────────
 
-Write-Step "Authenticating Claude Code..."
-Write-Host "  If not already logged in, a browser window will open."
-Write-Host "  Complete the login, then return here."
-Write-Host ""
-claude auth login
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "WARNING: Claude auth may have failed. The loop will retry on each cycle." -ForegroundColor Yellow
+$logDir = "$INSTALL_DIR\logs"
+if (-not (Test-Path $logDir)) {
+    New-Item -ItemType Directory -Path $logDir -Force | Out-Null
 }
 
-# ─── 7. Create logs directory ──────────────────────────────────────────────
-
-if (-not (Test-Path $LOG_DIR)) {
-    New-Item -ItemType Directory -Path $LOG_DIR -Force | Out-Null
-}
-
-# ─── 8. Create the startup script ─────────────────────────────────────────
-
-Write-Step "Creating launcher script..."
-$launcherPath = "$INSTALL_DIR\deploy\run-loop.ps1"
-$launcherContent = @'
-# Skilluminator Loop Launcher
-# This script is called by the scheduled task and runs indefinitely.
-
-$ErrorActionPreference = "Continue"
-$installDir = "C:\skilluminator"
-$logFile = "C:\skilluminator\logs\loop-$(Get-Date -Format 'yyyy-MM-dd').log"
-
-Set-Location $installDir
-
-# Refresh PATH to pick up node/npm/claude
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-
-Write-Output "$(Get-Date -Format o) Starting Skilluminator loop..." | Tee-Object -Append $logFile
-
-# Run the loop — tsx handles TypeScript directly
-npx tsx runner/loop.ts 2>&1 | Tee-Object -Append $logFile
-'@
-Set-Content -Path $launcherPath -Value $launcherContent -Encoding UTF8
-
-# ─── 9. Register scheduled task (runs on logon, survives RDP disconnect) ──
-
-Write-Step "Registering scheduled task '$TASK_NAME'..."
-
-# Remove existing task if present
-$existing = Get-ScheduledTask -TaskName $TASK_NAME -ErrorAction SilentlyContinue
-if ($existing) {
-    Unregister-ScheduledTask -TaskName $TASK_NAME -Confirm:$false
-}
-
-$action = New-ScheduledTaskAction `
-    -Execute "powershell.exe" `
-    -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$launcherPath`""
-
-$trigger = New-ScheduledTaskTrigger -AtLogon
-
-$settings = New-ScheduledTaskSettingsSet `
-    -AllowStartIfOnBatteries `
-    -DontStopIfGoingOnBatteries `
-    -StartWhenAvailable `
-    -RestartInterval (New-TimeSpan -Minutes 5) `
-    -RestartCount 3 `
-    -ExecutionTimeLimit ([TimeSpan]::Zero)  # No time limit — runs forever
-
-$principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest -LogonType Interactive
-
-Register-ScheduledTask `
-    -TaskName $TASK_NAME `
-    -Action $action `
-    -Trigger $trigger `
-    -Settings $settings `
-    -Principal $principal `
-    -Description "Skilluminator autonomous agent loop — runs continuously on login"
-
-Write-Host "  Task registered: $TASK_NAME (runs at logon, no time limit)"
-
-# ─── 10. Start the loop now ───────────────────────────────────────────────
-
-Write-Step "Starting the Skilluminator loop..."
-Start-ScheduledTask -TaskName $TASK_NAME
+# ─── Done — tell the user what to do next ─────────────────────────────────
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Green
-Write-Host " Skilluminator is now running!" -ForegroundColor Green
+Write-Host " Setup complete!" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green
 Write-Host ""
-Write-Host "  Install dir:  $INSTALL_DIR"
-Write-Host "  Logs:         $LOG_DIR\loop-*.log"
-Write-Host "  Task name:    $TASK_NAME"
+Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Useful commands:"
-Write-Host "  View logs:      Get-Content $LOG_DIR\loop-$(Get-Date -Format 'yyyy-MM-dd').log -Tail 50 -Wait"
-Write-Host "  Stop loop:      Stop-ScheduledTask -TaskName $TASK_NAME"
-Write-Host "  Start loop:     Start-ScheduledTask -TaskName $TASK_NAME"
-Write-Host "  Check status:   Get-ScheduledTask -TaskName $TASK_NAME | Select State"
-Write-Host "  Uninstall:      Unregister-ScheduledTask -TaskName $TASK_NAME -Confirm:`$false"
+Write-Host "  1. Authenticate Claude Code (one-time):"
+Write-Host "     claude auth login"
+Write-Host ""
+Write-Host "  2. Start the loop in a visible window:"
+Write-Host "     cd $INSTALL_DIR"
+Write-Host "     npm run loop"
+Write-Host ""
+Write-Host "  3. Or start it in the background (survives RDP disconnect):"
+Write-Host "     cd $INSTALL_DIR"
+Write-Host "     .\deploy\start-background.ps1"
+Write-Host ""
+Write-Host "  4. View logs:"
+Write-Host "     Get-Content $logDir\loop-*.log -Tail 50 -Wait"
 Write-Host ""
