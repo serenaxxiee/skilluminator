@@ -1,0 +1,15 @@
+node_modules/
+dist/
+data/token-usage.json
+data/cycle-history.json
+data/signals.cycle*.backup.json
+data/signals_temp.json
+data/test*.json
+data/skill-detector.yaml
+*.tsbuildinfo
+agentskilluminatordatasignals.json
+data/write_skill.py
+data/write_dashboard.py
+write_signals_c5.py
+data/write_skill.py
+*.py

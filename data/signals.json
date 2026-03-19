@@ -1,0 +1,261 @@
+{
+  "cycleNum": 6,
+  "harvestedAt": "2026-03-19T12:00:00Z",
+  "weekOf": "2026-03-16",
+  "workiqQueriesRun": [
+    "Give me a comprehensive analysis of ALL my M365 activity from the past 7 days across email, meetings, Teams chats, and documents. For each source, list: the most frequent/recurring activities, estimated time spent, key participants (by role not name), and any repeating patterns or workflows. Include specific examples of recurring email types, meeting types, chat topics, and document types. Be thorough — I need at least 15 distinct activity patterns.",
+    "Looking across my entire team's M365 activity from the past 7 days: What tasks do multiple people do independently that could be standardized? What workflows repeat across people (e.g., someone gets an email, schedules a meeting, then creates a doc)? What are the biggest time sinks that affect 3 or more people? Focus on patterns that span multiple M365 sources and involve multiple participants."
+  ],
+  "signals": [
+    {
+      "source": "email",
+      "title": "Work Tracker Notification Triage",
+      "participants": ["PM", "Engineer", "TPM"],
+      "frequency": 25,
+      "timeSpentMinutes": 180,
+      "keywords": ["Work Tracker", "tasks", "requirements", "features", "epics", "evals", "coverage", "jailing", "thresholds"],
+      "rawExcerpt": "Tasks, Requirements, Features, Epics for Evals, Coverage, Jailing, Thresholds — ~5-8 min per item x many items/day -> ~2.5-3.5 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Eval Strategy and Process Threads",
+      "participants": ["PM", "GPM", "Engineering Lead"],
+      "frequency": 4,
+      "timeSpentMinutes": 50,
+      "keywords": ["eval", "workflows", "CRM", "playbooks", "decks", "strategy"],
+      "rawExcerpt": "Clarifying eval workflows, CRM tracking, decks, playbooks — e.g. 'Customer donated evals added Playbook' thread — ~45-60 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Program X Camp Logistics and Participation Emails",
+      "participants": ["Program Lead", "Peer PM"],
+      "frequency": 5,
+      "timeSpentMinutes": 20,
+      "keywords": ["Program X Camp", "logistics", "schedule", "reminders", "in-person"],
+      "rawExcerpt": "Schedules, reminders, in-person logistics — 'Tiger Team – Casual get-together', 'Program X Camp' — ~20 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "File-Share Notifications (Loop, SharePoint)",
+      "participants": ["PM", "Analyst"],
+      "frequency": 8,
+      "timeSpentMinutes": 35,
+      "keywords": ["Loop", "SharePoint", "shared docs", "eval docs", "dashboards", "templates"],
+      "rawExcerpt": "Shared eval docs, dashboards, templates — 'Response quality evaluations from the Enterprise Client C product team' — ~30-45 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Security and Compliance Alerts",
+      "participants": ["Security System"],
+      "frequency": 1,
+      "timeSpentMinutes": 12,
+      "keywords": ["Purview", "DLP", "sensitive data", "blocked file", "compliance"],
+      "rawExcerpt": "Purview DLP alert for sensitive data — 'Action Required: File Blocked – sensitive data' — ~10-15 min event-driven",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Broadcast / FYI Newsletters",
+      "participants": ["System"],
+      "frequency": 7,
+      "timeSpentMinutes": 17,
+      "keywords": ["Viva Engage", "digest", "roadmap", "newsletter", "daily digest"],
+      "rawExcerpt": "'Microsoft Daily Digest', 'Copilot New Public Roadmap Items' — ~15-20 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Long-Form Immersive Program (Program X Camp)",
+      "participants": ["PM", "Engineer", "Designer", "Program Lead"],
+      "frequency": 1,
+      "timeSpentMinutes": 540,
+      "keywords": ["Program X Camp", "Program X", "immersive", "multi-hour", "program"],
+      "rawExcerpt": "Program X Camp (multi-hour) — Duration ~9 hrs; attendance logged",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "V-Team / Cross-Org Syncs",
+      "participants": ["PM", "Engineer", "TPM"],
+      "frequency": 2,
+      "timeSpentMinutes": 75,
+      "keywords": ["v-team", "cross-org", "sync", "evaluation alignment", "Project Alpha"],
+      "rawExcerpt": "Evaluation alignment, Services Org / ISV / DA Evals — Weekly Project Alpha v-Team — ~1-1.5 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Customer / Partner Eval Deep Dives",
+      "participants": ["PM", "Engineer", "Customer Rep"],
+      "frequency": 2,
+      "timeSpentMinutes": 60,
+      "keywords": ["customer", "partner", "eval walkthrough", "tool grounding", "deep dive"],
+      "rawExcerpt": "Scoped eval walkthroughs, tool grounding discussions — 20-30 min eval deep dive planning in chat — ~1 hr/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Eval Tooling Debugging and Guidance",
+      "participants": ["Engineer", "PM", "TPM"],
+      "frequency": 8,
+      "timeSpentMinutes": 120,
+      "keywords": ["CLI Evals", "tool-call accuracy", "telemetry", "private preview", "debugging"],
+      "rawExcerpt": "CLI Evals, tool-call accuracy, telemetry gaps — CLI Eval Private Preview thread — ~2 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Event-Driven Collaboration (Program X Camp Chats)",
+      "participants": ["PM", "Engineer", "Program Lead"],
+      "frequency": 15,
+      "timeSpentMinutes": 210,
+      "keywords": ["standups", "debriefs", "resource sharing", "vibe-coding", "Program X Camp"],
+      "rawExcerpt": "Program X Camp standups, vibe-coding discussions — ~3-4 hrs/week overlaps with meetings",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Content Planning and Speaking Alignment",
+      "participants": ["PM", "Manager"],
+      "frequency": 3,
+      "timeSpentMinutes": 35,
+      "keywords": ["TechCon", "presentation", "topics", "speaking", "content planning"],
+      "rawExcerpt": "TechCon planning with manager & peers — ~30-45 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Triage and Ownership Resolution",
+      "participants": ["PM", "TPM", "DRI"],
+      "frequency": 4,
+      "timeSpentMinutes": 45,
+      "keywords": ["triage", "ownership", "duplicate", "customer asks", "DRI"],
+      "rawExcerpt": "Duplicate customer asks, ownership confirmation — Eval DRI/TPM triage threads — ~45 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Knowledge Sharing and Link Distribution",
+      "participants": ["PM", "Engineer"],
+      "frequency": 6,
+      "timeSpentMinutes": 30,
+      "keywords": ["docs", "Learn links", "SharePoint", "forms", "guidance"],
+      "rawExcerpt": "Docs, Learn links, SharePoint, forms — Copilot Studio eval guidance links — ~30 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Informal Social / Morale Chats",
+      "participants": ["Team Member"],
+      "frequency": 3,
+      "timeSpentMinutes": 12,
+      "keywords": ["watercooler", "social", "morale", "Tiger Team"],
+      "rawExcerpt": "St. Patrick's Day Tiger Team thread — ~10-15 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Eval Frameworks and Templates Creation",
+      "participants": ["PM", "Engineer"],
+      "frequency": 4,
+      "timeSpentMinutes": 210,
+      "keywords": ["eval", "template", "scenario guide", "metrics", "trajectory evaluation", "Agent Eval Sets"],
+      "rawExcerpt": "Agent Eval Sets template, Trajectory evaluation guide (Status Update) — ~3-4 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Meta-Analysis Dashboards (Skilluminator)",
+      "participants": ["PM"],
+      "frequency": 2,
+      "timeSpentMinutes": 75,
+      "keywords": ["dashboard", "meta-analysis", "M365 patterns", "skilluminator"],
+      "rawExcerpt": "Dashboards analyzing M365 patterns — Skilluminator dashboard (Cycle 3) — ~1-1.5 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Loop-Based Live Collaboration",
+      "participants": ["PM", "Engineer", "TPM"],
+      "frequency": 5,
+      "timeSpentMinutes": 120,
+      "keywords": ["Loop", "meeting notes", "project kickoff", "hack planning", "live collab"],
+      "rawExcerpt": "Meeting notes, project kickoffs, hack planning — Multiple Loop files shared/edited this week — ~2 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Hackathon and Prototype Artifacts",
+      "participants": ["PM", "Engineer"],
+      "frequency": 3,
+      "timeSpentMinutes": 150,
+      "keywords": ["hackathon", "prototype", "repos", "scripts", "setup-devbox", "hack ideas"],
+      "rawExcerpt": "Hack ideas, repos, scripts, prototypes — Hackathon planning doc, setup-devbox.sh — ~2-3 hrs/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Customer Signal Synthesis",
+      "participants": ["PM", "GPM"],
+      "frequency": 2,
+      "timeSpentMinutes": 50,
+      "keywords": ["customer feedback", "planning inputs", "Services Org", "customer signals"],
+      "rawExcerpt": "'Services Org Customer Signals for Planning' — Aggregating customer feedback into planning inputs — ~45-60 min/week",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Action Items Capture-Assign-Publish Loop",
+      "participants": ["PM", "TPM", "Engineer", "Program Lead"],
+      "frequency": 5,
+      "timeSpentMinutes": 60,
+      "keywords": ["action items", "recap", "follow-up tasks", "owners", "checklist"],
+      "rawExcerpt": "Same 'capture -> assign -> publish' loop happening in at least three modalities: meeting recap email, meeting transcript/tasks, Teams follow-ups & tagging",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Link Chasing and Access Management",
+      "participants": ["PM", "Engineer", "TPM"],
+      "frequency": 6,
+      "timeSpentMinutes": 45,
+      "keywords": ["access", "link sharing", "Loop links", "SharePoint", "permissions", "chat history"],
+      "rawExcerpt": "'send me the link direct? don't have access to chat history...' plus 'Verify that all Program X team members have access to the new SharePoint Solution Library and resolve access problems'",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Incident Documentation Update Workflow",
+      "participants": ["PM", "Engineer", "TPM"],
+      "frequency": 2,
+      "timeSpentMinutes": 60,
+      "keywords": ["incident", "documentation", "README", "ICM", "escalation", "blockers", "workaround"],
+      "rawExcerpt": "Meeting transcript shows live coordination around an incident impacting eval tooling — updating README/docs, pulling others into incident/ICM, coordinating stakeholder updates",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Daily Prep / Personal Summary Automation",
+      "participants": ["PM"],
+      "frequency": 5,
+      "timeSpentMinutes": 25,
+      "keywords": ["daily prep", "Workflows bot", "SharePoint page", "morning summary", "automation"],
+      "rawExcerpt": "Repeated automated outputs: 'Help me prepare for my day' from Workflows, producing a generated SharePoint page — if multiple team members doing similar daily prep, standardization can reduce duplicated set-up",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Email-to-Meeting-to-Deck-to-Followup Chain",
+      "participants": ["PM", "GPM", "Engineer", "TPM"],
+      "frequency": 3,
+      "timeSpentMinutes": 90,
+      "keywords": ["recap email", "content deck", "follow-up tasks", "RoB", "engagement recap"],
+      "rawExcerpt": "A recap email references a meeting review, points to a content deck, and then enumerates follow-up tasks with owners — repeated 'discuss -> deck -> recap -> action list -> track' operating rhythm",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    }
+  ]
+}

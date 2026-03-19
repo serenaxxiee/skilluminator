@@ -1,0 +1,22 @@
+{
+  "name": "skilluminator",
+  "version": "1.0.0",
+  "description": "Autonomous M365 work pattern detector and skill candidate generator",
+  "type": "module",
+  "scripts": {
+    "loop": "tsx src/index.ts",
+    "build": "tsc",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "latest",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "chalk": "^5.3.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
