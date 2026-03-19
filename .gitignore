@@ -13,3 +13,4 @@ data/write_dashboard.py
 write_signals_c5.py
 data/write_skill.py
 *.py
+.env

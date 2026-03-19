@@ -1,8 +1,21 @@
 // ── Skilluminator: Main entry point ─────────────────────────────────
 
+import { readFileSync, existsSync } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { runCycle, validateSetup } from "./cycle.js";
 import { ensureDirs, readCycleHistory, DASHBOARD_PATH } from "./state.js";
 import * as display from "./display.js";
+
+// ── Load .env ───────────────────────────────────────────────────────
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const envPath = path.join(__dirname, "..", ".env");
+if (existsSync(envPath)) {
+  for (const line of readFileSync(envPath, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] ??= match[2].trim();
+  }
+}
 
 const CYCLE_DELAY_MS = 10_000;
 
