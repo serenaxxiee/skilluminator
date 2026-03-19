@@ -1,0 +1,132 @@
+================================================================================
+SKILLUMINATOR — Development Diary
+================================================================================
+
+Each entry documents a logical PR / commit group pushed to the GitHub repo at:
+https://github.com/serenaxxiee/skilluminator
+
+================================================================================
+PR #1: Initial Bootstrap
+Date: 2026-03-18
+Commit: 9703927
+================================================================================
+
+Summary:
+  First commit establishing the Skilluminator autonomous agent scaffolding.
+  This is a fully autonomous, self-evolving agent built with the Claude Agent
+  SDK (@anthropic-ai/claude-agent-sdk) in TypeScript.
+
+What was built:
+  - runner/loop.ts      — Immutable bootstrap: infinite loop, query(), build
+                          check, git commit/revert. 10-second sleep between
+                          cycles. Supports --once flag for single-cycle runs.
+  - runner/logger.ts    — Structured logging with ISO timestamps and cycle
+                          tracking.
+  - agent/index.ts      — Entry point that builds system + user prompts from
+                          SQLite memory state.
+  - agent/prompt.ts     — System prompt (agent identity, mission, data sources,
+                          SKILL.md spec, self-modification rules, cycle rhythm)
+                          and user prompt (recent diary, mods, patterns, git log).
+  - agent/memory.ts     — SQLite database (better-sqlite3) with tables for
+                          patterns, skills, diary, self_modifications, hypotheses,
+                          and meta. Schema versioned. WAL mode.
+  - agent/health.ts     — Build verification via tsc --noEmit.
+  - agent/git.ts        — Git helpers: init, commitAll, revertHead, getRecentLog.
+  - agent/mcp/workiq.ts — Work IQ MCP stdio server config (requires
+                          WORKIQ_TENANT_ID).
+  - agent/mcp/copilot.ts— GitHub Copilot MCP server config.
+  - package.json        — npm scripts: loop, build, typecheck, cycle:once.
+  - tsconfig.json       — Strict mode, ES2022, NodeNext module resolution.
+
+Architecture decisions:
+  - Claude Agent SDK chosen over raw @anthropic-ai/sdk for built-in tools
+    (Read, Write, Edit, Bash, Glob, Grep) and Claude Code session auth.
+  - SQLite for memory instead of JSON files (structured queries, atomic writes).
+  - Immutable bootstrap (runner/) vs self-modifiable agent code (agent/).
+  - Build safety: tsc --noEmit after each cycle, auto-discard on failure.
+  - Git repo tracks all changes — each cycle produces a commit.
+
+Files changed: 16 files, 2251 insertions
+
+================================================================================
+PR #2: Code Review Fixes
+Date: 2026-03-18
+Commit: 57326ca
+================================================================================
+
+Summary:
+  Addressed all 7 findings from automated code review. Every fix targets a
+  real bug or correctness issue discovered by the reviewer agent.
+
+Fixes applied:
+  1. [Critical] runner/loop.ts — Agent messages were never logged. The code
+     checked for "result" in message (wrong field). Fixed to properly handle
+     SDKAssistantMessage (type === "assistant") and SDKResultMessage separately.
+
+  2. [Critical] runner/loop.ts — allowedTools does not restrict available tools
+     when permissionMode is "bypassPermissions". Changed to use `tools` option
+     which actually limits the tool set.
+
+  3. [Critical] agent/git.ts — git revert HEAD creates a NEW commit (inverse of
+     HEAD), which is wrong for undoing uncommitted working-tree changes. Replaced
+     with discardUncommitted() that does git reset HEAD + git checkout -- .
+
+  4. [Important] runner/loop.ts — buildPrompt was called before incrementCycle,
+     so the prompt showed totalCycles one behind cycleNumber. Reordered to
+     increment first.
+
+  5. [Important] agent/mcp/copilot.ts — Dead try/catch around an object literal.
+     Copilot MCP was always added even when gh CLI not installed. Now checks
+     ENABLE_COPILOT_MCP env var and verifies gh copilot --version before
+     returning config.
+
+  6. [Important] agent/memory.ts — getSkills() cast raw snake_case DB rows
+     directly to camelCase GeneratedSkill interface. All camelCase fields would
+     be undefined at runtime. Added explicit column mapping like getPatterns().
+
+  7. [Performance] runner/loop.ts + agent/index.ts — tsc ran twice per cycle
+     (once in buildPrompt, once post-agent). Added BuildResult caching across
+     cycles. buildPrompt now accepts optional cachedBuild parameter.
+
+Files changed: 5 files, 86 insertions, 30 deletions
+  - runner/loop.ts       (47 insertions, 16 deletions)
+  - agent/index.ts       (15 insertions, 3 deletions)
+  - agent/git.ts         (17 insertions, 4 deletions)
+  - agent/memory.ts      (18 insertions, 1 deletion)
+  - agent/mcp/copilot.ts (19 insertions, 6 deletions)
+
+================================================================================
+PR #3: Cycle 1 — Agent Self-Creates Data Collection Module
+Date: 2026-03-18
+Commits: 2a1a39f, daa9f71
+================================================================================
+
+Summary:
+  First autonomous cycle of the Skilluminator agent. The agent identified that
+  it had database and git helpers but no actual data collection logic, then
+  self-created a collector module to address this critical gap. This is the
+  agent's first act of self-modification.
+
+What the agent did:
+  - Created agent/collector.ts (260 lines) — a data collection module that
+    gathers work patterns from:
+      * Git commit history (messages, file changes, author patterns)
+      * Filesystem modifications (file types, recent changes)
+      * Pattern analysis (grouping, frequency counting, confidence scoring)
+  - Created data/diary/cycle-1.md (70 lines) — the agent's first diary entry
+    documenting its analysis of the codebase and the gaps it identified.
+  - Initialized data/memory.db — SQLite database with schema tables created.
+
+This demonstrates the core self-evolution loop working end-to-end:
+  1. Agent boots, reads its memory and diary (empty on first run)
+  2. Agent identifies a gap (no data collection logic)
+  3. Agent writes new code to fill the gap
+  4. Build check passes (tsc --noEmit succeeds)
+  5. Changes committed automatically by the loop runner
+
+Files changed: 3 files, 330 insertions
+  - agent/collector.ts    (260 lines — new file, self-authored by agent)
+  - data/diary/cycle-1.md (70 lines — new file, self-authored by agent)
+  - data/memory.db        (binary — SQLite database initialized)
+
+================================================================================
