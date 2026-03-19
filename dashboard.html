@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skilluminator Dashboard - Cycle 5</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:24px;max-width:1400px;margin:0 auto}
+h1{font-size:28px;font-weight:700;margin-bottom:4px;background:linear-gradient(90deg,#6c5ce7,#00b894);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:14px;margin-bottom:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.kpi{background:#1a1d27;border-radius:12px;padding:20px;border:1px solid #2a2d3a}
+.kpi-value{font-size:36px;font-weight:700;color:#fff}
+.kpi-label{font-size:13px;color:#888;margin-top:4px}
+.kpi-delta{font-size:12px;margin-top:6px}
+.kpi-delta.up{color:#00b894}
+.kpi-delta.stable{color:#fdcb6e}
+.section{background:#1a1d27;border-radius:12px;padding:24px;margin-bottom:24px;border:1px solid #2a2d3a}
+.section-title{font-size:18px;font-weight:600;margin-bottom:16px;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:2px solid #2a2d3a;color:#888;font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:10px 12px;border-bottom:1px solid #1f2230}
+tr:hover{background:#1f2230}
+.bar-cell{position:relative;width:120px}
+.bar{height:8px;border-radius:4px;position:relative}
+.bar-auto{background:linear-gradient(90deg,#6c5ce7,#a29bfe)}
+.bar-value{background:linear-gradient(90deg,#00b894,#55efc4)}
+.bar-composite{background:linear-gradient(90deg,#fdcb6e,#f39c12)}
+.trend-up{color:#00b894}
+.trend-stable{color:#fdcb6e}
+.trend-down{color:#d63031}
+.score{font-weight:600;font-size:14px}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.json-block{background:#12141c;border-radius:8px;padding:16px;font-family:'Fira Code',monospace;font-size:12px;overflow-x:auto;max-height:400px;overflow-y:auto;color:#a29bfe;white-space:pre-wrap;word-break:break-all}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
+.badge-email{background:#6c5ce720;color:#a29bfe}
+.badge-meeting{background:#00b89420;color:#55efc4}
+.badge-teams{background:#fdcb6e20;color:#fdcb6e}
+.badge-doc{background:#d63031 20;color:#ff7675}
+.changelog{font-size:13px;line-height:1.8}
+.changelog li{margin-left:20px;color:#b0b0b0}
+.changelog strong{color:#e0e0e0}
+.footer{text-align:center;color:#555;font-size:12px;padding:24px 0}
+</style>
+</head>
+<body>
+
+<h1>Skilluminator Dashboard</h1>
+<p class="subtitle">Cycle 5 &bull; Week of 2026-03-16 &bull; 34 signals &bull; 26 patterns tracked &bull; skill-detector v1.0.0</p>
+
+<!-- KPI Row -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-value">26</div>
+    <div class="kpi-label">Patterns Tracked</div>
+    <div class="kpi-delta stable">+0 from cycle 4 (consolidated)</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value">24</div>
+    <div class="kpi-label">Org-Wide Patterns</div>
+    <div class="kpi-delta stable">92% org-wide coverage</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value">89</div>
+    <div class="kpi-label">Top Composite Score</div>
+    <div class="kpi-delta up">+2 from cycle 4 (ADO Triage)</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value">10</div>
+    <div class="kpi-label">Skill Candidates (score 75+)</div>
+    <div class="kpi-delta up">Ready for generation</div>
+  </div>
+</div>
+
+<!-- Top Skill Candidates Table -->
+<div class="section">
+  <div class="section-title">Top Skill Candidates (sorted by composite score)</div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Skill Name</th>
+        <th>Sources</th>
+        <th>Occurrences</th>
+        <th>Hrs/Wk</th>
+        <th>Automation</th>
+        <th>Value</th>
+        <th>Composite</th>
+        <th>Trend</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>ado-notification-router</strong></td>
+        <td><span class="badge badge-email">email</span></td>
+        <td>85</td>
+        <td>2.5</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:92%"></div></div><span class="score">92</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:85%"></div></div><span class="score">85</span></td>
+        <td><span class="score" style="color:#fdcb6e">89</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>meeting-notes-action-extractor</strong></td>
+        <td><span class="badge badge-email">email</span> <span class="badge badge-meeting">meeting</span> <span class="badge badge-teams">teams</span> <span class="badge badge-doc">doc</span></td>
+        <td>45</td>
+        <td>7.5</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:88%"></div></div><span class="score">88</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:86%"></div></div><span class="score">86</span></td>
+        <td><span class="score" style="color:#fdcb6e">87</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>eval-report-synthesizer</strong></td>
+        <td><span class="badge badge-email">email</span> <span class="badge badge-meeting">meeting</span> <span class="badge badge-teams">teams</span> <span class="badge badge-doc">doc</span></td>
+        <td>51</td>
+        <td>10.75</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:76%"></div></div><span class="score">76</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:90%"></div></div><span class="score">90</span></td>
+        <td><span class="score" style="color:#fdcb6e">83</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>voc-ask-deduplicator</strong></td>
+        <td><span class="badge badge-teams">teams</span> <span class="badge badge-email">email</span></td>
+        <td>25</td>
+        <td>3.71</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:84%"></div></div><span class="score">84</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:82%"></div></div><span class="score">82</span></td>
+        <td><span class="score" style="color:#fdcb6e">83</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>weekly-status-report-generator</strong></td>
+        <td><span class="badge badge-doc">doc</span> <span class="badge badge-email">email</span> <span class="badge badge-teams">teams</span></td>
+        <td>12</td>
+        <td>3.0</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:82%"></div></div><span class="score">82</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:80%"></div></div><span class="score">80</span></td>
+        <td><span class="score" style="color:#fdcb6e">81</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>eval-template-scaffolder</strong></td>
+        <td><span class="badge badge-doc">doc</span> <span class="badge badge-teams">teams</span></td>
+        <td>10</td>
+        <td>4.0</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:78%"></div></div><span class="score">78</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:84%"></div></div><span class="score">84</span></td>
+        <td><span class="score" style="color:#fdcb6e">81</span></td>
+        <td class="trend-stable">&#9654; stable</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>unified-action-item-tracker</strong></td>
+        <td><span class="badge badge-teams">teams</span> <span class="badge badge-meeting">meeting</span> <span class="badge badge-email">email</span> <span class="badge badge-doc">doc</span></td>
+        <td>14</td>
+        <td>3.33</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:78%"></div></div><span class="score">78</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:84%"></div></div><span class="score">84</span></td>
+        <td><span class="score" style="color:#fdcb6e">81</span></td>
+        <td class="trend-stable">&#9654; stable</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><strong>meeting-summary-publisher</strong></td>
+        <td><span class="badge badge-meeting">meeting</span> <span class="badge badge-doc">doc</span> <span class="badge badge-teams">teams</span></td>
+        <td>16</td>
+        <td>4.0</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:82%"></div></div><span class="score">82</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:80%"></div></div><span class="score">80</span></td>
+        <td><span class="score" style="color:#fdcb6e">81</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><strong>recurring-agenda-generator</strong></td>
+        <td><span class="badge badge-meeting">meeting</span> <span class="badge badge-doc">doc</span> <span class="badge badge-teams">teams</span></td>
+        <td>32</td>
+        <td>15.92</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:80%"></div></div><span class="score">80</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:78%"></div></div><span class="score">78</span></td>
+        <td><span class="score" style="color:#fdcb6e">79</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><strong>knowledge-context-consolidator</strong></td>
+        <td><span class="badge badge-teams">teams</span> <span class="badge badge-email">email</span> <span class="badge badge-doc">doc</span> <span class="badge badge-meeting">meeting</span></td>
+        <td>27</td>
+        <td>7.5</td>
+        <td><div class="bar-cell"><div class="bar bar-auto" style="width:74%"></div></div><span class="score">74</span></td>
+        <td><div class="bar-cell"><div class="bar bar-value" style="width:84%"></div></div><span class="score">84</span></td>
+        <td><span class="score" style="color:#fdcb6e">79</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Charts Row -->
+<div class="charts-row">
+  <!-- Bubble Chart -->
+  <div class="section">
+    <div class="section-title">Automation vs Value (bubble = occurrences)</div>
+    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#6c5ce7"/><stop offset="100%" style="stop-color:#a29bfe"/></linearGradient>
+        <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00b894"/><stop offset="100%" style="stop-color:#55efc4"/></linearGradient>
+      </defs>
+      <!-- Axes -->
+      <line x1="60" y1="350" x2="480" y2="350" stroke="#2a2d3a" stroke-width="1"/>
+      <line x1="60" y1="20" x2="60" y2="350" stroke="#2a2d3a" stroke-width="1"/>
+      <text x="270" y="390" fill="#888" font-size="12" text-anchor="middle">Automation Score</text>
+      <text x="15" y="185" fill="#888" font-size="12" text-anchor="middle" transform="rotate(-90,15,185)">Value Score</text>
+      <!-- Grid -->
+      <line x1="60" y1="185" x2="480" y2="185" stroke="#1f2230" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="270" y1="20" x2="270" y2="350" stroke="#1f2230" stroke-width="0.5" stroke-dasharray="4"/>
+      <text x="56" y="355" fill="#555" font-size="10" text-anchor="end">40</text>
+      <text x="56" y="185" fill="#555" font-size="10" text-anchor="end">70</text>
+      <text x="56" y="25" fill="#555" font-size="10" text-anchor="end">100</text>
+      <text x="60" y="370" fill="#555" font-size="10" text-anchor="middle">50</text>
+      <text x="270" y="370" fill="#555" font-size="10" text-anchor="middle">75</text>
+      <text x="480" y="370" fill="#555" font-size="10" text-anchor="middle">100</text>
+      <!-- Bubbles: x = (auto-50)*420/50+60, y = 350-(val-40)*330/60, r = sqrt(occ)*3 -->
+      <!-- ADO: auto=92, val=85, occ=85 -->
+      <circle cx="412" cy="103" r="28" fill="#6c5ce7" opacity="0.7"/>
+      <text x="412" y="107" fill="#fff" font-size="9" text-anchor="middle">ADO</text>
+      <!-- Meeting Notes: auto=88, val=86, occ=45 -->
+      <circle cx="379" cy="97" r="20" fill="#00b894" opacity="0.7"/>
+      <text x="379" y="101" fill="#fff" font-size="9" text-anchor="middle">Notes</text>
+      <!-- Eval Results: auto=76, val=90, occ=51 -->
+      <circle cx="278" cy="75" r="21" fill="#fdcb6e" opacity="0.7"/>
+      <text x="278" y="79" fill="#333" font-size="9" text-anchor="middle">Eval</text>
+      <!-- VoC: auto=84, val=82, occ=25 -->
+      <circle cx="346" cy="119" r="15" fill="#a29bfe" opacity="0.7"/>
+      <text x="346" y="123" fill="#fff" font-size="9" text-anchor="middle">VoC</text>
+      <!-- Status: auto=82, val=80, occ=12 -->
+      <circle cx="329" cy="130" r="10" fill="#55efc4" opacity="0.7"/>
+      <text x="329" y="134" fill="#333" font-size="8" text-anchor="middle">Stat</text>
+      <!-- Agenda: auto=80, val=78, occ=32 -->
+      <circle cx="312" cy="141" r="17" fill="#ff7675" opacity="0.7"/>
+      <text x="312" y="145" fill="#fff" font-size="9" text-anchor="middle">Agenda</text>
+      <!-- FAQ: auto=70, val=80, occ=33 -->
+      <circle cx="228" cy="130" r="17" fill="#74b9ff" opacity="0.7"/>
+      <text x="228" y="134" fill="#fff" font-size="9" text-anchor="middle">FAQ</text>
+      <!-- Context: auto=74, val=84, occ=27 -->
+      <circle cx="261" cy="108" r="16" fill="#e17055" opacity="0.7"/>
+      <text x="261" y="112" fill="#fff" font-size="9" text-anchor="middle">Ctx</text>
+      <!-- Meeting Load: auto=72, val=82, occ=110 -->
+      <circle cx="245" cy="119" r="31" fill="#636e72" opacity="0.5"/>
+      <text x="245" y="123" fill="#fff" font-size="9" text-anchor="middle">Load</text>
+      <!-- Event: auto=62, val=84, occ=43 -->
+      <circle cx="161" cy="108" r="20" fill="#fab1a0" opacity="0.7"/>
+      <text x="161" y="112" fill="#333" font-size="9" text-anchor="middle">Event</text>
+    </svg>
+  </div>
+
+  <!-- Source Donut -->
+  <div class="section">
+    <div class="section-title">Signal Sources Distribution (Cycle 5)</div>
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- email=9, meeting=11, teams=8, doc=6 => total=34 -->
+      <!-- Donut: email 26.5%, meeting 32.4%, teams 23.5%, doc 17.6% -->
+      <!-- Using stroke-dasharray on circles -->
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#2a2d3a" stroke-width="40"/>
+      <!-- Email: 26.5% of 754 = 199.8, offset=0 -->
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#a29bfe" stroke-width="40" stroke-dasharray="199.8 554.2" stroke-dashoffset="0" transform="rotate(-90 200 200)"/>
+      <!-- Meeting: 32.4% of 754 = 244.3, offset=-199.8 -->
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#55efc4" stroke-width="40" stroke-dasharray="244.3 509.7" stroke-dashoffset="-199.8" transform="rotate(-90 200 200)"/>
+      <!-- Teams: 23.5% of 754 = 177.2, offset=-444.1 -->
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#fdcb6e" stroke-width="40" stroke-dasharray="177.2 576.8" stroke-dashoffset="-444.1" transform="rotate(-90 200 200)"/>
+      <!-- Doc: 17.6% of 754 = 132.7, offset=-621.3 -->
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#ff7675" stroke-width="40" stroke-dasharray="132.7 621.3" stroke-dashoffset="-621.3" transform="rotate(-90 200 200)"/>
+      <!-- Center text -->
+      <text x="200" y="195" fill="#fff" font-size="28" font-weight="700" text-anchor="middle">34</text>
+      <text x="200" y="215" fill="#888" font-size="13" text-anchor="middle">signals</text>
+      <!-- Legend -->
+      <rect x="50" y="350" width="12" height="12" rx="2" fill="#a29bfe"/>
+      <text x="68" y="361" fill="#b0b0b0" font-size="12">Email (9)</text>
+      <rect x="150" y="350" width="12" height="12" rx="2" fill="#55efc4"/>
+      <text x="168" y="361" fill="#b0b0b0" font-size="12">Meeting (11)</text>
+      <rect x="265" y="350" width="12" height="12" rx="2" fill="#fdcb6e"/>
+      <text x="283" y="361" fill="#b0b0b0" font-size="12">Teams (8)</text>
+      <rect x="355" y="350" width="12" height="12" rx="2" fill="#ff7675"/>
+      <text x="373" y="361" fill="#b0b0b0" font-size="12">Doc (6)</text>
+    </svg>
+  </div>
+</div>
+
+<!-- Org-Wide Patterns -->
+<div class="section">
+  <div class="section-title">Org-Wide Patterns (participantCount >= 3)</div>
+  <p style="color:#888;font-size:13px;margin-bottom:12px">24 of 26 patterns affect 3 or more participants. Only 2 patterns are personal-productivity-only (daily-briefing-generator, broadcast-email-classifier).</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">
+    <span style="background:#6c5ce720;color:#a29bfe;padding:4px 12px;border-radius:16px;font-size:12px">ado-notification-router (89)</span>
+    <span style="background:#00b89420;color:#55efc4;padding:4px 12px;border-radius:16px;font-size:12px">meeting-notes-action-extractor (87)</span>
+    <span style="background:#fdcb6e20;color:#fdcb6e;padding:4px 12px;border-radius:16px;font-size:12px">eval-report-synthesizer (83)</span>
+    <span style="background:#6c5ce720;color:#a29bfe;padding:4px 12px;border-radius:16px;font-size:12px">voc-ask-deduplicator (83)</span>
+    <span style="background:#00b89420;color:#55efc4;padding:4px 12px;border-radius:16px;font-size:12px">weekly-status-report-generator (81)</span>
+    <span style="background:#fdcb6e20;color:#fdcb6e;padding:4px 12px;border-radius:16px;font-size:12px">eval-template-scaffolder (81)</span>
+    <span style="background:#6c5ce720;color:#a29bfe;padding:4px 12px;border-radius:16px;font-size:12px">unified-action-item-tracker (81)</span>
+    <span style="background:#00b89420;color:#55efc4;padding:4px 12px;border-radius:16px;font-size:12px">meeting-summary-publisher (81)</span>
+    <span style="background:#fdcb6e20;color:#fdcb6e;padding:4px 12px;border-radius:16px;font-size:12px">recurring-agenda-generator (79)</span>
+    <span style="background:#6c5ce720;color:#a29bfe;padding:4px 12px;border-radius:16px;font-size:12px">knowledge-context-consolidator (79)</span>
+    <span style="background:#00b89420;color:#55efc4;padding:4px 12px;border-radius:16px;font-size:12px">external-meeting-followup-drafter (80)</span>
+    <span style="background:#fdcb6e20;color:#fdcb6e;padding:4px 12px;border-radius:16px;font-size:12px">customer-sdr-generator (80)</span>
+    <span style="background:#636e7240;color:#b2bec3;padding:4px 12px;border-radius:16px;font-size:12px">calendar-triage-advisor (77)</span>
+    <span style="background:#636e7240;color:#b2bec3;padding:4px 12px;border-radius:16px;font-size:12px">copilot-platform-faq-responder (75)</span>
+    <span style="background:#636e7240;color:#b2bec3;padding:4px 12px;border-radius:16px;font-size:12px">partner-eval-enablement-pack-generator (77)</span>
+    <span style="background:#636e7240;color:#b2bec3;padding:4px 12px;border-radius:16px;font-size:12px">event-artifact-coordinator (73)</span>
+    <span style="background:#636e7240;color:#b2bec3;padding:4px 12px;border-radius:16px;font-size:12px">+8 more</span>
+  </div>
+</div>
+
+<!-- Skill Generator Input JSON -->
+<div class="section">
+  <div class="section-title">Skill-Generator Input (Top 5 Candidates)</div>
+  <div class="json-block">{
+  "candidateSkills": [
+    {
+      "rank": 1,
+      "name": "ado-notification-router",
+      "compositeScore": 89,
+      "automationScore": 92,
+      "valueScore": 85,
+      "description": "Classifies ADO notification emails by work-item type and prefix tag, sets action-required flag, routes to suggested role.",
+      "valueProposition": "Eliminates 60-90 min/week of inbox scanning across 3 roles. 85 occurrences over 5 cycles."
+    },
+    {
+      "rank": 2,
+      "name": "meeting-notes-action-extractor",
+      "compositeScore": 87,
+      "automationScore": 88,
+      "valueScore": 86,
+      "description": "Ingests meeting transcript and emits structured action items, decisions log, and follow-up email draft.",
+      "valueProposition": "Replaces 7.5 hrs/week of redundant meeting output creation across 4 roles."
+    },
+    {
+      "rank": 3,
+      "name": "eval-report-synthesizer",
+      "compositeScore": 83,
+      "automationScore": 76,
+      "valueScore": 90,
+      "description": "Produces standardized eval report with pass/fail summary and step-level failure breakdown from eval results.",
+      "valueProposition": "Saves 10.75 hrs/week by enforcing single eval schema across 5 roles."
+    },
+    {
+      "rank": 4,
+      "name": "voc-ask-deduplicator",
+      "compositeScore": 83,
+      "automationScore": 84,
+      "valueScore": 82,
+      "description": "Compares incoming Customer Ask against ADO backlog, returns duplicate candidates and DRI routing.",
+      "valueProposition": "Replaces 25+ manual triage events across 5 cycles with instant dedup and routing."
+    },
+    {
+      "rank": 5,
+      "name": "weekly-status-report-generator",
+      "compositeScore": 81,
+      "automationScore": 82,
+      "valueScore": 80,
+      "description": "Drafts Loop-formatted project status report from ADO sprint items and prior meeting notes.",
+      "valueProposition": "Eliminates manual cross-tool aggregation for recurring leadership-requested status reports."
+    }
+  ]
+}</div>
+</div>
+
+<!-- Skill Detector Version & Changelog -->
+<div class="section">
+  <div class="section-title">skill-detector v1.0.0 &mdash; Refinement Changelog</div>
+  <ul class="changelog">
+    <li><strong>v1.0.0 (Cycle 5)</strong> &mdash; Initial creation. Full HARVEST-CLASSIFY-SCORE-GENERATE pipeline. 15 proven WorkIQ signal-extraction prompts. 10 pattern archetypes derived from 5 cycles of real M365 data. Explicit automationScore and valueScore formulas with modifiers. Reference catalog of 26 validated patterns across 3 confidence tiers. Signal-to-pattern mapping heuristics including frequency thresholds, multi-signal convergence, and the Same-Inputs-Same-Outputs-Different-Authors test. Structured output format with 5 mandatory sections.</li>
+    <li><strong>Cycle 5 data updates</strong> &mdash; All 26 patterns refreshed with cycle 5 evidence. ADO Notification Triage automationScore raised to 92 (5-cycle rule-based confirmation). Eval Results valueScore raised to 90 (highest in catalog). Copilot Platform FAQ automationScore raised to 70 (clearer Q&A categories). FFv2 Rollout Runbook declining for 3rd cycle.</li>
+    <li><strong>Next cycle targets</strong> &mdash; Add input/output schema specifications to top 5 skill candidates. Add M365 source dependency mapping. Introduce pattern clustering to detect archetype families. Consider archiving FFv2 Rollout Runbook if no signal in cycle 6.</li>
+  </ul>
+</div>
+
+<div class="footer">
+  Skilluminator &bull; Generated 2026-03-19 &bull; Cycle 5 of 5 &bull; Data source: WorkIQ MCP (M365 Graph)
+</div>
+
+</body>
+</html>
