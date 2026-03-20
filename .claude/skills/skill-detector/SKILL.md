@@ -33,6 +33,26 @@ Query WorkIQ MCP with 20 proven signal-extraction prompts (3 email, 5 meeting, 3
 
 **Role-tuned harvest queries:** Adapt the 20 prompts to the user's role before running (see Role-Specific Detection Guide below). An engineer's highest-signal queries differ significantly from a manager's.
 
+#### WorkIQ Connectivity Protocol (NEW v2.5)
+
+Before running the full 20-query harvest, execute a single lightweight connectivity probe:
+\**If probe returns null or a generic error, classify the failure mode:**
+- **Type A — Transient (1 consecutive failure):** Carry forward last known scores unchanged. Retry next cycle.
+- **Type B — Auth Lapse (2 consecutive failures, identical error string):** Likely expired Copilot session. Tell the user: "⚠️ WorkIQ AUTH LAPSE — please sign out/in to M365 Copilot and re-accept the EULA, then re-run harvest." Carry forward scores unchanged.
+- **Type C — Persistent Outage (3+ consecutive failures):** **Suspend the 3-cycle declining rule.** Pattern absence due to source failure ≠ real pattern absence. Freeze all trend downgrades. Report: "🚫 SOURCE FAILURE — trends frozen. Accumulated evidence reflects last confirmed cycle." Escalate: "Recommend checking M365 admin center for Copilot license status and service health dashboard."
+
+**The critical distinction — Pattern Staleness vs Source Failure:**
+- *Real staleness*: WorkIQ returns data this cycle, but a specific pattern no longer appears → apply standard declining rule.
+- *Spurious absence (source failure)*: WorkIQ returns null for ALL queries → do NOT interpret as pattern absence. The work is still happening; the telescope broke. Never degrade pattern confidence because the data pipeline failed.
+- **Diagnostic rule**: If consecutive-failure-count >= 3, set decay-rule-status = FROZEN.
+
+**What to do during Type C outage (offer this to the user):**
+1. Report all previously confirmed patterns labeled: "Last confirmed: Cycle N"
+2. Surface highest-confidence recommendations from accumulated evidence — these are still valid
+3. Ask: "While WorkIQ is down, can you describe 2-3 things you did this week that felt repetitive? I can classify those manually."
+4. If user provides manual descriptions, classify them using the 28 archetypes and label as "user-reported (unverified by WorkIQ)"
+5. Do NOT invent occurrence counts or fabricate patterns to fill the gap
+
 ### Phase 2: CLASSIFY -- Map Signals to 28 Pattern Archetypes
 
 | # | Archetype | Auto Ceiling | Validated Example |
@@ -99,6 +119,7 @@ Meeting Output (850+occ) | Eval (1050+occ, BSI 87) | Notification (1050+occ) | E
 ### Phase 17-21: FEASIBILITY + DECAY + REBOUND + DEADLINE + SGI
 
 Pipeline-aware decay: PIPELINE-CONSOLIDATED when absorbed by named pipeline.
+**Source-Failure Guard (NEW v2.5):** Before applying the 3-cycle declining rule, verify failures are real pattern absences and not source-connectivity failures. If consecutive-failure-count >= 3, freeze all trend downgrades -- the work is still happening; the data pipeline is broken. Resume normal decay rules when connectivity restores.
 3 patterns archived cycle 55: action-owner-chasing, solution-library-pipeline-ops, daily-briefing-generator (35+ cycles absent).
 5 CRITICAL SGI gaps. EvalCon deadline pressure accelerating eval cluster.
 
@@ -152,6 +173,16 @@ If WorkIQ returns fewer than 5 signals or signals from only 1 source type:
 4. Ask the user: "Which tool do you use most for your work? Let's focus the harvest there first."
 5. Treat any signal with freq >= 2 as a candidate for Archetype 2, 3, or 5 (easiest automation targets)
 
+### WorkIQ Unavailable / Total Source Failure (NEW v2.5)
+If WorkIQ returns null for ALL queries (consecutive-failure-count >= 1):
+1. Do NOT report zero patterns -- you have accumulated evidence from prior cycles.
+2. Report all previously confirmed patterns labeled: "Last confirmed: Cycle N -- accumulated evidence, not refreshed."
+3. Last known scores, trends, and occurrence counts remain valid until data contradicts them.
+4. Offer the manual supplement path: ask the user to describe 2-3 repetitive things they did this week and classify those manually.
+5. Explain the likely cause and give actionable steps to restore connectivity (auth refresh, EULA re-accept, admin check).
+6. Never downgrade a rising or stable pattern to declining because WorkIQ was down. Source failure is not pattern death.
+7. If failure-count >= 3, recommend M365 admin escalation: check Copilot license status and service health dashboard.
+
 ## Pattern Dependency Graph
 
 meeting-notes [STABLE, 339] -> transcript-to-loop [RISING, 174] -> weekly-status -> team-status [GRADUATED]
@@ -170,20 +201,22 @@ knowledge-forum [NEW, 3] -> peer-concept-translation [NEW, 5] (expertise-scaling
 **TIER 4:** team-status-template, skill-library-socializer, customer-enablement, customer-signal-synthesizer
 **TIER 5 (emerging):** knowledge-forum-facilitator, concept-translation-guide
 
-## Anti-Patterns (20)
+## Anti-Patterns (21)
 
 1-18: Preserved from v2.2. 19. Pipeline Naming Bias -- require articulated stages.
 20. Role Projection Bias (NEW v2.4) -- do not assume PM patterns apply to all roles. Always identify the user's role before classifying signals. An engineer's ADO notifications are Archetype 1; a PM's ADO notifications may be Archetype 23 (bottleneck) or Archetype 8 (context loss). Same source, different archetype.
+21. Source Failure Conflation (NEW v2.5) -- do not interpret a WorkIQ connectivity outage as evidence that patterns have ended or declined. A null harvest means you lost your telescope, not that the stars disappeared. Always distinguish source failure from real pattern absence before triggering decline or archive decisions.
 
-## Principles (40)
+## Principles (41)
 
 1-36: Preserved from v2.2.
 37. Named pipelines > unnamed cross-tool work.
 38. Rebounds at scale are reclassifications.
 39. Role determines archetype priority -- same signal can map to different archetypes depending on the user's function (NEW v2.4).
 40. Forum facilitation and peer mentorship are expertise-scaling patterns -- value them for organizational leverage, not just individual time savings (NEW v2.4).
+41. Source failure is not pattern absence -- never degrade pattern confidence because the data pipeline broke. Degrade only when data returns and the pattern is genuinely absent (NEW v2.5).
 
-## ROI: $1.50M+/yr (27 active, 830+ hrs, 16 graduated, 5 CRITICAL SGI, BSI 87, 4 named pipelines, MPBI 12, 5 role lenses)
+## ROI: $1.50M+/yr (27 active, 830+ hrs, 16 graduated, 5 CRITICAL SGI, BSI 87, 4 named pipelines, MPBI 12, 5 role lenses, WorkIQ Connectivity Protocol v2.5)
 
 ## Changelog
 
@@ -193,3 +226,4 @@ knowledge-forum [NEW, 3] -> peer-concept-translation [NEW, 5] (expertise-scaling
 | 2.2.0 | 18 | 23-phase (+SPAWN, +PORTFOLIO). 25 archetypes. MPBI 11. BSI 82. $1.15M+/yr. |
 | 2.3.0 | 27 | 24-phase (+XSOURCE). 26 archetypes (+Named Pipeline). 4 pipelines. BSI 87. 15 graduated. MPBI 12. $1.40M+/yr. |
 | 2.4.0 | 55 | 28 archetypes (+Forum Facilitation A27, +Peer Mentorship A28). Role-Specific Detection Guide (5 lenses: PM/Eng/Design/Mgr/Exec + Sparse-data). Archetype scoring updated (+forum, +concept-codifiable, +expertise-scale). Anti-pattern 20 added. 3 patterns archived. 16 graduated. $1.50M+/yr. |
+| 2.5.0 | 56 | WorkIQ Connectivity Protocol (Phase 1): 3-type failure classification (Transient/Auth-Lapse/Persistent), trend-freeze during Type C outages, Pattern Staleness vs Source Failure distinction, manual supplement path for outages. Source-Failure Guard in Phase 17-21 decay engine. Anti-pattern 21 + Principle 41. WorkIQ Unavailable mode added to Role Guide. 56 cycles. $1.50M+/yr. |
