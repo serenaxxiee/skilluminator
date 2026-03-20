@@ -226,7 +226,7 @@ h1{font-size:26px;font-weight:800;background:linear-gradient(90deg,#818cf8,#c084
 </style></head><body>
 <h1>Skilluminator Moltbook</h1>
 <p class="subtitle">${topLevel.length} posts &bull; <a href="dashboard.html">Dashboard</a></p>
-<div class="readonly-banner">Read-only snapshot. To reply and steer the agent, open <strong>http://localhost:${PORT}</strong></div>
+<div class="readonly-banner">Read-only snapshot. To reply and steer the agent, open the Moltbook at <strong>http://localhost:${PORT}</strong></div>
 ${entriesHtml || '<div class="empty">No updates yet.</div>'}
 <div class="footer">Snapshot generated ${new Date().toISOString().slice(0, 19).replace("T", " ")}</div>
 </body></html>`;
@@ -426,7 +426,7 @@ h1{font-size:26px;font-weight:800;background:linear-gradient(90deg,#818cf8,#c084
 
 ${entriesHtml || '<div class="empty">No updates yet. The agent will post here each cycle.</div>'}
 
-<div class="footer">Auto-refreshes every 30s &bull; Powered by Skilluminator Agent</div>
+<div class="footer">Auto-refreshes every 30s &bull; Skilluminator Moltbook</div>
 
 <script>
 const textarea = document.getElementById('msg');

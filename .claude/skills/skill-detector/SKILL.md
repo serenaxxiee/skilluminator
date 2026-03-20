@@ -1,6 +1,6 @@
-﻿---
+---
 name: skill-detector
-description: Detects repeated work patterns in M365 activity and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals. Classifies into 26 archetypes, scores automation feasibility and business value, detects Expert Scaling Bottlenecks (BSI), computes Standardization Gap Index (SGI), identifies cross-source workflow chains, tracks immersion cascades, and outputs ranked skill specs. Grounded in real M365 data.
+description: Detects repeated work patterns in M365 activity and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals. Classifies into 26 archetypes with T1/T2/T3 automation tiering, scores automation feasibility and business value, detects Expert Scaling Bottlenecks (BSI), computes Standardization Gap Index (SGI), identifies cross-source workflow chains, tracks immersion cascades, maps pattern ecosystems, applies Deadline Demand Amplification, and outputs ranked skill specs. Grounded in real M365 data.
 version: 3.1.0
 ---
 
@@ -20,6 +20,7 @@ Activate when the user asks:
 - "How much time could I save?"
 - "Am I a bottleneck?" / "What is my highest-value automation?"
 - "Show workflow chains" / "Show pattern clusters"
+- "What is my ecosystem map?" / "Show pattern dependencies"
 - Any request to identify automatable workflows from M365 activity
 
 **Proactive triggers** -- activate WITHOUT being asked when:
@@ -27,16 +28,17 @@ Activate when the user asks:
 - Standardization Gap SGI >= 85
 - Meeting load exceeds 30 hrs/week with MPBI >= 12
 - Deadline within 14 days amplifies 3+ patterns simultaneously
+- A pattern confirmed across 3+ consecutive cycles (structural threshold)
 
 ---
 
 ## The Pipeline
 
 ```
-HARVEST -> CLASSIFY -> SCORE -> LIFECYCLE -> DETECT -> GENERATE
+HARVEST -> CLASSIFY -> TIER -> SCORE -> LIFECYCLE -> DETECT -> MAP -> GENERATE
 ```
 
-Six phases. Each does one thing well.
+Eight phases. Each does one thing well.
 
 ### Phase 1: HARVEST -- Query WorkIQ MCP
 
@@ -93,88 +95,194 @@ Every signal maps to one or more archetypes:
 | 18 | **Cross-Source Pipeline** | 72-85% | 3+ sources in named repeatable sequence |
 | 19 | **Recurring Immersion** | 50-65% | Multi-day training with cascade effects |
 | 20 | **Daily Personal Ops** | 78-85% | Morning planning, day prep rituals |
-| 21 | **Deadline-Amplified Content Sprint** | 60-72% | Event deadline triggers parallel creation across 3+ patterns simultaneously |
-| 22 | **Partner Enablement Rebuild** | 68-78% | Same enablement materials rebuilt from scratch per partner type, tier, or session |
-| 23 | **Self-Referential Meta-Pattern** | 80-88% | The workflow tooling itself becomes a detectable repeating signal |
-| 24-26 | Reserved | varies | Future archetype discovery |
+| 21 | **Collaboration Dispatch** | 60-70% | Workspace invites, permission grants, onboarding |
+| 22 | **Meta-Workflow Loop** | 80-90% | Self-referential tool-building cycle |
+| 23 | **1:1 Prep Assembly** | 65-75% | Talking points, context gathering for recurring check-ins |
+| 24 | **Digest Curation** | 70-80% | Community/newsletter filtering and summarization |
+| 25-26 | Reserved | varies | Future archetype discovery |
 
 **Rules:** Multi-label OK. Weight by freq x participants. 3+ cycles = structural. Cross-source = higher value.
 
-### Phase 3: SCORE -- Automation Feasibility + Business Value
+### Phase 3: TIER -- Automation Tier Classification (NEW in v3.1)
+
+Every pattern gets T1/T2/T3 tier. This determines WHAT to automate.
+
+| Tier | Definition | Ceiling | Examples |
+|------|-----------|---------|----------|
+| **T1: Full Auto** | Deterministic, rule-based | 85-95% | ADO triage, FAQ, template fill |
+| **T2: Assisted** | Structured output + human review | 60-84% | Meeting notes, status reports, deck parameterization |
+| **T3: Judgment** | Domain expertise required | 30-59% | Novel eval strategy, architecture feasibility |
+
+**Rules:** Split patterns into T1/T2/T3. Automate T1 first (frees expert for T3). T2=draft+review. T3=route to expert. 100% T3 = not a skill candidate.
+
+**Worked Example (eval-coaching):**
+
+    T1: "How many eval cases?" -> FAQ
+    T1: "What metrics for groundedness?" -> Lookup
+    T2: "Design eval rubric" -> Template, PM reviews
+    T3: "Change eval strategy for Crucible?" -> Route to PM
+
+### Phase 4: SCORE -- Automation Feasibility + Business Value
 
 **automationScore (0-100):**
-+5 machine-parseable | +5 deterministic | +5 observed 3+ cycles | +3 chain | +2 institutional | +5 parallel creation | +4 bottleneck-codifiable | +3 deadline | +4 named pipeline
-Minus: -10 creative judgment | -10 external data | -5 human review | -6 tacit knowledge
+
+| Factor | Pts | Condition |
+|--------|-----|----------|
+| Machine-parseable | +5 | Structured data |
+| Deterministic | +5 | Rule-based |
+| 3+ cycles | +5 | Structural |
+| Named chain | +3 | Workflow chain |
+| Institutional | +2 | Org-wide |
+| Parallel creation | +5 | SGI>=75 |
+| Bottleneck T1 | +4 | Codifiable |
+| Deadline | +3 | <14 days |
+| Named pipeline | +4 | Confirmed |
+| *Penalties* | | |
+| Judgment required | -10 | T3 dominant |
+| External data | -10 | Outside M365 |
+| Human review | -5 | T2 gate |
+| Tacit knowledge | -6 | Undocumented |
 
 **valueScore (0-100):**
-+10 participants >= 3 | +10 downstream deps | +5 leadership visibility | +5 cross-source | +5 chain | +5 parallel creation | +8 bottleneck DRI | +5 deadline | +3 MPBI >= 10 | +4 named pipeline
-Minus: -15 single participant | -10 freq < 2/week
 
-**compositeScore** = (auto x 0.45) + (value x 0.45) + (maturity x 0.10)
+| Factor | Pts | Condition |
+|--------|-----|----------|
+| Participants>=3 | +10 | Org-wide |
+| Downstream deps | +10 | Chain head/hub |
+| Leadership | +5 | Senior stakeholders |
+| Cross-source | +5 | 2+ sources |
+| Chain member | +5 | In dependency graph |
+| Parallel creation | +5 | SGI>=75 |
+| Bottleneck DRI | +8 | BSI>=50 |
+| Deadline | +5 | Active |
+| MPBI>=10 | +3 | Meeting breadth |
+| Named pipeline | +4 | Confirmed |
+| *Penalties* | | |
+| Single participant | -15 | One person |
+| Freq<2/week | -10 | Low repetition |
 
-### Phase 4: LIFECYCLE -- Track Pattern Evolution
+**compositeScore** = (auto x 0.40) + (value x 0.40) + (maturity x 0.10) + (ecosystemWeight x 0.10)
+
+*ecosystemWeight*: 0=isolated, 25=feeds 1, 50=feeds 2-3, 75=chain head 4+, 100=ecosystem hub.
+
+### Phase 5: LIFECYCLE -- Track Pattern Evolution
 
 SIGNAL -> CANDIDATE -> CONFIRMED -> MATURE -> INSTITUTIONAL
 Absent 2 cycles -> DECLINING -> absent 3 -> ARCHIVED -> (returns) -> RESURRECTED
 
 Velocity = occ / active cycles. Trend: RISING | STABLE | DECLINING.
 
-### Phase 5: DETECT -- Five Specialized Detectors
+### Phase 6: DETECT -- Five Specialized Detectors
 
-#### 5A: Expert Scaling Bottleneck (BSI)
+#### 6A: Expert Scaling Bottleneck (BSI)
 BSI = (requestTypes x 8) + (frequency x 2) + (persistence x 10) + (delegationBlocker x 15)
 0-50 Normal | 51-74 Elevated | 75-89 Critical | 90-100 Emergency
 
-**Cycle 35:** PM sole DRI for eval guidance. 10+ inbound/week, 6 request types, 13 cycles persistent. **BSI 97 EMERGENCY.** (Escalated from BSI 78 CRITICAL at cycle 22.)
+**Cycle 23:** PM sole DRI, 25+ cumulative, 4+ types, 2 cycles. **BSI 78 CRITICAL -- 2nd cycle.** Structural bottleneck.
 
-#### 5B: Standardization Gap Index (SGI)
+#### 6B: Standardization Gap Index (SGI)
 SGI = (parallelCreators x 20) + (versionCount x 15) + (acknowledgedInMeetings x 25) + (noCanonicalSource x 20)
 0-50 Normal | 51-74 Elevated | 75-89 High | 90-100 Critical
 
-**Cycle 35:** Eval decks **SGI 92** CRITICAL (13 cycles, Camp AIR added variants) | Status formats **SGI 88** CRITICAL | Meeting notes **SGI 85** HIGH
+**Cycle 23:** Eval decks **SGI 92 CRITICAL** (2nd cycle) | Status **SGI 88 CRITICAL** | Notes **SGI 85 HIGH**
 
-#### 5C: Immersion Cascade Detection
+#### 6C: Immersion Cascade Detection
 Multi-day event (>= 240 min) + 4+ downstream spikes = one cascade. Apply 0.7x trend dampening.
-**Current:** Camp AIR (15 hrs) cascades into meeting-notes, status, artifacts, context patterns.
+**Cycle 23:** Camp AIR (15 hrs) cascading into meeting-notes, status, artifacts. 0.7x dampening active.
 
-#### 5D: Cross-Source Pipeline Detection
+#### 6D: Cross-Source Pipeline Detection
 Named pipelines = 3+ sources in repeatable sequence. 40% more automatable than unnamed cross-tool work.
-**Confirmed:** Customer-Signal-to-Toolkit | DevOps-Passive-Intake | Camp-AIR-to-Guidance
+**Confirmed:**
+1. Customer-Signal-to-Toolkit | 2. DevOps-Passive-Intake | 3. Camp-AIR-to-Guidance
+4. **Meeting-to-Loop-to-Status** (NEW): Calendar -> Loop notes -> action items -> weekly status
 
-#### 5E: Meeting Portfolio Breadth (MPBI)
-MPBI = distinct meeting types per cycle. **Current: 14.** MPBI >= 10 multiplies meeting-adjacent skill value.
+#### 6E: Meeting Portfolio Breadth (MPBI)
+MPBI = distinct meeting types per cycle. **Current: 14.** MPBI>=10 = 1.3x multiplier. MPBI>=14 = calendar triage T2 priority.
 
-#### 5F: Domain Saturation Index (DSI)
-DSI = (patterns in dominant domain / total active patterns) x 100
-Alert when DSI > 30% AND 3+ patterns in that domain are rising simultaneously.
-**Current:** Evals domain: 9 of 23 patterns = DSI 39% with 4 rising. **DOMAIN OVERLOAD: Evals.** Signals that a single-skill suite (eval ecosystem) could unlock the largest cross-pattern ROI.
+### Phase 7: MAP -- Pattern Ecosystem Mapping (NEW in v3.1)
 
-### Phase 6: GENERATE -- Output Ranked Skill Specs
+Patterns cluster into ecosystems. Build order follows ecosystem structure.
 
-```yaml
-skill: {name, compositeScore, automationScore, valueScore}
-evidence: {patternIds, occurrencesPerWeek, participantCount, timeSpentHours, trend, sources}
-triggers: [3+ natural language examples]
-inputs: [what skill needs]
-outputs: [what skill produces]
-roi: {hoursPerYear, buildComplexity}
-alerts: {bsiLevel, sgiLevel, cascadeInflated}
-```
+#### Eval Ecosystem (7 patterns)
+
+    eval-coaching-and-scoping (HUB) -- BSI 78 CRITICAL
+       |-- eval-tooling-troubleshooting (T1 spawn)
+       |-- eval-enablement-deck-standardizer (SGI 90)
+       |      |-- evalcon-content-planning
+       |-- partner-eval-enablement-pack-generator (EDII 5.0+)
+       |      |-- eval-template-maintenance
+       |-- eval-strategy-leadership-coordination (bridge)
+
+#### Meeting Ecosystem (5 patterns)
+
+    meeting-notes-action-item-capture (CHAIN HEAD) -- SGI 92
+       |-- weekly-status-report-generator (SGI 88)
+       |-- meeting-load-triage (MPBI 14)
+       |      |-- 1:1-stakeholder-check-in-prep
+       |-- daily-day-prep-planning
+
+**Rules:** Hub first (ecosystemWeight 75-100). Chain head first (75). Bridges +15. Leaves 0-25.
+
+### Phase 8: GENERATE -- Output Ranked Skill Specs
+
+For each candidate:
+
+    skill: { name, compositeScore, automationScore, valueScore, ecosystemRole }
+    evidence: { patternIds, occurrencesPerWeek, participantCount, timeSpentHoursPerWeek, trend, sources, cyclesObserved, lifecycle }
+    automation: { tier1Tasks, tier2Tasks, tier3Tasks } -- each with description + coveragePct
+    triggers: [3+ examples]
+    inputs/outputs: [what skill needs/produces]
+    roi: { hoursPerWeekSaved, annualHoursSaved, buildComplexity, paybackCycles }
+    alerts: { bsiLevel, sgiLevel, deadlineAmplification, cascadeInflated }
+    dependencies: { upstream, downstream, ecosystem }
 
 ---
 
-## Current Build Order (Cycle 35)
+## Signal Merging Rules (NEW in v3.1)
 
-### TIER 1 -- Build Now (EMERGENCY)
-**P1: eval-design-advisor** -- BSI 97 EMERGENCY (escalated). 10/week, 6 request types, 13 cycles. EvalCon deadline April 2. Composite: 84.
-**P2: meeting-notes-action-extractor** -- Chain head, SGI 85 HIGH, INSTITUTIONAL (13 cycles). 8/week. Composite: 90.
-**P3: eval-enablement-deck-standardizer** -- SGI 92 CRITICAL (13 cycles, Camp AIR added variants). 3 parallel creators. Composite: 87.
+1. **Exact match** -> increment count
+2. **Semantic match** (>=60% keywords) -> merge
+3. **Source expansion** -> add source, valueScore +5
+4. **Spawn detection** -> new pattern with parentPatternId
+5. **New pattern** (<40% overlap) -> SIGNAL lifecycle
+6. **Conflict** -> prefer higher participantCount
+
+---
+
+## Deadline Demand Amplification (NEW in v3.1)
+
+    DDA = 1.0 + (0.5 x (1/daysRemaining) x connectedPatterns)
+
+<7 days: +5 | 7-14: +3 | 15-30: +1 | >30: none
+
+**Cycle 23:** EvalCon 2026-04-02 (13 days). HIGH (+3) on eval-coaching, eval-deck, evalcon-content, partner-eval.
+
+---
+
+## Current Build Order (Cycle 23)
+
+### TIER 1 -- Build Now
+
+| # | Skill | Score | Why |
+|---|-------|-------|-----|
+| P1 | eval-design-advisor | 84 | BSI 78 CRITICAL 2nd cycle. Hub. EvalCon +3. T1 deflection. |
+| P2 | meeting-notes-action-extractor | 90 | Chain head. SGI 92. 16 occurrences. |
+| P3 | eval-enablement-deck-standardizer | 87 | SGI 90 CRITICAL 2nd cycle. 3 creators. |
 
 ### TIER 2 -- High Value
-P4: ado-notification-router (60 cumulative, 93% auto, INSTITUTIONAL) | P5: partner-eval-enablement-pack-generator (39 hrs, 50+ domains) | P6: weekly-status-report-generator (SGI 88) | P7: calendar-triage-advisor (24.75 hrs, MPBI 14)
+
+| # | Skill | Score | Notes |
+|---|-------|-------|------|
+| P4 | ado-notification-router | 85 | 30/week, 93% auto |
+| P5 | partner-eval-enablement-pack-generator | 78 | 50+ domains |
+| P6 | weekly-status-report-generator | 80 | SGI 88 |
+| P7 | calendar-triage-advisor | 76 | MPBI 14 |
 
 ### TIER 3 -- Growing
-P8-P13: eval-tooling-faq-bot, voc-routing-assistant, agent-architecture-feasibility-advisor, daily-briefing-generator, evalcon-content-brief-generator, cycle-dashboard-auto-refresh
+P8: eval-cli-troubleshooter (73) | P9: voc-ask-deduplicator (79) | P10: eval-strategy-brief-gen (73) | P11: event-content-brief-gen (72) | P12: daily-briefing-gen (66)
+
+### TIER 4 -- Monitor
+P13-P21: artifact-distribution-hub, agent-arch-advisor, spec-scaffold-gen, event-coordinator, 1:1-prep-gen, escalation-drafter, dashboard-auto-refresh, workspace-invite, digest-summarizer
 
 ---
 
@@ -189,25 +297,30 @@ P8-P13: eval-tooling-faq-bot, voc-routing-assistant, agent-architecture-feasibil
 8. **Bottleneck Overreach**: Only automate T1, not T3
 9. **Parallel Creation Mirage**: Co-editing != parallel creation
 10. **Resurrection Overcounting**: Returning pattern starts at SIGNAL
+11. **Deadline Hallucination** (NEW): Amplifies, never creates evidence
+12. **Ecosystem Double-Counting** (NEW): No standalone scoring for ecosystem members
 
 ---
 
 ## Principles
+
 1. Never invent data. Only report what WorkIQ returns.
 2. Anonymize participants. Use roles, never names.
-3. Cross-cycle evidence > single-cycle spikes.
-4. Composite score drives build order.
-5. Think in ecosystems. Patterns cluster.
-6. Build chain heads first.
-7. Bottlenecks are highest-ROI targets.
+3. Cross-cycle evidence > single-cycle spikes. 2+ cycles = structural.
+4. Composite score drives build order; ecosystem position breaks ties.
+5. Think in ecosystems. Build hubs and chain heads first.
+6. T1 first, always. Deflect automatable to free experts for T3.
+7. Bottlenecks block everyone downstream -- highest ROI.
 8. SGI >= 85 = immediate consolidation.
-9. Cascades are one event.
-10. Named pipelines > unnamed cross-tool work.
+9. Cascades = one event. 0.7x dampening downstream.
+10. Named pipelines are 40% more automatable.
 11. Deadlines amplify, they do not create.
-12. Elevated plateaus are permanent.
-13. Spawns explain declines.
-14. Meeting breadth multiplies value.
-15. External load distorts internal pattern weighting.
+12. Plateaus persisting 2+ cycles are structural.
+13. Spawns explain declines in parent patterns.
+14. Meeting breadth (MPBI) multiplies adjacent skill value.
+15. External load (EDII 5.0+) distorts weighting.
+16. Merge before create -- check existing patterns.
+17. Make the expert faster, not replace the expert.
 
 ---
 
@@ -215,5 +328,5 @@ P8-P13: eval-tooling-faq-bot, voc-routing-assistant, agent-architecture-feasibil
 | Version | Cycle | Changes |
 |---------|-------|---------|
 | 1.0-2.5 | 1-21 | Foundation through v2.5: 26 archetypes, BSI, SGI, cascades, pipelines |
-| 3.0.0 | 22 | Complete rewrite. Resolved merge conflicts. 25 phases to 6 (HARVEST CLASSIFY SCORE LIFECYCLE DETECT GENERATE). 5 detectors in unified DETECT phase. Reset to real cycle 22 data (31 signals). Concrete BSI/SGI formulas. 41 principles to 15. All examples from actual WorkIQ data. |
-| 3.1.0 | 35 | Cycle 35 refresh. BSI escalated from 78 CRITICAL to 97 EMERGENCY (13 cycles persistent). Archetypes 21-23 filled (Deadline-Amplified Content Sprint, Partner Enablement Rebuild, Self-Referential Meta-Pattern). Added 5F Domain Saturation Index (DSI) detector — Evals DSI 39% OVERLOAD. Build order updated: 6 Tier-3 candidates, cycle-dashboard-auto-refresh promoted. Updated all current examples from cycle 35 data. |
+| 3.0.0 | 22 | Complete rewrite. 6-phase pipeline. 5 detectors. 15 principles. |
+| 3.1.0 | 23 | 8-phase pipeline (TIER+MAP). T1/T2/T3 tiering. Ecosystem Mapping (Eval 7, Meeting 5). Signal Merging Rules. DDA formula. compositeScore+ecosystemWeight. 4 new archetypes. 3 new patterns. 4th pipeline. Enhanced spec. 2 anti-patterns, 2 principles. |

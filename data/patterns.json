@@ -1,111 +1,111 @@
 {
-  "lastUpdatedCycle": 35,
-  "totalCyclesRun": 35,
+  "lastUpdatedCycle": 36,
+  "totalCyclesRun": 36,
   "patterns": [
     {
       "patternId": "ado-notification-triage",
       "label": "Azure DevOps Eval Work-Item Notification Triage",
       "sources": ["email"],
-      "occurrenceCount": 60,
+      "occurrenceCount": 94,
       "participantCount": 3,
-      "timeSpentHoursTotal": 1.5,
+      "timeSpentHoursTotal": 3.08,
       "automationScore": 93,
       "valueScore": 80,
       "candidateSkillName": "ado-notification-router",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "30 ADO email notifications confirmed again cycle 35 (Task, Requirement, Bug, Feature, Epic prefixes). PM is subscriber/mentioned — not the assignee — in most threads. Structural: 13 cycles of consistent 30/week volume. Machine-parseable subject line patterns, deterministic routing logic. Sub-classifiers confirmed: IcM, Coverage, Evals, Tasks, Epics. Automation ceiling 90–95%. No upward drift — pattern is fully plateaued and mature."
+      "llmRationale": "Cycle 36 confirms 30 ADO email notifications again (freq=30, 45min) plus 4 DevOps-Alert-to-Sync-to-Doc workflow triggers (+34 occurrences). Cumulative 94 across 14 cycles. Pattern fully INSTITUTIONAL — consistent 30/week volume, machine-parseable subject line patterns, deterministic routing logic. Sub-classifiers confirmed: IcM, Coverage, Evals, Tasks, Epics, plus Alert-to-Sync pipeline. Automation ceiling 90-95%. No drift — pattern plateaued and mature. Score held at 93 per 14-cycle evidence base."
     },
     {
       "patternId": "eval-coaching-and-scoping",
       "label": "Inbound Eval Strategy and Guidance Q&A (Expert Bottleneck)",
       "sources": ["teams"],
-      "occurrenceCount": 35,
+      "occurrenceCount": 50,
       "participantCount": 4,
-      "timeSpentHoursTotal": 3.5,
+      "timeSpentHoursTotal": 5.75,
       "automationScore": 72,
       "valueScore": 96,
       "candidateSkillName": "eval-design-advisor",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "PM remains sole DRI for eval guidance across FDEs, PMs, and Designers. BSI now EMERGENCY (BSI 97): requestTypes=6 (scoping, coverage, metrics, rubric design, timing, eval-driven development), frequency=10/week, persistence=13 cycles, delegationBlocker=1. EvalCon deadline March 20+13 days = April 2 imminent — amplification at peak. 10 new inbound requests this cycle. 35 cumulative. Metrics now span: groundedness, Compare Meaning, tool_call_accuracy, multi-turn coherence. Force-multiplier for entire Eval Ecosystem — unblocking this unblocks 7 downstream patterns."
+      "llmRationale": "Cycle 36: 10 new Eval SME Consultation inbound requests (90min) + 5 Eval Results Interpretation and Remediation Coaching sessions (45min) = +15 occurrences, +2.25hrs. Cumulative 50 across 14 cycles. PM explicitly referenced as 'Evals expert', 'person to ask', 'SME on evals' across field enablement threads (AmEx, Lumen, MGM, ESS). BSI EMERGENCY escalated — requestTypes=6 (scoping, coverage, metrics, rubric design, timing, eval-driven development). EvalCon April 2 deadline T-13 days = peak amplification. Force-multiplier: unblocking this unblocks 7 downstream patterns. Metrics span: groundedness, Compare Meaning, tool_call_accuracy, multi-turn coherence."
     },
     {
       "patternId": "eval-tooling-troubleshooting",
       "label": "Eval Tooling CLI and Implementation Troubleshooting",
       "sources": ["teams"],
-      "occurrenceCount": 15,
+      "occurrenceCount": 21,
       "participantCount": 3,
-      "timeSpentHoursTotal": 1.5,
-      "automationScore": 69,
+      "timeSpentHoursTotal": 2.0,
+      "automationScore": 70,
       "valueScore": 80,
       "candidateSkillName": "eval-cli-troubleshooter",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "5 new troubleshooting requests this cycle (CSV import/export, feature flags, preview vs GA, tool_call_accuracy flags). Cumulative 15 across 13 cycles. Pattern stabilized — consistent 5/cycle pace. Deterministic Q&A with known answer set — spawn from eval-coaching-and-scoping. Strong T1 automation candidate. Auto score nudged +1 as answer corpus is now well-characterized after 13 cycles of evidence."
+      "llmRationale": "Cycle 36: 6 new Tooling Access and Reality-Check Clarification requests (freq=6, 30min) covering access/permissions, SharePoint, CLI, MCP, Copilot Studio, Foundry, roadmap vs workaround questions (+6 occurrences, +0.5hrs). Cumulative 21 across 14 cycles. Pattern stabilized at ~5-6/cycle. Deterministic Q&A with known answer set — spawn from eval-coaching-and-scoping. Auto nudged +1 to 70 as answer corpus is well-characterized. PM acts as 'truth-teller setting expectations' on what tools can/cannot do today. Strong T1 automation candidate."
     },
     {
       "patternId": "meeting-notes-action-item-capture",
       "label": "Loop Meeting Notes Creation and Post-Meeting Action Capture",
       "sources": ["meeting", "document"],
-      "occurrenceCount": 24,
+      "occurrenceCount": 29,
       "participantCount": 3,
-      "timeSpentHoursTotal": 3.51,
+      "timeSpentHoursTotal": 4.43,
       "automationScore": 88,
       "valueScore": 87,
       "candidateSkillName": "meeting-notes-action-extractor",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "8 new occurrences this cycle (4 meeting-side + 4 document-side). PM creates structured Loop notes post-meeting with consistent schema: Agenda, Meeting Notes, Decisions/Open Questions, Follow-up Tasks. Confirmed across both sources for 13 consecutive cycles — fully INSTITUTIONAL. Chain head for meeting-notes ecosystem. SGI 85 HIGH — same structure duplicated across all teams but no canonical source. Camp AIR cascade this cycle amplified downstream note creation."
+      "llmRationale": "Cycle 36: 4 Recurring Loop Meeting Notes maintenance occurrences (25min each) + 1 Eval Weekly Progress Update in Loop (30min) = +5 occurrences, +0.92hrs. Cumulative 29 across 14 cycles. PM creates structured Loop notes with consistent schema: Agenda, Meeting Notes, Decisions/Open Questions, Follow-up Tasks. Confirmed across both sources for 14 consecutive cycles — fully INSTITUTIONAL. Chain head for meeting-notes ecosystem. SGI 85 HIGH — same structure duplicated across all teams. Camp AIR cascade this cycle amplified downstream note creation demand."
     },
     {
       "patternId": "parallel-eval-deck-creation",
       "label": "Parallel Eval Enablement Deck Creation (Team-Wide Duplication)",
       "sources": ["document"],
-      "occurrenceCount": 9,
+      "occurrenceCount": 16,
       "participantCount": 3,
-      "timeSpentHoursTotal": 4.5,
-      "automationScore": 84,
+      "timeSpentHoursTotal": 6.5,
+      "automationScore": 85,
       "valueScore": 88,
       "candidateSkillName": "eval-enablement-deck-standardizer",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "3 new occurrences this cycle. Multiple people still independently creating eval decks (TFM Agent Evals, Evaluation.pptx, CAPE_EVALs_Playbook_v5, eval convo decks). Meetings continue flagging version proliferation. SGI 92 CRITICAL — parallelCreators=3, versionCount=5+, explicitly acknowledged in meetings, no canonical source. Camp AIR generated additional variant materials this cycle. EvalCon deadline amplification active — urgency at peak."
+      "llmRationale": "Cycle 36: 7 PowerPoint Deck Iterative Refinement cycles confirmed (freq=7, 120min) spanning MPRs, PM RoBs, pitch decks, monthly reviews, Camp AIR prep materials (+7 occurrences, +2.0hrs). Cumulative 16 across 14 cycles. Multiple people still independently creating eval decks (TFM Agent Evals, Evaluation.pptx, CAPE_EVALs_Playbook_v5). SGI 92 CRITICAL — parallelCreators=3, versionCount=5+, explicitly acknowledged in meetings. Auto nudged +1 to 85 — Camp AIR generated additional variant materials + EvalCon deadline April 2 at peak amplification. Final urgency window active."
     },
     {
       "patternId": "external-partner-eval-sessions",
       "label": "External Partner and Customer Eval Sessions",
       "sources": ["meeting"],
-      "occurrenceCount": 18,
+      "occurrenceCount": 23,
       "participantCount": 2,
-      "timeSpentHoursTotal": 39.0,
+      "timeSpentHoursTotal": 42.25,
       "automationScore": 55,
       "valueScore": 92,
       "candidateSkillName": "partner-eval-enablement-pack-generator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "6 new sessions this cycle, 13+ hrs again across 50+ external domains (Accenture, HCL, EY, KPMG, Avanade, Cognizant). EDII 5.0+ confirmed for 13 cycles — external intensity is fully structural. Pre-session prep and post-session follow-up remain prime automation targets. Links to parallel-eval-deck-creation SGI gap and eval-coaching bottleneck. Cumulative 39 hrs total across all cycles."
+      "llmRationale": "Cycle 36: 3 External Customer Eval Syncs (AmEx, ESS, LCS project closure, freq=3, 165min) + 2 Customer/External Eval Escalation Threads (freq=2, 30min) = +5 occurrences, +3.25hrs. Cumulative 42.25hrs total. EDII 5.0+ confirmed for 14 cycles — external intensity fully structural. Pre-session prep and post-session follow-up remain prime automation targets. Links to parallel-eval-deck-creation SGI gap and eval-coaching bottleneck. Pilot Project Closure (AI E2E Global Customer Service) signals engagement lifecycle pattern."
     },
     {
       "patternId": "weekly-status-report-generation",
       "label": "Weekly Status Update Reporting (Parallel Team Effort)",
-      "sources": ["email"],
-      "occurrenceCount": 3,
+      "sources": ["email", "document"],
+      "occurrenceCount": 6,
       "participantCount": 3,
-      "timeSpentHoursTotal": 2.25,
+      "timeSpentHoursTotal": 4.08,
       "automationScore": 82,
       "valueScore": 80,
       "candidateSkillName": "weekly-status-report-generator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "Weekly status in done/next/blockers format confirmed again cycle 35. Multiple parallel artifacts: weekly sync updates, bi-weekly newsletters, Cape Day/LT slides. SGI 88 CRITICAL. Template-fill from Loop notes is high automation ceiling target. Pattern is INSTITUTIONAL — 13 cycles unbroken."
+      "llmRationale": "Cycle 36: Eval Weekly Progress Update in Loop (freq=1, 30min) + Weekly Status Update Multi-Format Duplication (doc, freq=1, 35min) + Agent Eval Progress Report Rolling Versioned Docs (v2/v3/v4, freq=1, 45min) = +3 occurrences, +1.83hrs. Cumulative 6 occurrences. Multiple parallel artifacts confirmed: done/next/blockers Teams table, narrative Teams chat updates, email executive updates. SGI 88 CRITICAL — everyone writing same information in different systems simultaneously. Template-fill from Loop notes is high automation ceiling. Pattern INSTITUTIONAL."
     },
     {
       "patternId": "security-compliance-alert-review",
@@ -120,142 +120,142 @@
       "firstSeenCycle": 22,
       "lastSeenCycle": 35,
       "trend": "stable",
-      "llmRationale": "7 new alerts this cycle (Purview/Office365: File Blocked, Admin elevation, Loop workspace). Cumulative 21. Machine-generated, classifiable, rule-based. Highest automation ceiling. Single-recipient limits org-wide value — personal productivity win only. Pattern is MATURE and structurally flat."
+      "llmRationale": "Not directly visible in cycle 36 signals (1-cycle gap — not marking as declining until 3+ cycles per policy). Last confirmed cycle 35 with 7 Purview/Office365 alerts (File Blocked, Admin elevation, Loop workspace). Cumulative 21 across 14 cycles. Machine-generated, classifiable, rule-based. Highest automation ceiling. Single-recipient limits org-wide value — personal productivity win only. Pattern MATURE and structurally flat."
     },
     {
       "patternId": "eval-strategy-leadership-coordination",
       "label": "CAPE and Evals Leadership Strategy Thread Participation",
       "sources": ["email", "meeting"],
-      "occurrenceCount": 14,
+      "occurrenceCount": 19,
       "participantCount": 5,
-      "timeSpentHoursTotal": 4.51,
+      "timeSpentHoursTotal": 6.01,
       "automationScore": 60,
-      "valueScore": 91,
+      "valueScore": 92,
       "candidateSkillName": "eval-strategy-brief-generator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "4 new occurrences: CAPE East Project Crucible Deepdive Evals-first Mindset March 18, customer donated evals playbook, EvalCon announcement, multi-reply cross-org thread. Cross-org audience (CAPE, Copilot, leadership, partners). Weekly Evals Sync + Crucible v-Team meetings add cadence layer. Val nudged to 91 — Camp AIR and EvalCon together raise leadership visibility to peak. Digest and brief extraction automatable at ~60% ceiling; judgment required on positioning."
+      "llmRationale": "Cycle 36: 3 Evals Strategy and Leadership Thread participations (email, freq=3, 40min) + 1 Customer Donated Evals Governance Thread (email, freq=1, 25min) + 1 Weekly Project Crucible V-Team Meeting (meeting, freq=1, 25min) = +5 occurrences, +1.5hrs. Cumulative 19 across 14 cycles. Cross-org audience (CAPE, Copilot, leadership, partners). CAPE + FY26 agent evaluation + Project Crucible + customer donated evals playbook threads all active. Val nudged to 92 — EvalCon + Camp AIR together raise leadership visibility to peak. Digest and brief extraction automatable at ~60% ceiling; judgment required on positioning."
     },
     {
       "patternId": "meeting-load-triage",
       "label": "Recurring Weekly Meeting Portfolio (Calendar Density)",
       "sources": ["meeting"],
-      "occurrenceCount": 18,
+      "occurrenceCount": 27,
       "participantCount": 5,
-      "timeSpentHoursTotal": 24.75,
+      "timeSpentHoursTotal": 33.08,
       "automationScore": 72,
       "valueScore": 80,
       "candidateSkillName": "calendar-triage-advisor",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "Six recurring weekly meetings confirmed cycle 35: Evals Sync (Tue), Crucible v-Team (Mon), Manager Team Meeting (Mon), Solution Library Check-In (Mon), Learning & Scaling Fridays, Golden Evals bi-weekly (Thu). Plus 6 weekly 1:1s. MPBI 14. All extended through August — INSTITUTIONAL. Camp AIR adds immersion layer this cycle. Pre-meeting briefing and post-meeting routing are automation surfaces."
+      "llmRationale": "Cycle 36: Project Crucible V-Team (Mon, 25min) + Weekly Team Meeting Manager Directs (Mon, 40min) + CAPE Architecture Weekly (Mon, 55min) + Copilot Studio Office Hours x2 (Mon+Tue, 85min) + US Pod Stand-Up (Tue, 25min) + Large Forum All-Hands x3 (270min) = +9 occurrences, +8.33hrs. Cumulative 33.08hrs total. MPBI 14+. Camp AIR 480min immersive sessions dominate this cycle as separate pattern. Calendar density remains INSTITUTIONAL — all meetings confirmed extended through August. Pre-meeting briefing and post-meeting routing are automation surfaces."
     },
     {
       "patternId": "voc-routing-cross-org-navigation",
       "label": "Cross-Org Navigation and VOC Routing Assistance",
       "sources": ["teams"],
-      "occurrenceCount": 12,
+      "occurrenceCount": 16,
       "participantCount": 4,
-      "timeSpentHoursTotal": 0.99,
+      "timeSpentHoursTotal": 1.66,
       "automationScore": 78,
       "valueScore": 82,
       "candidateSkillName": "voc-ask-deduplicator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "4 new routing requests this cycle. PM as informal routing layer between FDEs, MCS Analytics, and PG Eval teams. Codifiable via org chart + DRI mapping + routing rules. Cumulative 12 across 13 cycles. Downstream of eval-coaching bottleneck — resolving that BSI 97 would reduce VOC routing volume proportionally."
+      "llmRationale": "Cycle 36: 4 Customer VoC Synthesis and Exec-Ready Summary requests (teams, freq=4, 40min): MPR blurbs, one-liners for leadership reviews, duplicate ask dedup (+4 occurrences, +0.67hrs). Cumulative 16 across 14 cycles. PM as informal routing layer between FDEs, MCS Analytics, and PG Eval teams. Codifiable via org chart + DRI mapping + routing rules. Downstream of eval-coaching bottleneck — resolving BSI EMERGENCY would reduce VOC routing volume proportionally."
     },
     {
       "patternId": "evalcon-content-planning",
       "label": "EvalCon Content Planning and Positioning Discussions",
       "sources": ["teams", "email"],
-      "occurrenceCount": 13,
+      "occurrenceCount": 17,
       "participantCount": 3,
-      "timeSpentHoursTotal": 2.51,
+      "timeSpentHoursTotal": 3.09,
       "automationScore": 64,
       "valueScore": 87,
       "candidateSkillName": "event-content-brief-generator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "4 new discussions this cycle on CAPE EvalCon presentation: framing, process learnings, submission logistics, leadership alignment. EvalCon deadline now April 2 (13 days from March 20 current date) — Deadline Demand Amplification at peak. Auto nudged to 64, val to 87 reflecting amplified urgency. Brief and submission doc scaffolding automatable. Will likely transition to declining post-April 2."
+      "llmRationale": "Cycle 36: 4 EvalCon Submission and Content Readiness Coordination sessions (teams, freq=4, 35min) covering framing, process learnings, submission logistics, dry-run discussions, leadership alignment (+4 occurrences, +0.58hrs). Cumulative 17 across 14 cycles. EvalCon deadline now CONFIRMED April 2 (T-13 days from 2026-03-20) — Deadline Demand Amplification AT PEAK. Brief and submission doc scaffolding automatable. FORECAST: will transition to declining post-April 2."
     },
     {
       "patternId": "technical-artifact-distribution",
       "label": "Technical Artifact Distribution via Teams (Repos, ZIPs, Specs)",
       "sources": ["teams"],
-      "occurrenceCount": 24,
+      "occurrenceCount": 27,
       "participantCount": 3,
-      "timeSpentHoursTotal": 1.26,
+      "timeSpentHoursTotal": 1.76,
       "automationScore": 70,
       "valueScore": 72,
       "candidateSkillName": "artifact-distribution-hub",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "8 new artifact shares this cycle: GitHub repos, ZIPs, specs, YAML, Loop components, templates. PM uses Teams as informal distribution hub. Cumulative 24 across 13 cycles. Automation: structured artifact registry + smart-share to relevant channels. Pattern MATURE and stable at 8/cycle pace."
+      "llmRationale": "Cycle 36: 3 artifact shares via Teams from Skills Library and AI Workflow Standardization discussion (repos, markdown SOPs, taxonomy docs, quality gate specs) = +3 occurrences, +0.5hrs. Cumulative 27 across 14 cycles. PM uses Teams as informal distribution hub. Skills-as-markdown-SOPs adds a new artifact class to this pattern's scope. Pattern MATURE at ~3-8 shares/cycle pace."
     },
     {
       "patternId": "agent-architecture-scoping",
       "label": "Agent Architecture and MCP/Skills Scoping Discussions",
       "sources": ["teams", "email"],
-      "occurrenceCount": 18,
+      "occurrenceCount": 21,
       "participantCount": 3,
-      "timeSpentHoursTotal": 3.0,
+      "timeSpentHoursTotal": 3.83,
       "automationScore": 52,
-      "valueScore": 84,
+      "valueScore": 85,
       "candidateSkillName": "agent-architecture-feasibility-advisor",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "6 new discussions this cycle spanning two streams: (1) MCP servers, CLI vs UI, WorkIQ constraints, skill-creator/skill-detector, Copilot Studio declarative agents; (2) URGENT thread on DBS Declarative Agent grounded in 170+ SharePoint sites — multiple senior stakeholders, architecture feasibility/risk. Val nudged to 84 — URGENT architectural thread elevates strategic visibility. Architecture FAQ and decision-tree components automatable (T1/T2). High strategic value, moderate automation ceiling."
+      "llmRationale": "Cycle 36: URGENT Declarative Agent SharePoint Escalation (email, freq=1, 20min) — agent grounded across 170+ SharePoint sites, broad CC list, multiple senior stakeholders, correctness/safety/readiness concerns + CAPE Architecture Weekly Call (meeting, 55min, declarative vs custom agents, convergence, migration) + Skills Library standardization threads. +3 occurrences, +0.83hrs. Cumulative 21 across 14 cycles. Val nudged to 85 — URGENT architectural thread elevates strategic visibility. Architecture FAQ and decision-tree components automatable (T1/T2)."
     },
     {
       "patternId": "training-event-artifact-coordination",
       "label": "CAPE Camp AIR Immersive Training and Hackathon Coordination",
       "sources": ["meeting"],
-      "occurrenceCount": 3,
+      "occurrenceCount": 5,
       "participantCount": 3,
-      "timeSpentHoursTotal": 45.0,
+      "timeSpentHoursTotal": 53.0,
       "automationScore": 58,
       "valueScore": 75,
       "candidateSkillName": "event-artifact-coordinator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "Camp AIR confirmed cycle 35 with 900 min of immersive sessions (Mon-Tue full days, hackathon standups, EOD debriefs). Immersion Cascade Source: triggers downstream amplification across meeting-notes, status, artifacts, context patterns. Cascade dampening 0.7x applies. Quarterly cadence confirmed. Pre-event prep and post-event debrief scaffolding are automation targets."
+      "llmRationale": "Cycle 36: CAPE Camp AIR Multi-Day Immersive Sessions confirmed with freq=2, 480min total across Monday and Tuesday (mindset, workflow, Copilot productivity, vibe coding, Dataverse integration, agent creation, EOD debriefs). Largest contiguous time block on calendar — 8 hours of immersion crowding out deep-work time. +2 occurrences, +8.0hrs. Cumulative 53hrs total. Immersion Cascade Source confirmed: triggers downstream amplification across meeting-notes, status, artifacts, context patterns. Cascade dampening 0.7x applies. Quarterly cadence confirmed."
     },
     {
       "patternId": "skill-detector-spec-build-cycle",
       "label": "Skill-Detector Technical Spec Iterative Build Cycle",
-      "sources": ["document"],
-      "occurrenceCount": 16,
+      "sources": ["document", "teams"],
+      "occurrenceCount": 23,
       "participantCount": 2,
-      "timeSpentHoursTotal": 3.75,
+      "timeSpentHoursTotal": 5.08,
       "automationScore": 60,
       "valueScore": 70,
       "candidateSkillName": "spec-iteration-scaffold-generator",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "5 new spec iteration artifacts this cycle (ZIP packages, SKILL.md, scripts, configs). Builder-User Prototyping archetype continues. Scaffold generator for new skill specs, config stubs, and agent state templates. Feeds Skilluminator loop — this is the meta-pattern that generates other patterns. SKILL.md itself is the primary artifact."
+      "llmRationale": "Cycle 36: 5 Skills Library and AI Workflow Standardization Discussion occurrences (teams, freq=5, 50min) — skills-as-markdown-SOPs, taxonomy, quality gates, contribution cadence, reuse criteria + 2 PRD and Spec Format Fragmentation occurrences (document, freq=2, 30min) — SpecKit, one-page brief to full spec workflow fragmentation = +7 occurrences, +1.33hrs. Cumulative 23 across 14 cycles. Meta-pattern: the Skilluminator workflow itself is a detectable repeating pattern (Self-Referential archetype). PRD/spec fragmentation adds new sub-class."
     },
     {
       "patternId": "agent-eval-template-maintenance",
       "label": "Agent Eval Sets Template Maintenance (Recurring Excel Tracker)",
       "sources": ["document"],
-      "occurrenceCount": 3,
+      "occurrenceCount": 7,
       "participantCount": 3,
-      "timeSpentHoursTotal": 1.5,
+      "timeSpentHoursTotal": 2.58,
       "automationScore": 78,
       "valueScore": 82,
       "candidateSkillName": "eval-template-scaffolder",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "Agent Eval Sets_Template.xlsx confirmed still in active use cycle 35. Living template that evolves with eval needs. Feeds external-partner-eval-sessions pattern. Generate structured eval scenario templates on demand. Connects to partner-eval-enablement-pack-generator as sub-component."
+      "llmRationale": "Cycle 36: CAPE Eval Engagement Tracker Maintenance (document, freq=3, 20min) — customers, engagement type, record dates, living document updated by PM + Customer Success Lead + Agent Eval Progress Report Rolling Versioned Docs (freq=1, 45min, v2/v3/v4 all March 2026) = +4 occurrences, +1.08hrs. Cumulative 7 across 14 cycles. Agent Eval Sets_Template.xlsx still in active use. Feeds external-partner-eval-sessions pattern. Versioned rolling reports add a new lifecycle artifact class."
     },
     {
       "patternId": "daily-day-prep-planning",
@@ -270,82 +270,97 @@
       "firstSeenCycle": 22,
       "lastSeenCycle": 35,
       "trend": "stable",
-      "llmRationale": "5 new day-prep files this cycle ([Mar 19] Help me prepare for my day pattern). Recurring morning planning artifact. Single-participant limits org value, but high personal productivity. Calendar digest + email triage + priority summary automation. Connects to meeting-load-triage and ado-notification-triage as upstream data sources."
+      "llmRationale": "Not directly visible in cycle 36 signals (1-cycle gap — not marking as declining until 3+ cycles per policy). Last confirmed cycle 35 with 5 day-prep files ([Mar 19] 'Help me prepare for my day' pattern). Recurring morning planning artifact. Single-participant limits org value, but high personal productivity. Calendar digest + email triage + priority summary automation. Connects to meeting-load-triage and ado-notification-triage as upstream data sources."
     },
     {
       "patternId": "escalation-email-authoring",
       "label": "High-Urgency Escalation Email Authoring",
       "sources": ["email"],
-      "occurrenceCount": 5,
+      "occurrenceCount": 7,
       "participantCount": 2,
-      "timeSpentHoursTotal": 1.83,
+      "timeSpentHoursTotal": 2.33,
       "automationScore": 60,
       "valueScore": 65,
       "candidateSkillName": "escalation-email-drafter",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "1 new URGENT-flagged email this cycle: administrative data correction (URGENT Degree CANNOT be Located to external university). PM escalation tone is distinctive and consistent. Draft generation from structured context is T2 automatable. Pattern confirmed across 13 cycles at low-frequency."
+      "llmRationale": "Cycle 36: 2 Customer and External Eval Escalation Threads (email, freq=2, 30min) — external customer, support engineer, field partner, higher per-thread attention, PM as SME/escalation point (+2 occurrences, +0.5hrs). Also URGENT Declarative Agent SharePoint Escalation partially feeds this (counted in agent-architecture-scoping). Cumulative 7 across 14 cycles. PM escalation tone is distinctive and consistent. Draft generation from structured context is T2 automatable. Low-frequency but consistent pattern."
     },
     {
       "patternId": "community-digest-consumption",
       "label": "Viva Engage and Community Digest Consumption",
       "sources": ["email"],
-      "occurrenceCount": 15,
+      "occurrenceCount": 20,
       "participantCount": 1,
-      "timeSpentHoursTotal": 0.75,
+      "timeSpentHoursTotal": 1.0,
       "automationScore": 70,
       "valueScore": 38,
       "candidateSkillName": "digest-summarizer",
       "firstSeenCycle": 22,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "declining",
-      "llmRationale": "5 new digest emails cycle 35. Passive consumption, single-participant. Low strategic signal density. Summarization + topic flagging possible but org-wide value minimal. Anti-pattern: Community Noise. Trend declining due to low value ceiling and single-participant scope — not due to absence from signals."
+      "llmRationale": "Cycle 36: 5 Org Broadcast and Internal Announcement Scanning emails (email, freq=5, 15min) — EvalCon, BIC All Hands, BAT All Hands, Microsoft Daily Digest, Viva Engage. Mostly marked as read, light scanning (+5 occurrences, +0.25hrs). Cumulative 20. Passive consumption, single-participant. Low strategic signal density. Anti-pattern: Community Noise. Continuing decline trajectory — low value ceiling and single-participant scope. Summarization + topic flagging possible but org-wide value minimal."
     },
     {
       "patternId": "loop-workspace-collaboration-dispatch",
       "label": "Loop Workspace Collaboration Invite Dispatch",
       "sources": ["email"],
-      "occurrenceCount": 4,
+      "occurrenceCount": 6,
       "participantCount": 3,
-      "timeSpentHoursTotal": 0.16,
+      "timeSpentHoursTotal": 0.24,
       "automationScore": 65,
       "valueScore": 48,
       "candidateSkillName": "workspace-invite-automator",
       "firstSeenCycle": 23,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "2 new outbound Loop workspace invitations cycle 35 (Skilluminator Workspace). Auto-generated by M365 when collaboration initiated. Low time impact but indicates collaboration setup pattern. Cumulative 4 across 2 tracked cycles. Val nudged to 48 — consistent but low-volume pattern. Monitor for growth."
+      "llmRationale": "Cycle 36: 2 Workspace Collaboration Invitation Emails (email, freq=2, 5min) — 'You have been looped in! Skilluminator' subject pattern, action-oriented messages looping collaborators into workspaces (+2 occurrences, +0.08hrs). Cumulative 6 across 3 tracked cycles. Auto-generated by M365 when collaboration initiated. Low time impact but indicates collaboration setup pattern. Consistent 2/cycle volume. Monitor for growth."
     },
     {
       "patternId": "skilluminator-dashboard-refresh",
       "label": "Skilluminator Cycle Dashboard Weekly HTML Refresh",
       "sources": ["document"],
-      "occurrenceCount": 2,
+      "occurrenceCount": 3,
       "participantCount": 1,
-      "timeSpentHoursTotal": 1.5,
-      "automationScore": 86,
+      "timeSpentHoursTotal": 1.83,
+      "automationScore": 87,
       "valueScore": 58,
       "candidateSkillName": "cycle-dashboard-auto-refresh",
       "firstSeenCycle": 23,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "rising",
-      "llmRationale": "Dashboard.html with cycle markers confirmed cycle 35 — 2nd cycle observed. PM runs signal ingestion → pattern detection → dashboard refresh → refinement loop. Meta-pattern: the Skilluminator workflow itself is a detectable repeating pattern (Self-Referential Meta-Pattern archetype). Auto nudged to 86 — cycle refresh cadence is highly automatable. Rising as the workflow matures and becomes more established."
+      "llmRationale": "Cycle 36: Eval Enablement Dashboard Ongoing Maintenance confirmed (document, freq=1, 20min) — resource hub created and referenced in multiple weekly/standing meetings, maintained dashboard updated over time (+1 occurrence, +0.33hrs). Cumulative 3 across 3 tracked cycles. Meta-pattern: the Skilluminator workflow (signal ingestion → pattern detection → dashboard refresh → refinement loop) is itself a detectable repeating pattern (Self-Referential Meta-Pattern archetype). Auto nudged to 87 — cycle refresh cadence is highly automatable."
     },
     {
       "patternId": "one-on-one-stakeholder-checkins",
       "label": "1:1 Stakeholder Check-Ins (Weekly Portfolio)",
       "sources": ["meeting"],
-      "occurrenceCount": 12,
+      "occurrenceCount": 14,
       "participantCount": 2,
-      "timeSpentHoursTotal": 7.5,
+      "timeSpentHoursTotal": 8.33,
       "automationScore": 45,
       "valueScore": 70,
       "candidateSkillName": "one-on-one-prep-generator",
       "firstSeenCycle": 23,
-      "lastSeenCycle": 35,
+      "lastSeenCycle": 36,
       "trend": "stable",
-      "llmRationale": "6 weekly 1:1 meetings confirmed cycle 35, 3h 45m total. Relationship-heavy (low automation ceiling for the meeting itself) but pre-meeting prep and talking point generation are automatable at T1. Val nudged to 70 — confirmed structural across 2 tracked cycles. Feeds meeting-load-triage portfolio."
+      "llmRationale": "Cycle 36: 2 Recurring 1:1 Manager Check-Ins confirmed (meeting, freq=2, 50min) — Mondays and Thursdays 2:35-3:00 PM, highly stable recurring 1:1 with iterative shaping of direction, eval-driven development framing (+2 occurrences, +0.83hrs). Cumulative 14 across 3 tracked cycles. Relationship-heavy (low automation ceiling for the meeting itself) but pre-meeting prep and talking point generation are automatable at T1. Feeds meeting-load-triage portfolio."
+    },
+    {
+      "patternId": "cross-channel-workflow-sequence",
+      "label": "Discussion to Meeting to Document Sequential Workflow Chain",
+      "sources": ["email", "meeting", "document", "teams"],
+      "occurrenceCount": 7,
+      "participantCount": 3,
+      "timeSpentHoursTotal": 1.83,
+      "automationScore": 70,
+      "valueScore": 78,
+      "candidateSkillName": "cross-channel-workflow-orchestrator",
+      "firstSeenCycle": 36,
+      "lastSeenCycle": 36,
+      "trend": "rising",
+      "llmRationale": "NEW PATTERN — first confirmed cycle 36. Two cross-channel workflow chains detected: (1) Discussion-to-Meeting-to-Doc: conversation starts in Teams/email → meeting scheduled → Loop document created/updated with decisions and follow-ups (freq=3, 60min); (2) DevOps-Alert-to-Sync-to-Doc: system-generated email (ADO/TAP/eval results) → sync or review meeting → artifact creation or Loop tracking (freq=4, 50min). Combined 7 occurrences across 110min. Represents automated pipeline opportunity: trigger detection → meeting prep scaffolding → post-meeting doc generation. Multi-source nature elevates generalizability. Watch for growth."
     }
   ],
   "orgWidePatterns": [
@@ -367,7 +382,7 @@
       "patternId": "eval-tooling-troubleshooting",
       "label": "Eval Tooling CLI and Implementation Troubleshooting",
       "participantCount": 3,
-      "automationScore": 69,
+      "automationScore": 70,
       "valueScore": 80
     },
     {
@@ -381,7 +396,7 @@
       "patternId": "parallel-eval-deck-creation",
       "label": "Parallel Eval Enablement Deck Creation (Team-Wide Duplication)",
       "participantCount": 3,
-      "automationScore": 84,
+      "automationScore": 85,
       "valueScore": 88
     },
     {
@@ -396,7 +411,7 @@
       "label": "CAPE and Evals Leadership Strategy Thread Participation",
       "participantCount": 5,
       "automationScore": 60,
-      "valueScore": 91
+      "valueScore": 92
     },
     {
       "patternId": "meeting-load-triage",
@@ -431,7 +446,7 @@
       "label": "Agent Architecture and MCP/Skills Scoping Discussions",
       "participantCount": 3,
       "automationScore": 52,
-      "valueScore": 84
+      "valueScore": 85
     },
     {
       "patternId": "training-event-artifact-coordination",
@@ -458,8 +473,15 @@
       "patternId": "skilluminator-dashboard-refresh",
       "label": "Skilluminator Cycle Dashboard Weekly HTML Refresh",
       "participantCount": 1,
-      "automationScore": 86,
+      "automationScore": 87,
       "valueScore": 58
+    },
+    {
+      "patternId": "cross-channel-workflow-sequence",
+      "label": "Discussion to Meeting to Document Sequential Workflow Chain",
+      "participantCount": 3,
+      "automationScore": 70,
+      "valueScore": 78
     }
   ],
   "skillGeneratorInput": {
@@ -473,9 +495,10 @@
           "When in the agent lifecycle should I start running evals?",
           "Can you walk me through eval-driven development?",
           "My CSV import is failing in the eval CLI — what's wrong?",
-          "Is tool_call_accuracy available in preview or GA?"
+          "Is tool_call_accuracy available in preview or GA?",
+          "What do these eval results actually mean? How do we act on failures?"
         ],
-        "valueProposition": "Eliminates the #1 expert bottleneck (BSI 97 EMERGENCY — escalated from 78 CRITICAL at cycle 22). PM handles 35 cumulative eval guidance requests across 13 cycles. Deflecting T1 requests frees ~1 hr/week and unblocks the 7-pattern Eval Ecosystem. EvalCon April 2 deadline amplifies urgency to peak."
+        "valueProposition": "Eliminates the #1 expert bottleneck (BSI EMERGENCY). PM handles 50 cumulative eval guidance requests across 14 cycles — 15 new this cycle alone (10 SME consultations + 5 results interpretation coaching sessions). Deflecting T1 requests frees ~2 hrs/week and unblocks the 7-pattern Eval Ecosystem. EvalCon April 2 deadline T-13 days = urgency at absolute peak."
       },
       {
         "name": "meeting-notes-action-extractor",
@@ -486,40 +509,40 @@
           "Generate a structured follow-up doc from these notes",
           "Capture decisions and owners from today's sync"
         ],
-        "valueProposition": "Chain head for meeting-notes ecosystem. SGI 85 HIGH — every team duplicates this structure. 24 confirmed occurrences across 13 cycles. INSTITUTIONAL pattern. Camp AIR cascade this cycle amplified downstream demand. Standardizing saves estimated 4–6 hrs/week across participants."
+        "valueProposition": "Chain head for meeting-notes ecosystem. SGI 85 HIGH — every team duplicates this structure. 29 confirmed occurrences across 14 cycles. INSTITUTIONAL pattern. Camp AIR 480min immersion cascade this cycle amplified downstream demand. Standardizing saves estimated 4-6 hrs/week across participants."
       },
       {
         "name": "ado-notification-router",
-        "description": "Classifies and triages Azure DevOps work-item email notifications by type (Task, Requirement, Bug, Feature, Epic, IcM) and routes them to appropriate attention queues. Suppresses subscriber-only noise, surfaces actionable assignee items, and links to relevant meeting or document context.",
+        "description": "Classifies and triages Azure DevOps work-item email notifications by type (Task, Requirement, Bug, Feature, Epic, IcM) and routes them to appropriate attention queues. Suppresses subscriber-only noise, surfaces actionable assignee items, and links to relevant meeting or document context. Also handles DevOps-Alert-to-Sync-to-Doc workflow triggers.",
         "triggerExamples": [
           "Which ADO notifications need my action today?",
           "Filter my work-item emails — show only what I'm assigned to",
           "Triage this week's ADO notification digest",
           "Route this Bug notification to the right team"
         ],
-        "valueProposition": "60 cumulative ADO notifications across 13 cycles at steady 30/week — fully INSTITUTIONAL. PM is subscriber (not assignee) in most. Automation ceiling 93%. Estimated 2–3 hrs/week reclaimed at scale."
+        "valueProposition": "94 cumulative ADO notifications + workflow triggers across 14 cycles at steady 30+/week — fully INSTITUTIONAL. PM is subscriber (not assignee) in most. Automation ceiling 93%. Estimated 2-3 hrs/week reclaimed at scale. Now also covers Alert-to-Sync-to-Doc pipeline variant (cycle 36 new sub-class)."
       },
       {
         "name": "eval-enablement-deck-standardizer",
-        "description": "Generates or updates a standard eval enablement deck from a canonical template, tailored for specific customer segment, agent type, or partner tier. Eliminates parallel deck creation problem by producing one parameterized output. Addresses SGI 92 CRITICAL condition.",
+        "description": "Generates or updates a standard eval enablement deck from a canonical template, tailored for specific customer segment, agent type, or partner tier. Eliminates parallel deck creation problem (SGI 92 CRITICAL) by producing one parameterized output from a single source of truth.",
         "triggerExamples": [
           "Create an eval intro deck for this customer",
           "Update the CAPE evals playbook for this partner session",
           "Generate a pitch deck for eval-driven development for an SI partner",
           "Build an EvalCon session deck from our process learnings"
         ],
-        "valueProposition": "SGI 92 CRITICAL for 13 consecutive cycles. 9 cumulative occurrences, 3 parallel creators, 4.5 hrs in redundant creation. Camp AIR generated additional variants this cycle. EvalCon deadline amplification at peak — April 2 window is final opportunity."
+        "valueProposition": "SGI 92 CRITICAL for 14 consecutive cycles. 16 cumulative occurrences, 3 parallel creators, 6.5 hrs in redundant creation. Camp AIR + EvalCon April 2 deadline together create peak amplification window — this is the final urgency cycle before post-EvalCon transition."
       },
       {
-        "name": "partner-eval-enablement-pack-generator",
-        "description": "Assembles a complete partner-facing eval enablement pack for a specific external engagement: eval scenario template, metric guide, timing playbook, and follow-up summary. Parameterized by partner tier (SI, ISV, customer) and agent complexity.",
+        "name": "cross-channel-workflow-orchestrator",
+        "description": "Detects the Discussion-to-Meeting-to-Document workflow chain and provides automated scaffolding at each transition point: pre-meeting brief from chat context, post-meeting Loop doc generation from meeting notes, action item extraction with owner assignment. Covers both organic discussion chains and DevOps-Alert-to-Sync-to-Doc pipeline variants.",
         "triggerExamples": [
-          "Prep my eval materials for the Accenture session tomorrow",
-          "Generate an eval onboarding pack for a new SI partner",
-          "What should I bring to an external eval session with KPMG?",
-          "Create a post-session eval summary for ey.com"
+          "We just decided to schedule a meeting about X — create a pre-meeting brief",
+          "I got an ADO alert on eval pipeline failures — prep a review doc",
+          "This Teams thread turned into a meeting — create the Loop notes template",
+          "Extract follow-up tasks from this discussion-to-meeting chain"
         ],
-        "valueProposition": "39 cumulative hours in external partner sessions across 50+ domains over 13 cycles. EDII 5.0+ fully structural. Pre-session prep and post-session summaries are prime automation targets. Links to eval-enablement-deck-standardizer as primary artifact source."
+        "valueProposition": "NEW in cycle 36 — first detection of cross-channel workflow orchestration gap. 7 occurrences across 110min. Represents a force-multiplier opportunity: automating the handoff points between email/Teams → meeting → document reduces context loss and saves transition overhead across all 3 channels simultaneously."
       }
     ]
   }
