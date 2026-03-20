@@ -1,6 +1,8 @@
 {
   "lastUpdatedCycle": 28,
   "totalCyclesRun": 28,
+  "weekOf": "2026-03-16",
+  "harvestStatusCycle28": "HARVEST FAILED — All 15 of 15 WorkIQ queries returned error. No new signals. All values reflect accumulated evidence through cycle 28 with no cycle-28 increment. Merge conflicts resolved using HEAD (cycle 28) values. daily-briefing-generator corrected from erroneous archived state per YAML evidence (cyclesConfirmed=6 through cycle 21).",
   "patterns": [
     {
       "patternId": "meeting-notes-action-item-capture",
@@ -18,7 +20,7 @@
       "maturity": "institutional",
       "velocity": 11.82,
       "spawnedChildren": ["transcript-to-loop-ppt-pipeline"],
-      "llmRationale": "Cycle 28 confirmed +5 (Large Knowledge-Sharing Forums action capture +2, Loop Documents as Living Coordination Hubs +3). 331 total, 60.20 hrs across 28 unbroken cycles. STABLE — Loop hub pattern continues reinforcing capture. Chain head integrity maintained."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 331 total, 60.20 hrs across 28 unbroken cycles. Loop doc structure (Agenda→Notes→Decisions→Follow-up) re-validated. Chain head for transcript pipeline. STABLE."
     },
     {
       "patternId": "ado-notification-triage",
@@ -35,7 +37,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 29.75,
-      "llmRationale": "Cycle 28 confirmed +40 (ADO email notifications freq=30 +30, Cross-Source DevOps passive intake freq=10 +10). 833 total, 30.34 hrs across 28 unbroken cycles. STABLE. DEEP SATURATION past 800. Decomposition into 5 workstream sub-classifiers overdue 16 cycles. Highest automation score in catalog (95)."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 833 total, 30.34 hrs across 28 unbroken cycles. DEEP SATURATION. Decomposition into 5 workstream sub-classifiers overdue 16 cycles. Highest automation score (95)."
     },
     {
       "patternId": "eval-results-analysis-reporting",
@@ -52,7 +54,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 15.21,
-      "llmRationale": "Cycle 28 confirmed +12 (Deep Technical Working Sessions eval strategy +4, Eval Strategy and Actionability Discussions +5, Cross-Source Announcement to Submission EvalCon +3). 426 total, 106.89 hrs. RISING — eval strategy and actionability discussions continue surging. automationScore raised 84→85 as standardized reporting patterns codify further. Highest value score in catalog (95)."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 426 total, 106.89 hrs. RISING — eval strategy and actionability discussions continue surging. Highest value score in catalog (95)."
     },
     {
       "patternId": "meeting-load-triage",
@@ -71,7 +73,7 @@
       "velocity": 26.04,
       "engagementIntensityIndex": 34,
       "meetingPortfolioBreadth": 12,
-      "llmRationale": "Cycle 28 confirmed +26 (V-Team Alignment Syncs +3, Camp AIR Immersive Block +1/480min, Meeting Coordination +7, Knowledge Forums +3, Camp AIR sub-sessions +12). 651 total, 393.14 hrs. STABLE. Camp AIR 480min single-block dominates. MPBI stable at 12. Highest cumulative time in catalog (393 hrs). automationScore raised 76→77 as conflict resolution patterns codify."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 651 total, 393.14 hrs. STABLE. Camp AIR 480min single-block dominates. MPBI 12. Highest cumulative time in catalog (393 hrs)."
     },
     {
       "patternId": "cross-tool-context-fragmentation",
@@ -89,7 +91,7 @@
       "maturity": "institutional",
       "velocity": 11.88,
       "spawnedChildren": ["skill-library-socialization"],
-      "llmRationale": "Cycle 28 confirmed +4 (Artifact Exchange in Chat GitHub/SharePoint transport +2, Cross-Source Announcement to Submission context chain +2). 309 total, 50.54 hrs. STABLE — sustained cross-source workflow reinforcement. Chat-as-transport-layer insight continues validating."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 309 total, 50.54 hrs. STABLE. Chat-as-transport-layer for GitHub repos, ZIPs, YAML, Loop components validated."
     },
     {
       "patternId": "copilot-platform-faq-responder",
@@ -107,7 +109,7 @@
       "maturity": "institutional",
       "velocity": 7.93,
       "spawnedChildren": ["eval-coaching-and-scoping"],
-      "llmRationale": "Cycle 28 confirmed +4 (Large Knowledge-Sharing Forums Copilot Studio Office Hours +2, Mentorship and Peer Sense-Making eval-driven development concepts +2). 222 total, 63.80 hrs. STABLE — Office Hours and knowledge-sharing forums sustain baseline."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 222 total, 63.80 hrs. STABLE — Office Hours and knowledge-sharing forums sustain baseline."
     },
     {
       "patternId": "training-event-artifact-coordinator",
@@ -124,7 +126,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 10.57,
-      "llmRationale": "Cycle 28 confirmed +10 (Camp AIR Multi-Day Immersive Block 480min +4, Cross-Source Camp AIR to Transcript to Reusable Guidance +6). 296 total, 234.36 hrs. RISING — Camp AIR March cohort immersion continues. Immersion cascade effect confirmed: single Camp AIR block generates 6+ downstream signal types. automationScore raised 71→72."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 296 total, 234.36 hrs. RISING — Camp AIR March cohort continues. Single immersion block generates 6+ downstream signal types."
     },
     {
       "patternId": "recurring-meeting-agenda-generator",
@@ -141,7 +143,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 9.29,
-      "llmRationale": "Cycle 28 confirmed +10 (V-Team Alignment Syncs 3 recurring +3, Meeting Coordination 7 scheduling events +7). 260 total, 79.02 hrs. STABLE. MPBI 12 sustains high agenda-generation demand."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 260 total, 79.02 hrs. STABLE. 12 confirmed recurring meeting types. MPBI 12."
     },
     {
       "patternId": "eval-template-scaffolder",
@@ -159,7 +161,7 @@
       "maturity": "institutional",
       "velocity": 6.81,
       "spawnedChildren": ["customer-enablement-asset-standardization"],
-      "llmRationale": "Cycle 28 confirmed +4 (Eval Frameworks and Tooling Artifacts: dashboard, scenario library, eval framework +4). 177 total, 52.96 hrs. STABLE — eval framework artifact creation sustained."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 177 total, 52.96 hrs. STABLE — eval framework artifact creation sustained."
     },
     {
       "patternId": "broadcast-email-classifier",
@@ -176,7 +178,7 @@
       "trend": "stable",
       "maturity": "mature",
       "velocity": 7.61,
-      "llmRationale": "Cycle 28 confirmed +3 (Leadership and Program Announcements: EvalCon announcement, internal previews +3). 213 total, 12.87 hrs. STABLE."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 213 total, 12.87 hrs. STABLE. Passive digest intake consistent (Viva Engage, Community Digest, MS Daily/Weekly Digest)."
     },
     {
       "patternId": "stakeholder-fyi-classifier",
@@ -193,7 +195,7 @@
       "trend": "declining",
       "maturity": "mature",
       "velocity": 4.45,
-      "llmRationale": "Cycle 28 confirmed +1 (Leadership Announcements partial attribution). 98 total, 10.69 hrs. DECLINING — continued low-volume."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 98 total, 10.69 hrs. DECLINING — continued low-volume. Near 100 occ graduation threshold."
     },
     {
       "patternId": "builder-user-prototype",
@@ -210,7 +212,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 8.32,
-      "llmRationale": "Cycle 28 confirmed +6 (Deep Technical Working Sessions artifact creation +3, Eval Frameworks and Tooling Artifacts skill-detector/dashboard build +3). 158 total, 43.25 hrs. STABLE. Builder-user at scale."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 158 total, 43.25 hrs. STABLE. Builder-user at scale — skill-detector ZIP packaging is meta-pattern."
     },
     {
       "patternId": "partner-eval-enablement-meetings",
@@ -227,7 +229,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 7.96,
-      "llmRationale": "Cycle 28 confirmed +7 (Customer and Field Coordination Threads eval adoption +5, Cross-Source Customer Signal to Meeting to Toolkit +2). 207 total, 99.39 hrs. RISING — customer/field coordination sustained. automationScore raised 73→74."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 207 total, 99.39 hrs. RISING — customer/field coordination sustained across external partner sessions."
     },
     {
       "patternId": "fragmented-action-item-tracking",
@@ -244,7 +246,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 4.62,
-      "llmRationale": "Cycle 28 confirmed +2 (Loop Documents ownership/summaries partial attribution +2). 120 total, 18.30 hrs. STABLE."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 120 total, 18.30 hrs. STABLE. No unified tracker remains core gap."
     },
     {
       "patternId": "weekly-status-report-generation",
@@ -261,7 +263,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 5.25,
-      "llmRationale": "Cycle 28 confirmed +6 (V-Team Alignment Syncs status review +3, Loop Documents summaries +3). 147 total, 42.64 hrs. RISING — 5-format parallel creation sustained."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 147 total, 42.64 hrs. RISING — 5-format parallel creation sustained."
     },
     {
       "patternId": "action-owner-chasing",
@@ -278,7 +280,7 @@
       "trend": "declining",
       "maturity": "declining",
       "velocity": 4.29,
-      "llmRationale": "No signal in cycle 28. 9 consecutive cycles absent (last seen cycle 19). DECLINING — approaching archive threshold at 10. Signal absorbed into fragmented-action-item-tracking and Loop coordination hubs."
+      "llmRationale": "No signal cycle 28. 9 consecutive cycles absent (last seen cycle 19). DECLINING — approaching archive threshold at 10."
     },
     {
       "patternId": "voc-customer-ask-dedup-routing",
@@ -296,7 +298,7 @@
       "maturity": "institutional",
       "velocity": 3.71,
       "spawnedChildren": ["customer-signal-to-guidance-pipeline"],
-      "llmRationale": "Cycle 28 confirmed +3 (Customer and Field Coordination Threads CRM tracking +3). 104 total, 16.70 hrs. STABLE."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 104 total, 16.70 hrs. STABLE. PM functions as informal routing layer between field, PM, and PG."
     },
     {
       "patternId": "redundant-deck-creation",
@@ -313,7 +315,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 4.15,
-      "llmRationale": "Cycle 28 confirmed +3 (Presentation Decks pitch/enablement/Camp AIR materials +3). 108 total, 42.90 hrs. STABLE — Camp AIR and enablement materials sustain pattern."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 108 total, 42.90 hrs. STABLE — Camp AIR and enablement materials sustain pattern."
     },
     {
       "patternId": "post-meeting-external-followup-drafter",
@@ -330,7 +332,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 5.88,
-      "llmRationale": "Cycle 28 confirmed +4 (Cross-Source Customer Signal to Meeting to Toolkit +2, Customer Field Coordination escalation +2). 153 total, 37.81 hrs. RISING."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 153 total, 37.81 hrs. RISING. Three urgency tiers active: standard follow-up, urgent technical escalation, urgent administrative escalation."
     },
     {
       "patternId": "transcript-to-loop-ppt-pipeline",
@@ -347,7 +349,7 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 6.35,
-      "llmRationale": "Cycle 28 confirmed +8 (Loop Documents as Living Coordination Hubs +5, Cross-Source Camp AIR to Transcript to Reusable Guidance +3). 165 total, 49.73 hrs. RISING — Loop doc hub pattern and Camp AIR transcript pipeline both reinforcing. automationScore raised 87→88."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 165 total, 49.73 hrs. RISING — Loop doc hub pattern and Camp AIR transcript pipeline both reinforcing."
     },
     {
       "patternId": "access-governance-alert-classifier",
@@ -364,7 +366,7 @@
       "trend": "stable",
       "maturity": "mature",
       "velocity": 5.08,
-      "llmRationale": "Cycle 28 confirmed +4 (Security and Compliance Alerts: Purview/DLP/credentials/keys freq=4). 132 total, 6.75 hrs. STABLE."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 132 total, 6.75 hrs. STABLE. Six alert categories confirmed: File Blocked, Admin elevation/revocation, Loop workspace, Purview, Digital Compliance, Open Source."
     },
     {
       "patternId": "team-status-standardization-gap",
@@ -381,7 +383,7 @@
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 5.61,
-      "llmRationale": "Cycle 28 confirmed +3 (V-Team Alignment Syncs status review partial +3). 101 total, 31.42 hrs. STABLE. GRADUATED this cycle — crossed 100 occ threshold. SGI CRITICAL maintained. 5 parallel formats active."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 101 total, 31.42 hrs. STABLE. GRADUATED — crossed 100 occ threshold. SGI CRITICAL. 5 parallel formats active."
     },
     {
       "patternId": "eval-coaching-and-scoping",
@@ -399,7 +401,7 @@
       "maturity": "institutional",
       "velocity": 10.65,
       "bottleneckSeverityIndex": 87,
-      "llmRationale": "Cycle 28 confirmed +15 (Large Knowledge-Sharing Forums BizChat Eval +3, Deep Technical Working Sessions Golden Evals/Actionability +5, Eval Strategy and Actionability Discussions +5, Mentorship and Peer Sense-Making +2). 213 total, 49.84 hrs. RISING — consecutive cycle strongest intake (15/cycle). BSI escalated 85→87 CRITICAL. automationScore raised 83→84. PM sole DRI for 8+ request types. Added: actionability strategy, golden eval design."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 213 total, 49.84 hrs. RISING. BSI 87 CRITICAL. PM sole DRI for 8+ request types. Strongest intake on record (15/cycle consecutive)."
     },
     {
       "patternId": "presentation-narrative-framing",
@@ -416,7 +418,7 @@
       "trend": "stable",
       "maturity": "confirmed",
       "velocity": 2.89,
-      "llmRationale": "Cycle 28 confirmed +2 (Presentation Decks pitch/enablement partial +2). 52 total, 18.26 hrs. STABLE."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 52 total, 18.26 hrs. STABLE."
     },
     {
       "patternId": "skill-library-socialization",
@@ -433,15 +435,15 @@
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 5.14,
-      "llmRationale": "Cycle 28 confirmed +8 (Artifact Exchange in Chat: GitHub repos, SharePoint links, dashboards freq=15 → attributed 8). 108 total, 11.67 hrs. RISING. automationScore raised 76→77, valueScore raised 79→80."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 108 total, 11.67 hrs. RISING. Teams confirmed as primary distribution hub for GitHub repos, ZIPs, YAML, Loop components, demos."
     },
     {
       "patternId": "solution-library-pipeline-ops",
       "label": "Solution Library Pipeline & QA Operations",
       "sources": ["meeting", "document"],
-      "occurrenceCount": 14,
+      "occurrenceCount": 15,
       "participantCount": 4,
-      "timeSpentHoursTotal": 6.15,
+      "timeSpentHoursTotal": 6.57,
       "automationScore": 72,
       "valueScore": 70,
       "candidateSkillName": "solution-library-qa-assistant",
@@ -450,7 +452,7 @@
       "trend": "declining",
       "maturity": "declining",
       "velocity": 1.27,
-      "llmRationale": "No signal in cycle 28. 9 consecutive cycles absent (last seen cycle 19). DECLINING — approaching archive threshold."
+      "llmRationale": "No signal cycle 28. 9 consecutive cycles absent (last seen cycle 19). DECLINING — approaching archive threshold. Resurrection condition: Weekly Solution Library Check-In meeting re-confirmed."
     },
     {
       "patternId": "customer-enablement-asset-standardization",
@@ -466,9 +468,9 @@
       "lastSeenCycle": 28,
       "trend": "rising",
       "maturity": "confirmed",
-      "velocity": 3.00,
+      "velocity": 3.09,
       "spawnedFrom": "eval-template-scaffolder",
-      "llmRationale": "Cycle 28 confirmed +3 (Customer and Field Coordination Threads customer playbooks +2, Eval Frameworks tooling artifacts partial +1). 33 total, 6.75 hrs. RISING — steady growth. automationScore raised 78→79, valueScore raised 85→86."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 33 total, 6.75 hrs. RISING — steady growth. Customer-facing playbook demand confirmed across external partner sessions."
     },
     {
       "patternId": "customer-signal-to-guidance-pipeline",
@@ -486,7 +488,25 @@
       "maturity": "confirmed",
       "velocity": 2.18,
       "spawnedFrom": "voc-customer-ask-dedup-routing",
-      "llmRationale": "Cycle 28 confirmed +4 (Customer and Field Coordination Threads eval adoption/playbooks +2, Cross-Source Customer Signal to Meeting to Toolkit actionability→prototypes→dashboards +2). 24 total, 8.50 hrs. RISING — cross-source workflow validated. automationScore raised 74→75, valueScore raised 80→81."
+      "llmRationale": "Cycle 28 harvest failed — no increment. 24 total, 8.50 hrs. RISING. Pipeline validated: customer signal → DRI routing → guidance artifact creation."
+    },
+    {
+      "patternId": "daily-briefing-generator",
+      "label": "Personal Daily Prep & Briefing",
+      "sources": ["document", "meeting"],
+      "occurrenceCount": 30,
+      "participantCount": 1,
+      "timeSpentHoursTotal": 0.63,
+      "automationScore": 83,
+      "valueScore": 65,
+      "candidateSkillName": "daily-briefing-generator",
+      "firstSeenCycle": 4,
+      "lastSeenCycle": 21,
+      "trend": "declining",
+      "maturity": "declining",
+      "velocity": 5.00,
+      "correctionNote": "HEAD branch erroneously held archived since cycle 8. YAML confirms cyclesConfirmed=6 through cycle 21. Post-resurrection count estimated 30 (5/cycle x cycles 21-26). Absent cycles 27-28 — DECLINING. Archive if absent through cycle 30.",
+      "llmRationale": "Resurrected cycle 21 (13 dormant cycles). Confirmed cycles 21-26. PM creates date-stamped daily planning artifact each morning ([Date] Help me prepare for my day). Absent cycles 27-28 — declining."
     },
     {
       "patternId": "approval-workflow-orchestrator",
@@ -503,7 +523,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 2.30,
-      "llmRationale": "ARCHIVED. No signal 16+ consecutive cycles."
+      "llmRationale": "ARCHIVED. 16+ consecutive cycles absent."
     },
     {
       "patternId": "incident-doc-coordinator",
@@ -557,23 +577,6 @@
       "llmRationale": "ARCHIVED. 20+ consecutive cycles absent."
     },
     {
-      "patternId": "daily-briefing-generator",
-      "label": "Personal Daily Prep & Briefing",
-      "sources": ["document", "meeting"],
-      "occurrenceCount": 30,
-      "participantCount": 1,
-      "timeSpentHoursTotal": 0.63,
-      "automationScore": 83,
-      "valueScore": 65,
-      "candidateSkillName": "daily-briefing-generator",
-      "firstSeenCycle": 4,
-      "lastSeenCycle": 8,
-      "trend": "archived",
-      "maturity": "archived",
-      "velocity": 6.00,
-      "llmRationale": "ARCHIVED. 20+ consecutive cycles absent."
-    },
-    {
       "patternId": "escalation-email-drafter",
       "label": "Escalation & Follow-Up Email Drafting",
       "sources": ["email"],
@@ -588,7 +591,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 2.00,
-      "llmRationale": "ARCHIVED. 23+ cycles absent."
+      "llmRationale": "ARCHIVED. 23+ cycles absent. Signal absorbed into post-meeting-external-followup-drafter."
     },
     {
       "patternId": "review-prep-deck-maintenance",
@@ -639,7 +642,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 3.33,
-      "llmRationale": "ARCHIVED. Merged into action-owner-chasing."
+      "llmRationale": "ARCHIVED. Merged into voc-customer-ask-dedup-routing."
     },
     {
       "patternId": "customer-engagement-sdr-generator",
@@ -673,16 +676,16 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 1.67,
-      "llmRationale": "ARCHIVED. 25+ cycles absent."
+      "llmRationale": "ARCHIVED. 25+ cycles absent. FFv2 rollout matured."
     }
   ],
   "orgWidePatterns": [
     { "patternId": "meeting-notes-action-item-capture",         "compositeScore": 92, "participantCount": 4, "timeSpentHoursTotal": 60.20,  "cycleConfirmed": 28 },
-    { "patternId": "eval-results-analysis-reporting",           "compositeScore": 91, "participantCount": 5, "timeSpentHoursTotal": 106.89, "cycleConfirmed": 28 },
+    { "patternId": "eval-results-analysis-reporting",           "compositeScore": 90, "participantCount": 5, "timeSpentHoursTotal": 106.89, "cycleConfirmed": 28 },
     { "patternId": "ado-notification-triage",                   "compositeScore": 90, "participantCount": 3, "timeSpentHoursTotal": 30.34,  "cycleConfirmed": 28 },
     { "patternId": "eval-template-scaffolder",                  "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 52.96,  "cycleConfirmed": 28 },
     { "patternId": "weekly-status-report-generation",           "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 42.64,  "cycleConfirmed": 28 },
-    { "patternId": "eval-coaching-and-scoping",                 "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 49.84,  "cycleConfirmed": 28 },
+    { "patternId": "eval-coaching-and-scoping",                 "compositeScore": 88, "participantCount": 4, "timeSpentHoursTotal": 49.84,  "cycleConfirmed": 28 },
     { "patternId": "team-status-standardization-gap",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 31.42,  "cycleConfirmed": 28 },
     { "patternId": "transcript-to-loop-ppt-pipeline",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 49.73,  "cycleConfirmed": 28 },
     { "patternId": "post-meeting-external-followup-drafter",    "compositeScore": 86, "participantCount": 5, "timeSpentHoursTotal": 37.81,  "cycleConfirmed": 28 },
@@ -704,19 +707,45 @@
     { "patternId": "presentation-narrative-framing",            "compositeScore": 73, "participantCount": 4, "timeSpentHoursTotal": 18.26,  "cycleConfirmed": 28 }
   ],
   "spawnRegistry": {
-    "description": "Tracks parent-child pattern lineage. When a parent pattern sheds a sub-signal into a new pattern, both are recorded here.",
+    "description": "Tracks parent-child pattern lineage.",
     "spawns": [
-      { "parent": "cross-tool-context-fragmentation",  "child": "skill-library-socialization",              "spawnedAtCycle": 8,  "reason": "GitHub artifact sharing sub-signal matured into independent socialization pattern" },
-      { "parent": "eval-template-scaffolder",          "child": "customer-enablement-asset-standardization","spawnedAtCycle": 18, "reason": "Customer-facing enablement layer distinct from eval schema/framework scaffolding" },
-      { "parent": "voc-customer-ask-dedup-routing",    "child": "customer-signal-to-guidance-pipeline",     "spawnedAtCycle": 18, "reason": "Signal-to-synthesis-to-artifact loop distinct from routing/dedup decisions" },
-      { "parent": "copilot-platform-faq-responder",    "child": "eval-coaching-and-scoping",                "spawnedAtCycle": 9,  "reason": "Eval-specific scoping questions separated from general platform Q&A" },
-      { "parent": "meeting-notes-action-item-capture", "child": "transcript-to-loop-ppt-pipeline",          "spawnedAtCycle": 3,  "reason": "Loop/PPT pipeline sub-workflow matured into standalone pattern" }
+      { "parent": "cross-tool-context-fragmentation",  "child": "skill-library-socialization",               "spawnedAtCycle": 8,  "reason": "GitHub artifact sharing sub-signal matured into independent socialization pattern" },
+      { "parent": "eval-template-scaffolder",          "child": "customer-enablement-asset-standardization", "spawnedAtCycle": 18, "reason": "Customer-facing enablement layer distinct from eval schema/framework scaffolding" },
+      { "parent": "voc-customer-ask-dedup-routing",    "child": "customer-signal-to-guidance-pipeline",      "spawnedAtCycle": 18, "reason": "Signal-to-synthesis-to-artifact loop distinct from routing/dedup decisions" },
+      { "parent": "copilot-platform-faq-responder",    "child": "eval-coaching-and-scoping",                 "spawnedAtCycle": 9,  "reason": "Eval-specific scoping questions separated from general platform Q&A" },
+      { "parent": "meeting-notes-action-item-capture", "child": "transcript-to-loop-ppt-pipeline",           "spawnedAtCycle": 3,  "reason": "Loop/PPT pipeline sub-workflow matured into standalone pattern" }
+    ]
+  },
+  "resurrectionRegistry": {
+    "description": "Tracks patterns that returned from archived/declined state with fresh signal evidence.",
+    "resurrections": [
+      {
+        "patternId": "daily-briefing-generator",
+        "archivedAtCycle": 8,
+        "resurrectedAtCycle": 21,
+        "dormantCycles": 13,
+        "currentStatus": "declining",
+        "lastSeenCycle": 21,
+        "triggerSignal": "Daily Personal Day-Prep Planning Page freq=5 ([Mar 19] Help me prepare for my day)",
+        "reason": "PM resumed structured daily planning artifact after 13 dormant cycles. Confirmed cycles 21-26. Now declining — absent cycles 27-28."
+      },
+      {
+        "patternId": "solution-library-pipeline-ops",
+        "declinedAtCycle": 19,
+        "reboundedAtCycle": 21,
+        "dormantCycles": 2,
+        "currentStatus": "declining",
+        "lastSeenCycle": 19,
+        "triggerSignal": "Weekly Solution Library Check-In Monday 9:05-9:30 AM",
+        "reason": "Recurring Monday meeting restored at cycle 21; absent again in HEAD data — requires reconfirmation next harvest."
+      }
     ]
   },
   "skillGeneratorInput": {
     "generatedAtCycle": 28,
     "skilluminatorCycle": 28,
-    "weekOf": "2026-03-17",
+    "weekOf": "2026-03-16",
+    "harvestNote": "Cycle 28 had zero new signals (WorkIQ harvest failure). Top 5 ranks derived from accumulated data through cycle 28.",
     "candidateSkills": [
       {
         "rank": 1,
@@ -725,10 +754,10 @@
         "automationScore": 91,
         "valueScore": 93,
         "patternId": "meeting-notes-action-item-capture",
-        "description": "Ingests meeting transcript, agenda, or Loop doc and emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for transcript-to-loop and post-meeting-external-followup downstream. 331 occurrences across 28 unbroken cycles.",
+        "description": "Ingests meeting transcript, agenda, or Loop doc; emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for transcript-to-loop and post-meeting-external-followup downstream. 331 occurrences across 28 unbroken cycles.",
         "triggerExamples": [
           "Extract action items from today's Camp AIR standup and update the Loop doc",
-          "Summarize external customer meeting into Loop page with owners",
+          "Summarize external customer meeting into Loop page with owners and due dates",
           "Create standardized 1:1 notes template for all recurring meetings",
           "Generate post-meeting recap broadcast from CAPE Architecture Call"
         ],
@@ -736,8 +765,24 @@
       },
       {
         "rank": 2,
+        "name": "ado-notification-router",
+        "compositeScore": 90,
+        "automationScore": 95,
+        "valueScore": 85,
+        "patternId": "ado-notification-triage",
+        "description": "Classifies ADO notification emails by work-item type (Task, Requirement, Bug, Feature, Epic), workstream prefix, and urgency. Routes action-required to correct role; auto-archives FYI. DEEP SATURATION at 833 occ. Highest automation score (95). Decomposition overdue.",
+        "triggerExamples": [
+          "Triage my ADO inbox — what needs action vs FYI?",
+          "Classify ADO notifications by workstream: IcM vs coverage vs AI Eval",
+          "Which Bug/Requirement notifications require PM response before EOD?",
+          "Route this Task notification to the correct DRI based on workstream prefix"
+        ],
+        "valueProposition": "Eliminates ~30.34 hrs. 833 occ SATURATED at 40/week. Highest automation (95). Est. ~$78,884/yr."
+      },
+      {
+        "rank": 3,
         "name": "eval-report-synthesizer",
-        "compositeScore": 91,
+        "compositeScore": 90,
         "automationScore": 85,
         "valueScore": 95,
         "patternId": "eval-results-analysis-reporting",
@@ -748,28 +793,12 @@
           "Prepare Golden Evals kickoff report from meeting transcript",
           "Create eval strategy overview merging Teams threads and meeting artifacts"
         ],
-        "valueProposition": "Saves ~106.89 hrs across 5 roles. Highest value (95). RISING. Est. ~$277,914/yr."
-      },
-      {
-        "rank": 3,
-        "name": "ado-notification-router",
-        "compositeScore": 90,
-        "automationScore": 95,
-        "valueScore": 85,
-        "patternId": "ado-notification-triage",
-        "description": "Classifies ADO notification emails by work-item type, workstream prefix, and urgency. Routes action-required to correct role; auto-archives FYI. DEEP SATURATION at 833 occ. Highest automation score (95).",
-        "triggerExamples": [
-          "Triage my ADO inbox — what needs action vs FYI?",
-          "Classify ADO notifications by workstream: IcM vs coverage vs AI Eval",
-          "Which Bug/Requirement notifications require PM response before EOD?",
-          "Route this Task notification to the correct DRI based on workstream prefix"
-        ],
-        "valueProposition": "Eliminates ~30.34 hrs. 833 occ SATURATED at 40/week. Highest automation (95). Est. ~$78,884/yr."
+        "valueProposition": "Saves ~106.89 hrs across 5 roles. Highest value score (95). RISING. Est. ~$277,914/yr."
       },
       {
         "rank": 4,
         "name": "eval-design-advisor",
-        "compositeScore": 89,
+        "compositeScore": 88,
         "automationScore": 84,
         "valueScore": 92,
         "patternId": "eval-coaching-and-scoping",
@@ -789,7 +818,7 @@
         "automationScore": 87,
         "valueScore": 90,
         "patternId": "weekly-status-report-generation",
-        "description": "Generates standardized weekly status reports from Loop docs, Teams threads, email updates, meeting notes. Resolves 5-format parallel creation gap. RISING trend.",
+        "description": "Generates standardized weekly status reports from Loop docs, Teams threads, email updates, and meeting notes. Resolves 5-format parallel creation gap. RISING trend. 147 occurrences, 4 participants.",
         "triggerExamples": [
           "Generate this week's CAPE eval status merging all sources",
           "Draft unified XFN Report Out from parallel Teams posts this week",

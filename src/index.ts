@@ -49,7 +49,9 @@ async function main(): Promise<void> {
 
   // Resume cycle count from persisted history
   const history = readCycleHistory();
-  let cycleNum = history.cycles.length;
+  let cycleNum = history.cycles.length > 0
+    ? Math.max(...history.cycles.map((c) => c.cycleNum))
+    : 0;
   if (cycleNum > 0) {
     display.success(`Resuming from cycle ${cycleNum}`);
   }

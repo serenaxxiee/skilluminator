@@ -9,11 +9,13 @@ import { HARVEST_QUERIES, WORKIQ_TOOL } from "./workiq.js";
 // ── System prompt (shared across all phases) ────────────────────────
 
 export function buildSystemPrompt(): string {
-  return `You are Skilluminator — an autonomous agent with TWO PRIMARY OBJECTIVES:
+  return `You are Skilluminator — an autonomous agent whose PRIMARY OBJECTIVE is to continuously refine and improve a Claude skill called "skill-detector" (SKILL.md format).
 
-1. **skill-detector**: Continuously improve a Claude skill called "skill-detector" (SKILL.md format) that detects repeated work patterns in M365 activity and converts them into reusable Claude AI skill candidates.
+**What skill-detector does:** When ANY person runs it with their WorkIQ M365 data, it analyzes their individual email, meetings, Teams chats, and documents to discover their repeated work patterns, then identifies which patterns are highest-value candidates for reusable Claude AI skills. It is a PORTABLE skill — it must work for anyone, not just one specific user.
 
-2. **dashboard.html**: Continuously improve a beautiful, data-rich HTML dashboard that presents the analysis to the user. The dashboard is how humans interact with your work.
+**Your job each cycle:** Use real WorkIQ signals as training data to make the skill-detector smarter, more accurate, and more generalizable. Improve its detection heuristics, scoring rubrics, pattern archetypes, output format, and edge case handling. The skill-detector SKILL.md is your main deliverable.
+
+**Secondary objective:** Maintain a dashboard.html that visualizes the analysis.
 
 Rules:
 - Always produce valid JSON when writing state files
@@ -21,7 +23,8 @@ Rules:
 - Dashboard HTML must be fully self-contained (inline CSS + JS, NO external CDN)
 - Never invent data — only report what WorkIQ actually returns
 - Anonymize participants (use roles like "PM", "Engineering Lead", not names)
-- Use the Edit tool for targeted changes — do NOT rewrite entire files from scratch`;
+- Use the Edit tool for targeted changes — do NOT rewrite entire files from scratch
+- Focus on making skill-detector BETTER, not on listing skill candidates`;
 }
 
 // ── Phase 1: Harvest ────────────────────────────────────────────────
@@ -113,13 +116,24 @@ Read ${SIGNALS_PATH}. ${prevPatterns ? "Merge with existing patterns — update 
 \`\`\``;
 
   // Task 2: skill-detector (only when focus includes skill)
-  const skillTask = focus !== "dashboard" ? `## Task 2: IMPROVE the skill-detector
+  const skillTask = focus !== "dashboard" ? `## Task 2: IMPROVE the skill-detector (MAIN DELIVERABLE)
+
+The skill-detector is a PORTABLE Claude skill that ANY person runs on their own WorkIQ data. It must work for PMs, engineers, designers, managers — anyone with M365 activity. Use the real signals from this cycle as training data to make it better.
 
 ${currentSkill
     ? `Use the Edit tool to make TARGETED improvements to ${SKILL_PATH}. Do NOT rewrite from scratch. Read the full file first, identify what's weak or missing, then make specific edits.`
     : `Create ${SKILL_PATH} with Claude skill frontmatter (name + description). Make it impressive.`}
 
-You have full creative control over structure and approach.` : "";
+Focus areas for improvement (pick 1-2 per cycle):
+- **Detection heuristics**: Better pattern recognition across email, meetings, Teams, docs
+- **Scoring rubrics**: More accurate automation feasibility + business value scoring
+- **Pattern archetypes**: Add/refine the catalog of pattern types (e.g. recurring triage, status sync, approval chains)
+- **Generalizability**: Ensure it works for different roles, not just the current user's patterns
+- **Output quality**: Clearer, more actionable skill recommendations with concrete trigger examples
+- **Edge cases**: Handle sparse data, single-source patterns, seasonal patterns
+- **WorkIQ integration**: Better prompts for querying WorkIQ, better signal extraction
+
+You have full creative control. The goal: if a colleague runs this skill tomorrow, it should blow them away.` : "";
 
   // Task 3: dashboard (only when focus includes dashboard)
   const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH})
@@ -145,9 +159,20 @@ ${tasks}
 
 ---
 
-## Output (keep brief)
-1. Top 3 skill candidates with scores
-2. What you changed this cycle`;
+## FINAL STEP — Blog Post (MANDATORY, DO NOT SKIP)
+
+You MUST end your entire response with a section that starts with exactly these characters on their own line:
+
+## FEED POST
+
+Followed by a fun, lighthearted blog post (3-6 sentences) for the operator. This is NOT optional. Write in a witty, personality-filled tone — like a teammate posting a standup update with humor. Include:
+- What you did this cycle and what changed
+- Interesting findings or highlights from the data
+- Top skill candidate(s) with scores
+- Any challenges, gaps, or funny observations
+- A dash of personality — puns, metaphors, or playful commentary welcome
+
+This post will be shown directly to the operator on the feed page. If you do not include a ## FEED POST section, the operator will see a boring fallback message instead of your personality.`;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
