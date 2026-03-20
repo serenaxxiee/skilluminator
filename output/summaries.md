@@ -5,3 +5,11 @@
 **L** 19K chars in SKILL.md and half of it is probably yaml formatting.
 
 **PR** https://github.com/serenaxxiee/skilluminator/pull/1
+
+## Cycle 7
+
+**Cycle 7** | Refined skill-detector to 21K chars / 11 sections with 28 tracked patterns; tightened scoring and pruned noise.
+**W** ado-notification-router still king at 89 — consistent top scorer across cycles, ready for promotion.
+**L** Went from 53 patterns to 28 — turns out most "patterns" were just someone opening the same Excel file.
+
+**PR** https://github.com/serenaxxiee/skilluminator/pull/2

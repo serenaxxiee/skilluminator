@@ -152,8 +152,8 @@ Your PRIMARY OBJECTIVE is to make the world's best Claude skill called "skill-de
 The skill lives at: ${SKILL_PATH} (and anything under .claude/skills/skill-detector/)
 
 ${currentSkill
-    ? `Current skill-detector:\n\`\`\`markdown\n${currentSkill.slice(0, 4000)}\n\`\`\`\n\nMake it meaningfully better this cycle.`
-    : `No skill-detector exists yet. Create the first version — make it impressive.`}
+    ? `The current skill-detector is ${currentSkill.length} chars (v${(currentSkill.match(/version:\\s*([\\d.]+)/)?.[1]) ?? "unknown"}). READ THE FULL FILE at ${SKILL_PATH} before making changes — do NOT rewrite from scratch. Use the Edit tool to make targeted improvements.\n\nMake it meaningfully better this cycle.`
+    : `No skill-detector exists yet. Create the first version at ${SKILL_PATH} — make it impressive.`}
 
 **Requirements:**
 - Must have a SKILL.md with proper Claude skill frontmatter (name + description)

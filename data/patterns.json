@@ -1,54 +1,58 @@
 {
-  "lastUpdatedCycle": 7,
-  "totalCyclesRun": 7,
+  "lastUpdatedCycle": 8,
+  "totalCyclesRun": 8,
   "totalPatterns": 31,
   "orgWidePatternCount": 27,
-  "cycleNotes": "Cycle 7: 32 signals (richest harvest yet). ADO triage hits 140 total. Incident-doc-coordinator CONFIRMED with 28 new occurrences (alert+triage+chat+workflow chain). Three NEW patterns: approval-workflow-orchestrator, recruiting-interview-coordinator, stakeholder-fyi-classifier. Second workflow chain confirmed: alert-triage-resolve-status. New cluster: notification-routing-ecosystem. Meeting output ecosystem hits 206 combined occ. Eval ecosystem: 194 occ, 49.42 hrs/wk.",
+  "archivedPatternCount": 3,
+  "cycleNotes": "Cycle 8: 32 signals (consistent high harvest). ADO triage hits 170 total (8 unbroken cycles). THREE PROMOTIONS: approval-workflow-orchestrator, recruiting-interview-coordinator, stakeholder-fyi-classifier all CONFIRMED with 2nd-cycle evidence. TWO ARCHIVATIONS: escalation-email-drafter and review-prep-deck-maintenance (4+ cycles absent). incident-doc-coordinator SURGES to 58 occ (from 30). Meeting output ecosystem hits 255 combined occ. Eval ecosystem: 232 occ, 58.83 hrs/wk. New: 14th archetype (External Coordination). New ROI model. Pattern maturity tiers formalized.",
   "patterns": [
     {
       "patternId": "ado-notification-triage",
       "label": "Azure DevOps Notification Triage",
       "sources": ["email"],
-      "occurrenceCount": 140,
+      "occurrenceCount": 170,
       "participantCount": 3,
-      "timeSpentHoursTotal": 5.5,
-      "automationScore": 93,
+      "timeSpentHoursTotal": 8.0,
+      "automationScore": 94,
       "valueScore": 85,
       "candidateSkillName": "ado-notification-router",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "140 total across 7 unbroken cycles. +30 this cycle (150 min/wk). Machine-parseable subject prefixes. Most consistent signal in catalog. AutomationScore raised to 93 due to maturity."
+      "maturity": "institutional",
+      "llmRationale": "170 total across 8 UNBROKEN cycles. +30 this cycle (150 min/wk). Machine-parseable subject prefixes. Most consistent signal in catalog. Promoted to INSTITUTIONAL maturity. AutomationScore raised to 94."
     },
     {
       "patternId": "meeting-notes-action-item-capture",
       "label": "Meeting Notes & Action Item Capture",
       "sources": ["document", "meeting", "email", "teams"],
-      "occurrenceCount": 74,
+      "occurrenceCount": 93,
       "participantCount": 4,
-      "timeSpentHoursTotal": 10.67,
-      "automationScore": 89,
-      "valueScore": 90,
+      "timeSpentHoursTotal": 13.34,
+      "automationScore": 90,
+      "valueScore": 92,
       "candidateSkillName": "meeting-notes-action-extractor",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +19: meeting notes docs (7), post-meeting workflow chain (12). 74 total, 10.67 hrs/wk. Workflow chain signal is the strongest evidence yet. ValueScore raised to 90."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +19: meeting notes docs (7), post-meeting workflow chain (12). 93 total, 13.34 hrs/wk. Workflow chain confirmed 2nd consecutive cycle. ValueScore raised to 92. INSTITUTIONAL maturity (8/8 cycles). Highest composite pattern."
     },
     {
       "patternId": "eval-results-analysis-reporting",
       "label": "Agent Eval Setup, Analysis & Standardized Reporting",
       "sources": ["document", "teams", "email", "meeting"],
-      "occurrenceCount": 70,
+      "occurrenceCount": 84,
       "participantCount": 5,
-      "timeSpentHoursTotal": 14.75,
-      "automationScore": 77,
-      "valueScore": 92,
+      "timeSpentHoursTotal": 18.0,
+      "automationScore": 78,
+      "valueScore": 94,
       "candidateSkillName": "eval-report-synthesizer",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +15: status request threads (8), weekly review with leadership (1), evals metrics dashboard (5), design review (1). 70 total, 14.75 hrs/wk. Highest-value pattern. ValueScore raised to 92."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +14: status request threads (8), weekly review with leadership (1), evals metrics dashboard (5). 84 total, 18.0 hrs/wk. Highest-value pattern (94). INSTITUTIONAL maturity. Time per week continues to climb."
     },
     {
       "patternId": "voc-customer-ask-dedup-routing",
@@ -63,82 +67,88 @@
       "firstSeenCycle": 1,
       "lastSeenCycle": 7,
       "trend": "stable",
-      "llmRationale": "Cycle 7 +3 from feature status request overlap. 30 total across 7 cycles. Trend stabilized."
+      "maturity": "mature",
+      "llmRationale": "No direct signal in cycle 8. Structural pattern (role-based). Holds at stable. Mature (7/8 cycles)."
     },
     {
       "patternId": "eval-template-scaffolder",
       "label": "Eval Framework Template & Coverage Model Scaffolding",
-      "sources": ["document", "teams"],
-      "occurrenceCount": 20,
+      "sources": ["document", "teams", "meeting"],
+      "occurrenceCount": 27,
       "participantCount": 3,
-      "timeSpentHoursTotal": 6.5,
-      "automationScore": 80,
-      "valueScore": 88,
+      "timeSpentHoursTotal": 9.5,
+      "automationScore": 82,
+      "valueScore": 90,
       "candidateSkillName": "eval-template-scaffolder",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +6: sprint/feature spec writing (3), RFC/design doc review (2), sprint planning prep (1). 20 total, 6.5 hrs/wk. ValueScore raised to 88."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +7: sprint/feature spec writing (3), RFC/design doc review (2), sprint planning prep (1), design review prep (1). 27 total, 9.5 hrs/wk. Sources expanded to include meeting (prep). ValueScore raised to 90. AutomationScore raised to 82."
     },
     {
       "patternId": "fragmented-action-item-tracking",
       "label": "Action Items Tracked Across Fragmented Systems",
       "sources": ["teams", "meeting", "email", "document"],
-      "occurrenceCount": 22,
+      "occurrenceCount": 30,
       "participantCount": 4,
-      "timeSpentHoursTotal": 4.17,
-      "automationScore": 78,
-      "valueScore": 84,
+      "timeSpentHoursTotal": 4.59,
+      "automationScore": 79,
+      "valueScore": 85,
       "candidateSkillName": "unified-action-item-tracker",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +5 from workflow chain signal. Trend upgraded to rising."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +8: cross-team dependency tracking threads (8). 30 total, 4.59 hrs/wk. Rising 3rd consecutive cycle."
     },
     {
       "patternId": "weekly-status-report-generation",
       "label": "Weekly Project Status Report Generation",
       "sources": ["document", "email", "teams"],
-      "occurrenceCount": 19,
+      "occurrenceCount": 24,
       "participantCount": 4,
-      "timeSpentHoursTotal": 4.25,
-      "automationScore": 83,
-      "valueScore": 82,
+      "timeSpentHoursTotal": 5.5,
+      "automationScore": 85,
+      "valueScore": 84,
       "candidateSkillName": "weekly-status-report-generator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +5: weekly digest emails (4), authored status report (1). 19 total, 4.25 hrs/wk."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +5: weekly digest emails (4), authored status report doc (1). 24 total, 5.5 hrs/wk. INSTITUTIONAL (8/8 cycles). Friday send cadence reconfirmed. AutomationScore raised to 85."
     },
     {
       "patternId": "post-meeting-external-followup-drafter",
       "label": "External Stakeholder Post-Meeting Recap & Follow-Up Drafting",
       "sources": ["email", "meeting"],
-      "occurrenceCount": 23,
+      "occurrenceCount": 30,
       "participantCount": 4,
-      "timeSpentHoursTotal": 4.24,
+      "timeSpentHoursTotal": 5.82,
       "automationScore": 82,
-      "valueScore": 80,
+      "valueScore": 82,
       "candidateSkillName": "external-meeting-followup-drafter",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +7: external partner coordination (6), stakeholder demo readout (1). 23 total, 4.24 hrs/wk."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +7: external partner coordination emails (6), stakeholder demo readout (1). 30 total, 5.82 hrs/wk. Steady growth."
     },
     {
       "patternId": "transcript-to-loop-ppt-pipeline",
       "label": "Meeting Transcript to Summary to Loop/PPT Pipeline",
       "sources": ["meeting", "document", "teams"],
-      "occurrenceCount": 23,
+      "occurrenceCount": 25,
       "participantCount": 4,
-      "timeSpentHoursTotal": 5.5,
-      "automationScore": 83,
-      "valueScore": 82,
+      "timeSpentHoursTotal": 6.75,
+      "automationScore": 84,
+      "valueScore": 83,
       "candidateSkillName": "meeting-summary-publisher",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +3: stakeholder demo prep and workflow chain. AutomationScore raised to 83."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +2: stakeholder demo (1), content review session (1). 25 total, 6.75 hrs/wk. AutomationScore raised to 84."
     },
     {
       "patternId": "customer-engagement-sdr-generator",
@@ -152,98 +162,105 @@
       "candidateSkillName": "customer-sdr-generator",
       "firstSeenCycle": 4,
       "lastSeenCycle": 6,
-      "trend": "stable",
-      "llmRationale": "No direct signal in cycle 7. Holds from prior cycles."
+      "trend": "declining",
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles (6,7,8). Approaching archive threshold."
     },
     {
       "patternId": "cross-tool-context-fragmentation",
       "label": "Cross-Tool Issue Thread Fragmentation & Context Loss",
       "sources": ["teams", "email", "document", "meeting"],
-      "occurrenceCount": 59,
+      "occurrenceCount": 79,
       "participantCount": 5,
-      "timeSpentHoursTotal": 10.42,
-      "automationScore": 75,
-      "valueScore": 88,
+      "timeSpentHoursTotal": 11.5,
+      "automationScore": 76,
+      "valueScore": 90,
       "candidateSkillName": "knowledge-context-consolidator",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +20: FYI/looping threads (12), cross-team dependency tracking (8). 59 total, 10.42 hrs/wk. Fragmentation accelerating sharply. ValueScore 88."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +20: stakeholder FYI loops (12), cross-team dependency threads (8). 79 total, 11.5 hrs/wk. Accelerating for 3rd consecutive cycle. ValueScore raised to 90. Fragmentation worsening as team grows."
     },
     {
       "patternId": "daily-briefing-generator",
       "label": "Personal Daily Prep & Briefing",
-      "sources": ["document"],
-      "occurrenceCount": 20,
+      "sources": ["document", "meeting"],
+      "occurrenceCount": 25,
       "participantCount": 1,
       "timeSpentHoursTotal": 0.42,
       "automationScore": 82,
       "valueScore": 74,
       "candidateSkillName": "daily-briefing-generator",
       "firstSeenCycle": 4,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "stable",
-      "llmRationale": "Cycle 7 +5 daily standup prep. ParticipantCount=1 limits value."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +5 daily standup prep. 25 total. ParticipantCount=1 limits valueScore."
     },
     {
       "patternId": "recurring-meeting-agenda-generator",
       "label": "Recurring Meeting Agenda Preparation",
       "sources": ["meeting", "document", "teams"],
-      "occurrenceCount": 42,
+      "occurrenceCount": 52,
       "participantCount": 6,
-      "timeSpentHoursTotal": 19.67,
-      "automationScore": 81,
-      "valueScore": 80,
+      "timeSpentHoursTotal": 25.59,
+      "automationScore": 82,
+      "valueScore": 82,
       "candidateSkillName": "recurring-agenda-generator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +8: daily standup (5), weekly review (1), sprint planning (1), design review (1). 42 total, 19.67 hrs/wk."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +10: daily standup (5), weekly review (1), sprint planning (1), design review (1), 1:1 (1), all-hands (1). 52 total, 25.59 hrs/wk. INSTITUTIONAL (8/8 cycles). Highest participant count (6)."
     },
     {
       "patternId": "partner-eval-enablement-meetings",
       "label": "Partner & Customer Eval Enablement Coordination",
       "sources": ["meeting", "email", "document"],
-      "occurrenceCount": 18,
+      "occurrenceCount": 20,
       "participantCount": 4,
-      "timeSpentHoursTotal": 11.75,
-      "automationScore": 66,
+      "timeSpentHoursTotal": 12.75,
+      "automationScore": 67,
       "valueScore": 88,
       "candidateSkillName": "partner-eval-enablement-pack-generator",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
-      "trend": "rising",
-      "llmRationale": "Cycle 7 +2: cross-team alignment syncs. 18 total, 11.75 hrs/wk."
+      "lastSeenCycle": 8,
+      "trend": "stable",
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +2: cross-team alignment syncs. 20 total, 12.75 hrs/wk. Stable cadence."
     },
     {
       "patternId": "meeting-load-triage",
       "label": "Calendar Overload & Meeting Invite Triage",
       "sources": ["meeting", "email"],
-      "occurrenceCount": 127,
+      "occurrenceCount": 143,
       "participantCount": 4,
-      "timeSpentHoursTotal": 34.0,
-      "automationScore": 73,
-      "valueScore": 84,
+      "timeSpentHoursTotal": 35.75,
+      "automationScore": 74,
+      "valueScore": 85,
       "candidateSkillName": "calendar-triage-advisor",
       "firstSeenCycle": 4,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +16: meeting invite cascade (15), all-hands (1). 127 cumulative. NEW cascade insight: one change triggers 3-5 downstream invites. ValueScore raised to 84."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +16: meeting invite cascade (15), all-hands (1). 143 total, 35.75 hrs/wk. Cascade pattern reconfirmed: one change triggers 3-5 downstream invites. ValueScore raised to 85."
     },
     {
       "patternId": "action-owner-chasing",
       "label": "Action Item Owner Chasing & Status Follow-Up",
       "sources": ["teams", "email"],
-      "occurrenceCount": 22,
+      "occurrenceCount": 37,
       "participantCount": 3,
-      "timeSpentHoursTotal": 3.24,
-      "automationScore": 75,
+      "timeSpentHoursTotal": 3.82,
+      "automationScore": 76,
       "valueScore": 78,
       "candidateSkillName": "action-owner-nudge-bot",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
-      "trend": "stable",
-      "llmRationale": "Cycle 7 +4: PM-engineering pings (3), 1:1 follow-ups (1). AutomationScore raised to 75."
+      "lastSeenCycle": 8,
+      "trend": "rising",
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +15: PM-engineering decision pings (15 partial). 37 total, 3.82 hrs/wk. Rising for 2nd consecutive cycle."
     },
     {
       "patternId": "training-event-artifact-coordinator",
@@ -258,7 +275,8 @@
       "firstSeenCycle": 1,
       "lastSeenCycle": 6,
       "trend": "declining",
-      "llmRationale": "No signal in cycle 7 (Camp AIR concluded). Trend changed to declining."
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles (post Camp AIR). Approaching archive threshold. Will re-emerge when next event triggers."
     },
     {
       "patternId": "customer-signals-planning-tracker",
@@ -272,23 +290,25 @@
       "candidateSkillName": "customer-signals-planning-tracker",
       "firstSeenCycle": 4,
       "lastSeenCycle": 6,
-      "trend": "stable",
-      "llmRationale": "No direct signal in cycle 7. Holds."
+      "trend": "declining",
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles. Approaching archive."
     },
     {
       "patternId": "redundant-deck-creation",
       "label": "Redundant Deck Creation for Overlapping Topics",
       "sources": ["document", "meeting"],
-      "occurrenceCount": 11,
+      "occurrenceCount": 12,
       "participantCount": 4,
-      "timeSpentHoursTotal": 7.75,
+      "timeSpentHoursTotal": 8.25,
       "automationScore": 65,
       "valueScore": 82,
       "candidateSkillName": "deck-content-reuse-advisor",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "stable",
-      "llmRationale": "Cycle 7 +2: stakeholder demo deck (1), content review deck (1). 11 total."
+      "maturity": "confirmed",
+      "llmRationale": "Cycle 8 +1: content review session deck. 12 total. Low frequency but high per-instance time."
     },
     {
       "patternId": "access-governance-alert-classifier",
@@ -302,23 +322,25 @@
       "candidateSkillName": "access-governance-alert-router",
       "firstSeenCycle": 3,
       "lastSeenCycle": 6,
-      "trend": "stable",
-      "llmRationale": "No direct signal in cycle 7. High automation, low value."
+      "trend": "declining",
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles. High automation, low value. Approaching archive."
     },
     {
       "patternId": "copilot-platform-faq-responder",
       "label": "Copilot / Agent Platform Architecture Q&A",
       "sources": ["teams", "meeting", "email"],
-      "occurrenceCount": 56,
+      "occurrenceCount": 76,
       "participantCount": 5,
-      "timeSpentHoursTotal": 11.0,
-      "automationScore": 73,
-      "valueScore": 84,
+      "timeSpentHoursTotal": 13.08,
+      "automationScore": 74,
+      "valueScore": 86,
       "candidateSkillName": "copilot-platform-faq-responder",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "Cycle 7 +15: evals channel threads (10), PM-engineering pings (5). 56 total, 11 hrs/wk. ValueScore raised to 84."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +20: evals channel threads (15), PM-engineering decision pings (5). 76 total, 13.08 hrs/wk. INSTITUTIONAL (8/8 cycles). ValueScore raised to 86."
     },
     {
       "patternId": "ownership-routing-assistant",
@@ -332,23 +354,25 @@
       "candidateSkillName": "ownership-routing-assistant",
       "firstSeenCycle": 1,
       "lastSeenCycle": 6,
-      "trend": "stable",
-      "llmRationale": "No direct signal in cycle 7. Holds."
+      "trend": "declining",
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles. Approaching archive."
     },
     {
       "patternId": "broadcast-email-classifier",
       "label": "Operational FYI Broadcast Email Classification",
       "sources": ["email"],
-      "occurrenceCount": 39,
+      "occurrenceCount": 44,
       "participantCount": 1,
-      "timeSpentHoursTotal": 1.93,
+      "timeSpentHoursTotal": 2.26,
       "automationScore": 92,
       "valueScore": 42,
       "candidateSkillName": "broadcast-email-classifier",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "stable",
-      "llmRationale": "Cycle 7 +10 inferred. High automation, low value."
+      "maturity": "institutional",
+      "llmRationale": "Cycle 8 +5 inferred from leadership AMA overlap. High automation, low value. Stable."
     },
     {
       "patternId": "escalation-email-drafter",
@@ -362,8 +386,9 @@
       "candidateSkillName": "escalation-email-drafter",
       "firstSeenCycle": 1,
       "lastSeenCycle": 5,
-      "trend": "declining",
-      "llmRationale": "No signal for 2 consecutive cycles. Trend changed to declining."
+      "trend": "archived",
+      "maturity": "archived",
+      "llmRationale": "ARCHIVED: No signal for 4 consecutive cycles (5-8). Function likely absorbed by other patterns."
     },
     {
       "patternId": "review-prep-deck-maintenance",
@@ -377,8 +402,9 @@
       "candidateSkillName": "review-deck-prep-assistant",
       "firstSeenCycle": 3,
       "lastSeenCycle": 5,
-      "trend": "declining",
-      "llmRationale": "No signal for 2 consecutive cycles. Trend changed to declining."
+      "trend": "archived",
+      "maturity": "archived",
+      "llmRationale": "ARCHIVED: No signal for 4 consecutive cycles (5-8). Subsumed by redundant-deck-creation."
     },
     {
       "patternId": "ffv2-rollout-runbook-assistant",
@@ -393,7 +419,8 @@
       "firstSeenCycle": 1,
       "lastSeenCycle": 3,
       "trend": "archived",
-      "llmRationale": "No signal for 5+ cycles. ARCHIVED."
+      "maturity": "archived",
+      "llmRationale": "ARCHIVED since cycle 6. No signal for 6+ cycles."
     },
     {
       "patternId": "link-access-management",
@@ -407,68 +434,73 @@
       "candidateSkillName": "link-access-resolver",
       "firstSeenCycle": 6,
       "lastSeenCycle": 6,
-      "trend": "stable",
-      "llmRationale": "No direct signal in cycle 7. Awaiting confirmation."
+      "trend": "declining",
+      "maturity": "declining",
+      "llmRationale": "No signal for 3 consecutive cycles. Declining toward archive."
     },
     {
       "patternId": "incident-doc-coordinator",
       "label": "Incident Documentation & Response Coordination",
-      "sources": ["email", "teams", "meeting"],
-      "occurrenceCount": 30,
+      "sources": ["email", "teams", "meeting", "workflow"],
+      "occurrenceCount": 58,
       "participantCount": 4,
-      "timeSpentHoursTotal": 5.42,
-      "automationScore": 76,
-      "valueScore": 84,
+      "timeSpentHoursTotal": 10.0,
+      "automationScore": 78,
+      "valueScore": 86,
       "candidateSkillName": "incident-response-doc-generator",
       "firstSeenCycle": 6,
-      "lastSeenCycle": 7,
+      "lastSeenCycle": 8,
       "trend": "rising",
-      "llmRationale": "CONFIRMED in cycle 7 with massive evidence: +28 occurrences. Evals regression alerts (7), triage meetings (2), on-call incident chat (12), full workflow chain (7). 30 total, 5.42 hrs/wk. Forms its own workflow chain."
+      "maturity": "confirmed",
+      "llmRationale": "SURGING: Cycle 8 +28: evals regression alerts (7), triage meetings (2), on-call incident chat (12), full workflow chain (7). 58 total, 10.0 hrs/wk. Nearly DOUBLED from 30. Alert-triage-resolve-status chain confirmed 2nd cycle. ValueScore raised to 86. AutomationScore 78."
     },
     {
       "patternId": "approval-workflow-orchestrator",
       "label": "Approval Request & Sign-off Workflow",
       "sources": ["email", "document"],
-      "occurrenceCount": 5,
+      "occurrenceCount": 10,
       "participantCount": 4,
-      "timeSpentHoursTotal": 0.75,
-      "automationScore": 72,
-      "valueScore": 72,
+      "timeSpentHoursTotal": 1.5,
+      "automationScore": 74,
+      "valueScore": 74,
       "candidateSkillName": "approval-workflow-tracker",
       "firstSeenCycle": 7,
-      "lastSeenCycle": 7,
-      "trend": "new",
-      "llmRationale": "NEW in cycle 7. 5 approval/sign-off threads. Structured: request, wait, follow-up, response. 4 participants. Requires 2nd cycle confirmation."
+      "lastSeenCycle": 8,
+      "trend": "rising",
+      "maturity": "candidate",
+      "llmRationale": "CONFIRMED in cycle 8: +5 approval/sign-off threads. 10 total, 1.5 hrs/wk. 4 participants across PM/Director/Finance/Legal. Structured workflow: request, wait, follow-up, respond. Promoted from 'new' to 'candidate'."
     },
     {
       "patternId": "recruiting-interview-coordinator",
       "label": "Recruiting & Interview Debrief Coordination",
       "sources": ["meeting", "teams"],
-      "occurrenceCount": 8,
+      "occurrenceCount": 16,
       "participantCount": 4,
-      "timeSpentHoursTotal": 1.25,
-      "automationScore": 70,
-      "valueScore": 66,
+      "timeSpentHoursTotal": 2.5,
+      "automationScore": 72,
+      "valueScore": 68,
       "candidateSkillName": "interview-debrief-coordinator",
       "firstSeenCycle": 7,
-      "lastSeenCycle": 7,
-      "trend": "new",
-      "llmRationale": "NEW in cycle 7. Interview debriefs (2) + recruiting chat (6). Requires 2nd cycle confirmation."
+      "lastSeenCycle": 8,
+      "trend": "rising",
+      "maturity": "candidate",
+      "llmRationale": "CONFIRMED in cycle 8: +8 (2 interview debriefs + 6 recruiting chat messages). 16 total, 2.5 hrs/wk. Doubles from cycle 7. Promoted from 'new' to 'candidate'."
     },
     {
       "patternId": "stakeholder-fyi-classifier",
       "label": "Stakeholder FYI & Visibility Loop Classification",
       "sources": ["email", "teams"],
-      "occurrenceCount": 12,
+      "occurrenceCount": 34,
       "participantCount": 4,
-      "timeSpentHoursTotal": 0.67,
-      "automationScore": 88,
-      "valueScore": 60,
+      "timeSpentHoursTotal": 1.67,
+      "automationScore": 89,
+      "valueScore": 62,
       "candidateSkillName": "stakeholder-fyi-router",
       "firstSeenCycle": 7,
-      "lastSeenCycle": 7,
-      "trend": "new",
-      "llmRationale": "NEW in cycle 7. 12 'looping in' / 'FYI' email threads. High automation (structured subject lines). Requires 2nd cycle confirmation."
+      "lastSeenCycle": 8,
+      "trend": "rising",
+      "maturity": "candidate",
+      "llmRationale": "CONFIRMED in cycle 8: +22 (12 FYI email threads + 10 leadership AMA thread). 34 total, 1.67 hrs/wk. NEARLY TRIPLED from 12. High automation (structured subjects). Promoted from 'new' to 'candidate'."
     }
   ],
   "orgWidePatterns": [
@@ -493,12 +525,12 @@
     "access-governance-alert-classifier",
     "copilot-platform-faq-responder",
     "ownership-routing-assistant",
-    "escalation-email-drafter",
     "incident-doc-coordinator",
     "approval-workflow-orchestrator",
     "recruiting-interview-coordinator",
     "stakeholder-fyi-classifier",
-    "link-access-management"
+    "link-access-management",
+    "broadcast-email-classifier"
   ],
   "patternClusters": [
     {
@@ -511,9 +543,9 @@
         "copilot-platform-faq-responder",
         "incident-doc-coordinator"
       ],
-      "combinedOccurrences": 194,
-      "combinedTimeHoursWeekly": 49.42,
-      "clusterInsight": "Largest cluster by occurrences. Incident response now confirmed as eval ecosystem member (evals regressions are primary trigger). Unified eval-ops skill suite addresses 49.42 hrs/wk across 5 roles."
+      "combinedOccurrences": 232,
+      "combinedTimeHoursWeekly": 58.83,
+      "clusterInsight": "Largest cluster by both occurrences (232) and time (58.83 hrs/wk). All 5 members saw new signals in cycle 8. incident-doc-coordinator nearly doubled (30→58). Unified eval-ops skill suite addresses the full eval lifecycle: setup, execute, analyze, report, respond to incidents."
     },
     {
       "clusterId": "meeting-output-ecosystem",
@@ -526,9 +558,9 @@
         "fragmented-action-item-tracking",
         "action-owner-chasing"
       ],
-      "combinedOccurrences": 206,
-      "combinedTimeHoursWeekly": 47.49,
-      "clusterInsight": "Meeting patterns hit 206 combined occurrences. Full lifecycle (prep, hold, capture, distribute, track, chase) is one workflow."
+      "combinedOccurrences": 267,
+      "combinedTimeHoursWeekly": 59.91,
+      "clusterInsight": "Highest occurrence-count cluster (267, +61 from cycle 7). Full lifecycle: prep (agenda) → hold → capture (notes) → synthesize (summary) → distribute (email) → track (action items) → chase (nudge). Now LARGEST by time at 59.91 hrs/wk, overtaking eval ecosystem."
     },
     {
       "clusterId": "event-coordination-ecosystem",
@@ -538,9 +570,9 @@
         "redundant-deck-creation",
         "review-prep-deck-maintenance"
       ],
-      "combinedOccurrences": 72,
-      "combinedTimeHoursWeekly": 44.0,
-      "clusterInsight": "Declining post Camp AIR. Two members now declining. Monitor for next event surge."
+      "combinedOccurrences": 73,
+      "combinedTimeHoursWeekly": 44.5,
+      "clusterInsight": "Declining. review-prep-deck-maintenance now ARCHIVED. Two remaining members declining/stable. Cluster may fragment unless next event triggers resurgence."
     },
     {
       "clusterId": "notification-routing-ecosystem",
@@ -551,9 +583,9 @@
         "broadcast-email-classifier",
         "stakeholder-fyi-classifier"
       ],
-      "combinedOccurrences": 210,
-      "combinedTimeHoursWeekly": 9.27,
-      "clusterInsight": "NEW CLUSTER in cycle 7. Four email classification patterns share classify-route-flag archetype. 210 occurrences, only 9.27 hrs/wk (fast per-instance). A unified email classifier skill handles all four."
+      "combinedOccurrences": 267,
+      "combinedTimeHoursWeekly": 13.1,
+      "clusterInsight": "Tied for highest occurrences (267) but efficient at only 13.1 hrs/wk. stakeholder-fyi-classifier CONFIRMED and nearly tripled (12→34). A unified email-classifier skill handles all four patterns with shared classify-route-flag architecture."
     }
   ],
   "workflowChains": [
@@ -576,7 +608,7 @@
       ],
       "detectedCycle": 6,
       "confirmedCycle": 7,
-      "chainInsight": "Confirmed in cycle 7 with 12 explicit instances. Full pipeline 90 min/occurrence."
+      "chainInsight": "3rd consecutive confirmation. Stable at ~12 instances/week."
     },
     {
       "chainId": "alert-triage-resolve-status",
@@ -596,7 +628,28 @@
         "post-meeting-external-followup-drafter"
       ],
       "detectedCycle": 7,
-      "chainInsight": "NEW CHAIN. 7 explicit end-to-end instances. 60-120 min per incident."
+      "confirmedCycle": 8,
+      "chainInsight": "CONFIRMED in cycle 8. 7 explicit end-to-end instances. 60-120 min per incident. incident-doc-coordinator nearly doubled, validating this chain as a primary time sink."
+    },
+    {
+      "chainId": "meeting-recap-to-tracker",
+      "label": "Meeting to Recap to Doc to Tracker Chain",
+      "steps": [
+        "Meeting concludes",
+        "PM/TPM sends recap email within 2 hrs",
+        "Shared notes doc updated in SharePoint",
+        "Work Tracker tasks created for each AI",
+        "Teams ping sent to assignees"
+      ],
+      "patternsInvolved": [
+        "meeting-notes-action-item-capture",
+        "post-meeting-external-followup-drafter",
+        "fragmented-action-item-tracking",
+        "action-owner-chasing"
+      ],
+      "detectedCycle": 6,
+      "confirmedCycle": 7,
+      "chainInsight": "3rd consecutive confirmation. 12 instances this cycle (stable). 90 min/occurrence. Steps 2-5 fully automatable via meeting-notes-action-extractor skill."
     }
   ],
   "skillGeneratorInput": {
@@ -604,156 +657,156 @@
       {
         "rank": 1,
         "patternId": "meeting-notes-action-item-capture",
-        "compositeScore": 90,
-        "automationScore": 89,
-        "valueScore": 90,
+        "compositeScore": 91,
+        "automationScore": 90,
+        "valueScore": 92,
         "name": "meeting-notes-action-extractor",
-        "description": "Ingests meeting transcript, emits structured action items with owner/due-date, decisions log, follow-up email draft, and Work Tracker tasks.",
+        "description": "Ingests meeting transcript, emits structured action items with owner/due-date, decisions log, follow-up email draft, and Work Tracker tasks. Handles the entire post-meeting workflow chain.",
         "triggerExamples": ["Extract action items from transcript", "Summarize meeting into Loop page", "Create post-meeting recap and tasks"],
-        "valueProposition": "Replaces 10.67 hrs/week across 4 roles. 74 occurrences over 7 cycles."
+        "valueProposition": "Replaces 13.34 hrs/week across 4 roles. 93 occurrences over 8 cycles. Chain head for 2 workflows. INSTITUTIONAL maturity."
       },
       {
         "rank": 2,
         "patternId": "ado-notification-triage",
-        "compositeScore": 89,
-        "automationScore": 93,
+        "compositeScore": 90,
+        "automationScore": 94,
         "valueScore": 85,
         "name": "ado-notification-router",
-        "description": "Classifies ADO notification emails by work-item type, priority, and required action. Routes to right role.",
+        "description": "Classifies ADO notification emails by work-item type, priority, and required action. Routes to right role. Filters noise from actionable items.",
         "triggerExamples": ["Triage my ADO notifications", "Which ADO emails need attention?", "Classify ADO emails by type"],
-        "valueProposition": "Eliminates 5.5 hrs/week. 140 occurrences over 7 unbroken cycles."
+        "valueProposition": "Eliminates 8.0 hrs/week. 170 occurrences over 8 unbroken cycles. Highest automation score (94). INSTITUTIONAL maturity."
       },
       {
         "rank": 3,
         "patternId": "eval-results-analysis-reporting",
-        "compositeScore": 85,
-        "automationScore": 77,
-        "valueScore": 92,
+        "compositeScore": 86,
+        "automationScore": 78,
+        "valueScore": 94,
         "name": "eval-report-synthesizer",
-        "description": "Ingests eval results, metrics dashboards, and coverage data. Produces standardized reports with trend analysis.",
+        "description": "Ingests eval results, metrics dashboards, and coverage data. Produces standardized reports with trend analysis, pass/fail summaries, and leadership-ready decks.",
         "triggerExamples": ["Analyze eval results", "Generate weekly evals metrics report", "Compare coverage against targets"],
-        "valueProposition": "Saves 14.75 hrs/week across 5 roles. Highest value score (92)."
+        "valueProposition": "Saves 18.0 hrs/week across 5 roles. Highest value score (94). INSTITUTIONAL maturity."
       },
       {
         "rank": 4,
         "patternId": "eval-template-scaffolder",
-        "compositeScore": 84,
-        "automationScore": 80,
-        "valueScore": 88,
+        "compositeScore": 86,
+        "automationScore": 82,
+        "valueScore": 90,
         "name": "eval-template-scaffolder",
-        "description": "Generates eval scenario guides, coverage models, feature specs, and RFC templates.",
+        "description": "Generates eval scenario guides, coverage models, feature specs, RFC templates, and acceptance criteria from agent/feature description.",
         "triggerExamples": ["Generate eval template", "Create feature spec scaffold", "Build RFC outline"],
-        "valueProposition": "Eliminates 6.5 hrs/week of parallel template authoring."
+        "valueProposition": "Eliminates 9.5 hrs/week of parallel template authoring. Rising for 3 consecutive cycles."
       },
       {
         "rank": 5,
+        "patternId": "weekly-status-report-generation",
+        "compositeScore": 85,
+        "automationScore": 85,
+        "valueScore": 84,
+        "name": "weekly-status-report-generator",
+        "description": "Drafts Loop-formatted status reports from ADO sprint data, meeting notes, metrics dashboards, and blockers. Friday cadence.",
+        "triggerExamples": ["Draft status report", "Generate Friday leadership update", "Compile weekly metrics"],
+        "valueProposition": "Eliminates 5.5 hrs/week of cross-tool aggregation. INSTITUTIONAL (8/8 cycles)."
+      },
+      {
+        "rank": 6,
         "patternId": "voc-customer-ask-dedup-routing",
         "compositeScore": 83,
         "automationScore": 84,
         "valueScore": 82,
         "name": "voc-ask-deduplicator",
-        "description": "RAG-based dedup of Customer Asks against ADO backlog with DRI routing.",
+        "description": "RAG-based dedup of Customer Asks against ADO backlog with DRI routing and confidence scoring.",
         "triggerExamples": ["Is this ask in backlog?", "Deduplicate VoC item", "Route feature request"],
-        "valueProposition": "Replaces 30+ manual triage events across 7 cycles."
-      },
-      {
-        "rank": 6,
-        "patternId": "weekly-status-report-generation",
-        "compositeScore": 83,
-        "automationScore": 83,
-        "valueScore": 82,
-        "name": "weekly-status-report-generator",
-        "description": "Drafts Loop-formatted status reports from ADO sprint, meeting notes, and metrics dashboards.",
-        "triggerExamples": ["Draft status report", "Generate Friday leadership update", "Compile weekly metrics"],
-        "valueProposition": "Eliminates 4.25 hrs/week of cross-tool aggregation."
+        "valueProposition": "Replaces 30+ manual triage events across 8 cycles. Structural pattern."
       },
       {
         "rank": 7,
         "patternId": "transcript-to-loop-ppt-pipeline",
-        "compositeScore": 83,
-        "automationScore": 83,
-        "valueScore": 82,
+        "compositeScore": 84,
+        "automationScore": 84,
+        "valueScore": 83,
         "name": "meeting-summary-publisher",
-        "description": "Converts meeting transcript to canonical Loop summary with optional PPT.",
+        "description": "Converts meeting transcript to canonical Loop summary with optional PPT slide generation.",
         "triggerExamples": ["Convert transcript to Loop", "Create structured summary", "Generate PPT recap"],
-        "valueProposition": "Eliminates 5.5 hrs/week of summarization."
+        "valueProposition": "Eliminates 6.75 hrs/week of summarization."
       },
       {
         "rank": 8,
         "patternId": "cross-tool-context-fragmentation",
-        "compositeScore": 82,
-        "automationScore": 75,
-        "valueScore": 88,
+        "compositeScore": 83,
+        "automationScore": 76,
+        "valueScore": 90,
         "name": "knowledge-context-consolidator",
-        "description": "Consolidates fragmented info across Teams, email, SharePoint, and meetings into unified context views.",
+        "description": "Consolidates fragmented info across Teams, email, SharePoint, and meetings into unified context views per topic/project.",
         "triggerExamples": ["Consolidate all info about X", "Find related discussions", "What do we know about this?"],
-        "valueProposition": "Addresses 10.42 hrs/week of fragmentation across 5 participants."
+        "valueProposition": "Addresses 11.5 hrs/week of fragmentation across 5 participants. Accelerating for 3 consecutive cycles."
       },
       {
         "rank": 9,
-        "patternId": "fragmented-action-item-tracking",
-        "compositeScore": 81,
+        "patternId": "incident-doc-coordinator",
+        "compositeScore": 82,
         "automationScore": 78,
-        "valueScore": 84,
-        "name": "unified-action-item-tracker",
-        "description": "Unified action items across Loop, Teams, email, ADO with dedup and overdue flagging.",
-        "triggerExamples": ["What are my open action items?", "Find overdue items", "Reconcile across tools"],
-        "valueProposition": "Replaces 4.17 hrs/week cross-tool reconciliation."
+        "valueScore": 86,
+        "name": "incident-response-doc-generator",
+        "description": "Auto-generates incident triage thread, postmortem template, root cause doc, and stakeholder update emails from alert data.",
+        "triggerExamples": ["Start incident response doc", "Create postmortem template", "Draft incident status update"],
+        "valueProposition": "Saves 10.0 hrs/week. SURGING (30→58 occurrences). Core of alert-triage-resolve-status chain."
       },
       {
         "rank": 10,
-        "patternId": "recurring-meeting-agenda-generator",
-        "compositeScore": 81,
-        "automationScore": 81,
-        "valueScore": 80,
-        "name": "recurring-agenda-generator",
-        "description": "Pre-populates recurring meeting agendas from ADO, blockers, and open action items.",
-        "triggerExamples": ["Generate standup agenda", "Pre-populate sprint planning", "What to cover in review?"],
-        "valueProposition": "Reduces 19.67 hrs/week across 6 participants."
+        "patternId": "fragmented-action-item-tracking",
+        "compositeScore": 82,
+        "automationScore": 79,
+        "valueScore": 85,
+        "name": "unified-action-item-tracker",
+        "description": "Unified action items across Loop, Teams, email, ADO with dedup, owner assignment, and overdue flagging.",
+        "triggerExamples": ["What are my open action items?", "Find overdue items", "Reconcile across tools"],
+        "valueProposition": "Replaces 4.59 hrs/week cross-tool reconciliation."
       },
       {
         "rank": 11,
-        "patternId": "post-meeting-external-followup-drafter",
-        "compositeScore": 81,
+        "patternId": "recurring-meeting-agenda-generator",
+        "compositeScore": 82,
         "automationScore": 82,
-        "valueScore": 80,
-        "name": "external-meeting-followup-drafter",
-        "description": "Drafts post-meeting recap emails for external stakeholders from meeting notes.",
-        "triggerExamples": ["Draft partner recap", "Create stakeholder follow-up", "Summarize for external audience"],
-        "valueProposition": "Saves 4.24 hrs/week on external communication."
+        "valueScore": 82,
+        "name": "recurring-agenda-generator",
+        "description": "Pre-populates recurring meeting agendas from ADO status, blockers, open action items, and prior meeting notes.",
+        "triggerExamples": ["Generate standup agenda", "Pre-populate sprint planning", "What to cover in review?"],
+        "valueProposition": "Reduces 25.59 hrs/week across 6 participants. INSTITUTIONAL (8/8 cycles)."
       },
       {
         "rank": 12,
-        "patternId": "incident-doc-coordinator",
-        "compositeScore": 80,
-        "automationScore": 76,
-        "valueScore": 84,
-        "name": "incident-response-doc-generator",
-        "description": "Auto-generates incident triage thread, postmortem template, and stakeholder update emails.",
-        "triggerExamples": ["Start incident response doc", "Create postmortem template", "Draft incident status update"],
-        "valueProposition": "Saves 5.42 hrs/week. Core of alert-triage-resolve-status chain."
+        "patternId": "post-meeting-external-followup-drafter",
+        "compositeScore": 82,
+        "automationScore": 82,
+        "valueScore": 82,
+        "name": "external-meeting-followup-drafter",
+        "description": "Drafts post-meeting recap emails for external stakeholders from meeting notes and decisions.",
+        "triggerExamples": ["Draft partner recap", "Create stakeholder follow-up", "Summarize for external audience"],
+        "valueProposition": "Saves 5.82 hrs/week on external communication."
       },
       {
         "rank": 13,
         "patternId": "meeting-load-triage",
-        "compositeScore": 79,
-        "automationScore": 73,
-        "valueScore": 84,
+        "compositeScore": 80,
+        "automationScore": 74,
+        "valueScore": 85,
         "name": "calendar-triage-advisor",
-        "description": "Recommends accept/decline/delegate for meeting invites by priority and calendar load.",
+        "description": "Recommends accept/decline/delegate for meeting invites by priority, calendar load, and focus time protection.",
         "triggerExamples": ["Which invites to decline?", "Analyze calendar load", "How much focus time?"],
-        "valueProposition": "Addresses 34 hrs/week calendar overload."
+        "valueProposition": "Addresses 35.75 hrs/week calendar overload. Cascade pattern: preventing one change averts 3-5 downstream actions."
       },
       {
         "rank": 14,
         "patternId": "copilot-platform-faq-responder",
-        "compositeScore": 79,
-        "automationScore": 73,
-        "valueScore": 84,
+        "compositeScore": 80,
+        "automationScore": 74,
+        "valueScore": 86,
         "name": "copilot-platform-faq-responder",
-        "description": "RAG-backed FAQ for Agent 365, eval tooling, and common engineering questions.",
+        "description": "RAG-backed FAQ for Agent 365, eval tooling, and common engineering questions. Deflects repeated Q&A from experts.",
         "triggerExamples": ["How to set up CLI Evals?", "What telemetry available?", "Agent behavior in Teams vs Chat?"],
-        "valueProposition": "Deflects 56 Q&A instances, reclaiming 11 hrs/week."
+        "valueProposition": "Deflects 76 Q&A instances, reclaiming 13.08 hrs/week across 5 roles. INSTITUTIONAL (8/8 cycles)."
       }
     ]
   }

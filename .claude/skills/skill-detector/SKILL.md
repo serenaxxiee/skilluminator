@@ -53,7 +53,7 @@ Query WorkIQ MCP with these 15 proven signal-extraction prompts. Run all queries
 
 ### Phase 2: CLASSIFY -- Map Signals to Pattern Archetypes
 
-Every signal maps to one or more of these **13 proven pattern archetypes** discovered through 7 cycles of real M365 analysis:
+Every signal maps to one or more of these **14 proven pattern archetypes** discovered through 7 cycles of real M365 analysis:
 
 | # | Archetype | Description | Typical Sources | Automation Ceiling |
 |---|-----------|-------------|-----------------|-------------------|
@@ -68,8 +68,9 @@ Every signal maps to one or more of these **13 proven pattern archetypes** disco
 | 9 | **Event/Program Coordination** | Repeated setup of workspaces, artifacts, logistics per event | Meeting, Teams, Document | 60-65% |
 | 10 | **Compliance/Governance Alert** | Security and compliance alerts requiring action classification | Email | 85-90% |
 | 11 | **Link/Access Resolution** | Repeated link sharing, access requests, permission troubleshooting | Teams, Email | 70-75% |
-| 12 | **Incident Response Coordination** | Live incident doc updates, stakeholder alerts, workaround publishing | Email, Teams, Meeting | 70-80% |
-| 13 | **Approval Workflow Orchestration** | Multi-step approval chains with wait states and follow-up pings | Email, Document | 70-78% |
+| 12 | **Incident Response Coordination** | Alert triage, live-incident docs, stakeholder updates, postmortems | Email, Teams, Meeting | 70-80% |
+| 13 | **Approval/Sign-off Routing** | Structured request-wait-followup-response workflows for sign-offs | Email, Document | 70-75% |
+| 14 | **Recruiting/Interview Coordination** | Scorecard collection, debrief scheduling, decision tracking | Meeting, Teams | 65-70% |
 
 **Classification rules:**
 - A signal can map to multiple archetypes
@@ -88,6 +89,7 @@ Base score by archetype ceiling (see table above)
 + 5 if signal structure is machine-parseable (templates, subject-line prefixes, structured fields)
 + 5 if output format is deterministic (classification, routing, lookup)
 + 5 if 3+ consecutive cycles of evidence
++ 3 if pattern is part of a confirmed workflow chain
 - 10 if requires creative judgment or tone calibration
 - 10 if requires real-time external data not available via M365
 - 5 if output must be reviewed before sending externally
@@ -101,6 +103,7 @@ Base = min(100, timeSpentMinutesPerWeek x 0.5)
 + 10 if pattern blocks downstream work (action items, decisions, unblocking)
 + 5 if leadership visibility (status reports, escalations, reviews)
 + 5 if cross-source (appears in 2+ M365 signal types)
++ 5 if pattern is part of a workflow chain
 - 15 if participantCount == 1 (personal productivity only)
 - 10 if low frequency (< 2/week)
 ```
@@ -109,6 +112,10 @@ Base = min(100, timeSpentMinutesPerWeek x 0.5)
 ```
 compositeScore = round((automationScore x 0.5) + (valueScore x 0.5))
 ```
+
+#### Maturity Bonus (New in v1.2)
+Patterns gain confidence over cycles. Ranking modifier (does not change stored scores):
+7+ cycles: +2 | 5-6 cycles: +1 | 3-4 cycles: +0 | 1-2 cycles: -1
 
 #### Trend Classification
 - **rising**: New occurrences in most recent cycle AND occurrenceCount increased
@@ -133,17 +140,14 @@ Group patterns that share:
 
 | Cluster | Member Patterns | Combined Weekly Hours | Insight |
 |---------|----------------|----------------------|---------|
-| **Eval Ecosystem** | eval-results-analysis, eval-template-scaffolder, partner-eval-enablement, copilot-platform-faq | 34.67 hrs/wk | Largest cluster. Unified eval-ops skill suite addresses all 4 patterns. |
-| **Meeting Output Ecosystem** | meeting-notes-capture, transcript-to-loop, recurring-agenda, external-followup, fragmented-action-tracking | 38.58 hrs/wk | Full meeting lifecycle is one end-to-end workflow. Build as connected pipeline. |
-| **Event Coordination** | training-event-coordinator, redundant-deck-creation, review-deck-maintenance | 42.75 hrs/wk | Surges around events. Pattern repeats per event. |
+| **Eval Ecosystem** | eval-results-analysis, eval-template-scaffolder, partner-eval-enablement, copilot-platform-faq, incident-doc-coordinator | 49.42 hrs/wk | Largest cluster. Incident response confirmed as member. |
+| **Meeting Output Ecosystem** | meeting-notes-capture, transcript-to-loop, recurring-agenda, external-followup, fragmented-action-tracking, action-owner-chasing | 47.49 hrs/wk | Full meeting lifecycle: prep, hold, capture, distribute, track, chase. |
+| **Event Coordination** | training-event-coordinator, redundant-deck-creation, review-deck-maintenance | 44.0 hrs/wk | Declining post Camp AIR. |
+| **Notification Routing** | ado-notification-triage, access-governance-alert, broadcast-email-classifier, stakeholder-fyi-classifier | 9.27 hrs/wk | NEW in cycle 7. 210 combined occurrences. Unified email classifier. |
 
-#### Workflow Chain Detection
+### Phase 5: CHAIN -- Detect Workflow Chains
 
-Look for signals where the output of one pattern is the input to another. These form **chains**:
-
-```
-Signal A (email received) -> Signal B (meeting scheduled) -> Signal C (deck created) -> Signal D (recap sent) -> Signal E (action items tracked)
-```
+Look for signals where the output of one pattern is the input to another. These form **chains** -- the highest-value automation targets.
 
 **Detection method**: When a signal mentions an artifact or action that is also an output of another pattern, they are likely chained. Example from real data:
 - "A recap email references a meeting review, points to a content deck, and then enumerates follow-up tasks with owners"
@@ -160,7 +164,7 @@ Alert email -> Teams triage -> Meeting -> Root cause -> Status email -> Postmort
 **Chain 3: Email-Meeting-Deck-Followup** (confirmed cycles 6-7)
 Request -> Meeting -> Deck -> Meeting -> Recap -> Track items. Saves ~60 min/occ.
 
-### Phase 5: GENERATE -- Convert Top Patterns to Skill Candidates
+### Phase 6: GENERATE -- Convert Top Patterns to Skill Candidates
 
 For each pattern with compositeScore >= 75, generate a skill candidate specification:
 
@@ -205,6 +209,21 @@ Signal (1 cycle) -> Candidate (2 cycles) -> Confirmed (3+ cycles) -> Mature (5+ 
 - A pattern with "declining" trend for 4+ cycles should be archived
 - Archived patterns can be resurrected if fresh signals appear (restart at Candidate)
 - Score changes > 5 points in a single cycle require explicit rationale
+- **Maturity graduation**: 5+ cycle patterns with stable scores graduate to "mature" as reference anchors
+
+## Signal Strength Index (New in v1.2)
+
+| Factor | Weight | Rationale |
+|--------|--------|-----------|
+| Explicit workflow signal (source: "workflow") | 1.5x | WorkIQ identified multi-step workflow |
+| Cross-source signal (2+ source types) | 1.3x | Corroborated across tools |
+| High-frequency signal (>= 10/week) | 1.2x | Volume validates pattern |
+| Single-source, low-frequency (1 source, < 3/week) | 0.7x | Weak evidence |
+| First-time signal (no prior history) | 0.8x | Unconfirmed |
+
+## Cascade Detector (New in v1.2)
+
+When multiple signals from < 4 hour window reference same topic, check if cascade before counting independently. Known cascades: meeting invite (1 change -> 3-5 invites), incident alert (1 regression -> alert+thread+meeting+doc), status report (1 pull -> report+email+deck).
 
 ## Reference: Known Patterns from 7 Cycles of M365 Analysis
 
