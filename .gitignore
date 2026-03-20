@@ -2,6 +2,8 @@ node_modules/
 dist/
 data/token-usage.json
 data/cycle-history.json
+data/feed.json
+data/steering.json
 data/signals.cycle*.backup.json
 data/signals_temp.json
 data/test*.json
