@@ -13,4 +13,13 @@ data/write_dashboard.py
 write_signals_c5.py
 data/write_skill.py
 *.py
+*.cjs
 .env
+test-out.txt
+data/skill_*.txt
+data/signals_c*.json
+data/write-*.cjs
+scripts/
+write_*.cjs
+agentskilluminator*
+*.bak

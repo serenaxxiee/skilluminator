@@ -12,10 +12,9 @@ import {
 import { getWorkIQMcpConfig, WORKIQ_TOOL } from "./workiq.js";
 import {
   readPatterns, readSignals, appendCycleLog,
-  SUMMARIES_PATH,
   type CycleLog,
 } from "./state.js";
-import { readSteeringMessages, postToTeams } from "./teams-api.js";
+import { readUnconsumedSteering, markSteeringConsumed, postAgentUpdate } from "./feed.js";
 import chalk from "chalk";
 import * as display from "./display.js";
 
@@ -205,20 +204,17 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   let harvestTokens = { input: 0, output: 0 };
   let refineTokens = { input: 0, output: 0 };
 
-  // ── Phase 0: Steering (direct API — no agent) ─────────────────
-  display.sectionHeader("Phase 0: Checking Teams for Steering");
+  // ── Phase 0: Check steering from feed ──────────────────────────
+  display.sectionHeader("Phase 0: Checking for Steering Input");
   let steeringInput = "";
-  try {
-    const messages = await readSteeringMessages(120);
-    if (messages.length > 0) {
-      steeringInput = messages.join("\n\n");
-      display.info("Steering", `${messages.length} instruction(s) from operator`);
-      display.agentOutput(steeringInput.slice(0, 300));
-    } else {
-      display.info("Steering", "No operator instructions");
-    }
-  } catch (err: any) {
-    display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
+  const steeringMsgs = readUnconsumedSteering();
+  if (steeringMsgs.length > 0) {
+    steeringInput = steeringMsgs.join("\n\n");
+    markSteeringConsumed();
+    display.info("Steering", `${steeringMsgs.length} instruction(s) from operator`);
+    display.agentOutput(steeringInput.slice(0, 300));
+  } else {
+    display.info("Steering", "No new instructions");
   }
   display.sectionEnd();
 
@@ -376,12 +372,11 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   }
   display.sectionEnd();
 
-  // ── Phase 3: Teams update (direct API — no agent) ──────────────
+  // ── Phase 3: Post to feed ───────────────────────────────────────
   let summarySent = false;
   {
-    display.sectionHeader("Phase 3: Posting to Teams");
+    display.sectionHeader("Phase 3: Posting to Feed");
     try {
-      // Build summary from cycle data
       const raw = readPatterns();
       const patCount = raw?.patterns?.length ?? 0;
       const topPat = raw?.patterns
@@ -391,26 +386,22 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
       const topScoreVal = topPat ? Math.round((topPat.automationScore + topPat.valueScore) / 2) : 0;
 
       const refineOneLiner = refineSummary
-        .split("\n").find((l: string) => l.trim() && !l.startsWith("#") && !l.startsWith("-"))?.trim().slice(0, 100)
+        .split("\n").find((l: string) => l.trim() && !l.startsWith("#") && !l.startsWith("-"))?.trim().slice(0, 150)
         ?? `${patCount} patterns, top=${topName}`;
 
-      const teamsMsg = [
-        `**Cycle ${cycleNum}** | ${refineOneLiner}`,
-        `**W** ${topName} (score ${topScoreVal}) — ${patCount} patterns tracked`,
-        `**L** cycle took ${Math.round((Date.now() - startMs) / 60000)}min, still not fast enough`,
-        prUrl ? `**PR** ${prUrl}` : "",
-      ].filter(Boolean).join("\n");
-
-      await postToTeams(teamsMsg, `Skilluminator — Cycle ${cycleNum} Update`);
+      postAgentUpdate({
+        cycleNum,
+        message: refineOneLiner,
+        prUrl: prUrl || undefined,
+        patternsDetected: patCount,
+        topCandidate: topName,
+        topScore: topScoreVal,
+        durationMin: Math.round((Date.now() - startMs) / 60000),
+      });
       summarySent = true;
-      display.success("Summary posted to Teams");
-
-      // Also append to summaries file
-      const summaryMd = `\n## Cycle ${cycleNum}\n\n${teamsMsg}\n`;
-      const existing = existsSync(SUMMARIES_PATH) ? readFileSync(SUMMARIES_PATH, "utf-8") : "# Skilluminator Summaries\n";
-      writeFileSync(SUMMARIES_PATH, existing + summaryMd, "utf-8");
+      display.success("Posted to feed");
     } catch (err: any) {
-      display.failure(`Teams post failed: ${err.message.split("\n")[0]}`);
+      display.failure(`Feed post failed: ${err.message.split("\n")[0]}`);
     }
     display.sectionEnd();
   }

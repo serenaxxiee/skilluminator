@@ -1,725 +1,383 @@
 {
-  "cycleNum": 5,
-  "harvestedAt": "2026-03-19T18:30:00Z",
-  "weekOf": "2026-03-16",
+  "cycleNum": 27,
+  "harvestedAt": "2026-03-19T12:00:00Z",
+  "weekOf": "2026-03-17",
   "workiqQueriesRun": [
-    "What email threads or senders have I received the most messages from in the past 7 days? List the top 10 by volume, with rough estimates of how many emails each generated and how much time I likely spent on them.",
-    "What recurring or repeating email types have I received this past week — things like status updates, notifications, approval requests, or standup summaries? For each type, estimate frequency and time cost.",
-    "What meetings did I attend this week? For each, give me: the meeting name or topic, approximate duration, number of participants, how often it recurs, and what decisions or action items typically come out of it.",
-    "Which of my meetings this week could potentially have been an email or async update instead? What patterns make these meetings feel redundant or low-value compared to async alternatives?",
-    "What Teams channels or chats have been most active for me this week? For each, describe the type of discussion, who participates (by role), and what recurring topics keep coming up.",
-    "What documents have I created, edited, or been asked to review this week in SharePoint or OneDrive? Describe the types of documents and any recurring creation or review patterns.",
-    "Are there any workflows I follow repeatedly this week that span multiple M365 tools — for example, getting an email that triggers a meeting that results in a document? Describe the full end-to-end flow.",
-    "What tasks or action items have been assigned to me or generated from meetings and emails this week? How are they being tracked and what is the typical follow-up pattern?",
-    "Which of my recurring meetings have a consistent agenda or format each week — things like standups, syncs, reviews? Describe the format and what preparation is typically required.",
-    "What approval or review workflows did I participate in this week — documents needing sign-off, PRs, budget approvals, content reviews? Describe the steps involved.",
-    "What reporting or status update activities did I perform or receive this week? Are there dashboards, weekly reports, or metrics reviews that happen on a set cadence?",
-    "What onboarding, training, or knowledge-sharing activities happened this week in my M365 environment — new team members, wikis updated, training sessions scheduled?",
-    "What cross-team or cross-functional coordination happened this week — emails or meetings involving people from different orgs or with different roles working toward a shared deliverable?",
-    "What is my typical response time to emails and Teams messages this week, and are there patterns in which types of messages I respond to fastest vs. slowest?",
-    "Looking across all my M365 activity from the past 7 days, what are the top 5 most time-consuming recurring work patterns — the things that if automated or streamlined would save me the most time per week?"
+    "Give me a comprehensive analysis of ALL my M365 activity from the past 7 days across email, meetings, Teams chats, and documents."
   ],
   "signals": [
     {
-      "source": "email",
-      "title": "Azure DevOps / Work Tracker Notification Triage",
+      "source": "meeting",
+      "title": "Large Knowledge-Sharing Forums",
       "participants": [
-        "Evals PM",
-        "Engineering Lead",
-        "Product Team"
+        "Platform PM",
+        "Architect",
+        "Field Enablement Lead",
+        "CAT Member"
       ],
-      "frequency": 30,
-      "timeSpentMinutes": 150,
+      "frequency": 3,
+      "timeSpentMinutes": 180,
       "keywords": [
-        "Azure DevOps",
-        "Work Tracker",
-        "notification",
-        "bug",
-        "task",
-        "evals",
-        "Copilot",
-        "triage",
-        "epic",
-        "feature"
+        "CAPE",
+        "Copilot Studio",
+        "Office Hours",
+        "BizChat Eval"
       ],
-      "rawExcerpt": "The single largest email cluster: automated notifications from Azure DevOps / internal Work Tracker covering tasks, requirements, features, epics for Evals, Coverage, Jailing, and Threshold work items. Estimated 25-35 notification emails per day, each requiring 3-8 minutes of triage to determine action needed.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "CAPE Architecture Call, Copilot Studio Office Hours, BizChat Offline Eval Office Hour. Pattern: Listen, ask clarifying questions, redirect people to docs or follow-up syncs.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     },
     {
-      "source": "email",
-      "title": "Meeting Invite Cascade — Recurring Sync Scheduling",
+      "source": "meeting",
+      "title": "V-Team Cross-Org Alignment Syncs",
       "participants": [
         "PM",
         "Engineering Lead",
-        "Program Manager",
-        "TPM"
+        "Cross-Org Stakeholder"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 150,
+      "keywords": [
+        "Project Crucible",
+        "CAPE Compete",
+        "Customer Engagement",
+        "status review"
+      ],
+      "rawExcerpt": "Weekly Project Crucible, CAPE Compete, Customer Engagement Sync. Pattern: status review, gap identification, ownership assignment.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Deep Technical Working Sessions",
+      "participants": [
+        "PM",
+        "Technical Lead",
+        "Researcher"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 120,
+      "keywords": [
+        "Golden Evals",
+        "Actionability",
+        "BIC AI",
+        "whiteboard",
+        "transcript"
+      ],
+      "rawExcerpt": "Golden Evals kickoff, Actionability brainstorm, BIC AI Project Crucible. Pattern: problem framing, whiteboard/transcript, artifact creation.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Camp AIR Multi-Day Immersive Block",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Design Lead",
+        "Cross-Functional Team"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 480,
+      "keywords": [
+        "Camp AIR",
+        "immersive",
+        "sub-sessions",
+        "document churn"
+      ],
+      "rawExcerpt": "Full-day bookings with multiple sub-sessions. Drives most of the chat + document churn this week.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Azure DevOps Notification Streams",
+      "participants": [
+        "DevOps System",
+        "Engineering Lead"
+      ],
+      "frequency": 30,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "ADO",
+        "Evals",
+        "Coverage",
+        "Jailing",
+        "IcM",
+        "tasks",
+        "epics"
+      ],
+      "rawExcerpt": "Tasks, requirements, epics related to Evals, Coverage, Jailing, IcM. High-volume, low-interaction stream.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Leadership and Program Announcements",
+      "participants": [
+        "Senior Leader",
+        "Program Manager"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "EvalCon",
+        "announcement",
+        "internal preview",
+        "broadcast"
+      ],
+      "rawExcerpt": "EvalCon announcement, internal previews. Pattern: broadcast email, Teams discussion, action item.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Customer and Field Coordination Threads",
+      "participants": [
+        "Field PM",
+        "Customer Success Lead",
+        "Account Manager"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "eval adoption",
+        "CRM",
+        "customer playbooks",
+        "field coordination"
+      ],
+      "rawExcerpt": "Topics: eval adoption, CRM tracking, customer playbooks. Often escalate into 1:1 or small group meetings.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Security and Compliance Alerts",
+      "participants": [
+        "Security System",
+        "Compliance Analyst"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "Purview",
+        "DLP",
+        "credentials",
+        "keys",
+        "file alert"
+      ],
+      "rawExcerpt": "File-level alerts for credentials or keys. Pattern: alert, manual file fix.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Eval Strategy and Actionability Discussions",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Data Scientist",
+        "Researcher"
+      ],
+      "frequency": 10,
+      "timeSpentMinutes": 120,
+      "keywords": [
+        "eval strategy",
+        "actionability",
+        "SEVAL",
+        "agent quality",
+        "orchestration"
+      ],
+      "rawExcerpt": "Repeated across multiple threads. Pattern: question, conceptual answer, link to repo/doc, offer meeting.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Artifact Exchange in Chat",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Designer"
       ],
       "frequency": 15,
       "timeSpentMinutes": 45,
       "keywords": [
-        "calendar invite",
-        "recurring",
-        "reschedule",
-        "sync",
-        "standup",
-        "block"
+        "GitHub",
+        "SharePoint",
+        "zip",
+        "dashboard",
+        "repo link"
       ],
-      "rawExcerpt": "High volume of calendar invite emails — new meetings, reschedule requests, and cancellations. Pattern: one meeting change triggers 3-5 follow-on invite emails as downstream meetings are adjusted. ~15 such threads this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "Frequent sharing of GitHub repos, SharePoint links, zips, dashboards. Chat acts as a transport layer.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     },
     {
-      "source": "email",
-      "title": "Evals Feature Status Request Threads",
-      "participants": [
-        "Evals PM",
-        "Senior Engineer",
-        "Data Scientist"
-      ],
-      "frequency": 8,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "evals",
-        "status",
-        "feature",
-        "coverage",
-        "threshold",
-        "complete",
-        "ETA",
-        "blocked"
-      ],
-      "rawExcerpt": "Repeated email threads asking for status on specific evals features — same 3-4 participants, same structure: ask -> engineer reply with status/blockers -> PM acknowledges -> follow-up in 2 days. Pattern repeats across multiple features simultaneously.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Stakeholder Looping and FYI Threads",
-      "participants": [
-        "Director",
-        "PM",
-        "Engineering Lead",
-        "Partner Team Lead"
-      ],
-      "frequency": 12,
-      "timeSpentMinutes": 40,
-      "keywords": [
-        "FYI",
-        "looping in",
-        "for visibility",
-        "cc",
-        "heads up",
-        "cross-team"
-      ],
-      "rawExcerpt": "Cluster of emails with subject lines like 'Looping in [role]' or 'FYI —' used to keep leadership or partner teams informed. These are read-only for most recipients but require scanning to determine if action is needed. ~12 such threads this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "email",
-      "title": "External Partner / Vendor Coordination Emails",
-      "participants": [
-        "Vendor PM",
-        "Internal PM",
-        "Procurement Contact"
-      ],
-      "frequency": 6,
-      "timeSpentMinutes": 50,
-      "keywords": [
-        "vendor",
-        "partner",
-        "contract",
-        "deliverable",
-        "timeline",
-        "external"
-      ],
-      "rawExcerpt": "Recurring email exchanges with external partners around deliverable timelines and alignment. Pattern: external sends update -> internal PM reviews -> forwards to engineering lead with context -> reply-all with acknowledgment. 6 threads, avg 4 emails each.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Approval Request and Sign-off Threads",
-      "participants": [
-        "Director",
-        "PM",
-        "Finance Contact",
-        "Legal Reviewer"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "approval",
-        "sign-off",
-        "review",
-        "LGTM",
-        "please review",
-        "action required"
-      ],
-      "rawExcerpt": "Emails explicitly requesting approval or sign-off — content decks, budget requests, scope changes. Pattern: request email -> 1-2 day wait -> follow-up ping -> response with conditions or approval. 5 such threads this week averaging 3 messages each.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Weekly Status / Digest Emails to Leadership",
+      "source": "teams",
+      "title": "Meeting Coordination and Conflict Resolution",
       "participants": [
         "PM",
-        "Director",
-        "VP",
-        "Program Lead"
-      ],
-      "frequency": 4,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "weekly update",
-        "status",
-        "digest",
-        "OKR",
-        "metrics",
-        "highlights",
-        "blockers"
-      ],
-      "rawExcerpt": "Outbound and received weekly status digest emails summarizing team progress. Recurring Friday send pattern; inbound digest from program lead on Monday. Consistent structure: highlights, blockers, metrics, upcoming milestones.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Evals Incident and Regression Alerts",
-      "participants": [
-        "On-call Engineer",
-        "Evals PM",
-        "QA Lead"
+        "Admin",
+        "Cross-Functional Team"
       ],
       "frequency": 7,
-      "timeSpentMinutes": 55,
+      "timeSpentMinutes": 30,
       "keywords": [
-        "regression",
-        "incident",
-        "alert",
-        "evals failure",
-        "threshold breached",
-        "P1",
-        "P2"
+        "reschedule",
+        "conflict",
+        "joining late",
+        "partial attendance",
+        "Camp AIR"
       ],
-      "rawExcerpt": "Alert emails triggered by automated evals regressions or quality threshold breaches. Require rapid triage: read alert -> check dashboard -> determine severity -> loop in on-call. Pattern repeats ~7 times this week with varying urgency.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "Rescheduling, partial attendance, joining late due to Camp AIR. Pattern repeats daily.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     },
     {
-      "source": "meeting",
-      "title": "Daily Engineering Standup — Evals Team",
+      "source": "teams",
+      "title": "Mentorship and Peer Sense-Making",
       "participants": [
-        "Engineering Lead",
-        "3-4 Engineers",
-        "Evals PM"
+        "PM",
+        "Junior Engineer",
+        "Peer PM"
       ],
       "frequency": 5,
-      "timeSpentMinutes": 75,
-      "keywords": [
-        "standup",
-        "daily",
-        "blockers",
-        "progress",
-        "evals",
-        "yesterday",
-        "today"
-      ],
-      "rawExcerpt": "15-minute daily standup recurring Mon-Fri for the Evals engineering team. Consistent format: round-robin status, blockers surface, PM captures action items. 5 occurrences this week = 75 minutes total. Preparation involves checking Work Tracker for item updates.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Weekly Evals Review with Leadership",
-      "participants": [
-        "Director",
-        "Evals PM",
-        "Engineering Lead",
-        "Data Science Lead"
-      ],
-      "frequency": 1,
       "timeSpentMinutes": 60,
       "keywords": [
-        "evals",
-        "weekly review",
-        "metrics",
-        "coverage",
-        "quality",
-        "leadership",
-        "OKR"
+        "eval-driven development",
+        "orchestration",
+        "models",
+        "mental models",
+        "concepts"
       ],
-      "rawExcerpt": "60-minute weekly review presenting evals metrics, coverage progress, and quality trends to leadership. Requires ~30 min prep: pulling metrics from dashboards, updating slides, rehearsing talking points. Recurring every Wednesday.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Bi-weekly Sprint Planning / Grooming",
-      "participants": [
-        "Engineering Lead",
-        "PM",
-        "TPM",
-        "Engineers (4-6)"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "sprint",
-        "planning",
-        "grooming",
-        "backlog",
-        "story points",
-        "capacity",
-        "scope"
-      ],
-      "rawExcerpt": "90-minute sprint planning session covering backlog grooming and capacity allocation. Pattern: PM presents priorities -> engineering estimates -> negotiation on scope -> finalize sprint commitment. Significant pre-work: PM spends ~60 min writing stories beforehand.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Evals Design / Architecture Review",
-      "participants": [
-        "Senior Engineer",
-        "Engineering Lead",
-        "Architect",
-        "PM"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "design review",
-        "architecture",
-        "RFC",
-        "technical decision",
-        "evals pipeline",
-        "schema"
-      ],
-      "rawExcerpt": "Recurring design review for new evals components — RFC presented, feedback gathered, decisions recorded. Prep involves writing RFC doc (~2 hrs) and async pre-read. Meeting itself is 60 min with follow-up action items documented in shared doc.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Cross-team Alignment Sync (Partner Teams)",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Partner PM",
-        "Partner Engineering Lead"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "alignment",
-        "cross-team",
-        "dependencies",
-        "integration",
-        "partner",
-        "timeline"
-      ],
-      "rawExcerpt": "Bi-weekly 30-minute sync with partner teams to surface dependencies and alignment gaps. Frequently runs long to 45-60 min. Output: updated dependency tracking doc, follow-up emails to stakeholders. 2 occurrences this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "1:1 Manager Check-in",
-      "participants": [
-        "Manager",
-        "Direct Report"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "1:1",
-        "career",
-        "feedback",
-        "priorities",
-        "blockers",
-        "manager"
-      ],
-      "rawExcerpt": "Weekly 30-minute 1:1 with direct manager. Consistent agenda: personal priorities, blockers needing manager intervention, career development. Prep involves updating a shared running notes doc before each session.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Evals Triage / Incident Review",
-      "participants": [
-        "On-call Engineer",
-        "Evals PM",
-        "QA Lead",
-        "Engineering Lead"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "triage",
-        "incident",
-        "regression",
-        "root cause",
-        "postmortem",
-        "evals failure"
-      ],
-      "rawExcerpt": "Ad-hoc meetings triggered by evals regressions or quality incidents. Pattern: alert fires -> triage meeting called within 2 hrs -> root cause identified -> follow-up postmortem scheduled. 2 such meetings this week averaging 30 min each.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Stakeholder Demo / Readout Session",
-      "participants": [
-        "PM",
-        "Director",
-        "VP",
-        "Partner Stakeholders"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "demo",
-        "readout",
-        "showcase",
-        "progress",
-        "milestone",
-        "stakeholder"
-      ],
-      "rawExcerpt": "Mid-sprint demo/readout for stakeholders showing feature progress. Requires slide deck prep (~1.5 hrs) and a pre-demo dry run. Session itself is 45 min including Q&A. Feedback captured in follow-up email thread.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Recruiting / Interview Coordination",
-      "participants": [
-        "Hiring Manager",
-        "Recruiter",
-        "Interview Panel (3-4)"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "interview",
-        "debrief",
-        "hiring",
-        "candidate",
-        "feedback",
-        "debrief loop"
-      ],
-      "rawExcerpt": "Interview debrief meetings for engineering candidates. Pattern: individual interviewers complete scorecards -> debrief meeting called -> hire/no-hire decision -> recruiter follow-up. 2 debriefs this week, 30 min each.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Content / Communication Review",
-      "participants": [
-        "Content PM",
-        "Communications Lead",
-        "PM"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "content",
-        "blog post",
-        "comms",
-        "review",
-        "messaging",
-        "announcement"
-      ],
-      "rawExcerpt": "30-minute review meeting for external-facing content or internal announcements. Async pre-read of draft expected; meeting used to resolve open feedback items. Output: revised draft and publish timeline.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Weekly Team All-Hands / Org Update",
-      "participants": [
-        "Director",
-        "All Team Members",
-        "PM Leads"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "all-hands",
-        "org update",
-        "announcements",
-        "team",
-        "OKR",
-        "priorities"
-      ],
-      "rawExcerpt": "Weekly all-hands meeting for the broader org. 60 min; covers org-level OKR progress, leadership announcements, team spotlights. Attendance is passive for most; action items generated for leads only.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Evals Channel — Feature Status and Blocker Thread",
-      "participants": [
-        "Evals PM",
-        "Engineers",
-        "QA Lead"
-      ],
-      "frequency": 35,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "evals",
-        "status",
-        "blocker",
-        "Teams",
-        "feature",
-        "update",
-        "ping"
-      ],
-      "rawExcerpt": "The most active Teams channel this week. Continuous thread of status updates, blocker callouts, and quick questions about evals feature work. Pattern: engineer posts update -> PM acknowledges -> follow-up question -> resolution or escalation. ~35 messages per day.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "On-call / Incident Response Chat",
-      "participants": [
-        "On-call Engineer",
-        "Engineering Lead",
-        "QA Lead"
-      ],
-      "frequency": 12,
-      "timeSpentMinutes": 40,
-      "keywords": [
-        "incident",
-        "on-call",
-        "regression",
-        "Teams",
-        "alert",
-        "triage",
-        "live site"
-      ],
-      "rawExcerpt": "Teams group chat activated when evals regression or live-site issue fires. Rapid back-and-forth: alert -> context dump -> investigation updates -> resolution. 2 incidents this week, ~12 messages each in the response thread.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "PM-Engineering Quick Decision Pings",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Senior Engineer"
-      ],
-      "frequency": 20,
-      "timeSpentMinutes": 35,
-      "keywords": [
-        "quick question",
-        "decision",
-        "Teams",
-        "ping",
-        "unblock",
-        "clarification"
-      ],
-      "rawExcerpt": "High-frequency 1:1 Teams messages between PM and engineering counterparts for micro-decisions. Pattern: PM asks clarifying question -> engineer answers or escalates -> PM updates Work Tracker. ~20 such exchanges this week, avg 3 messages each.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Cross-team Dependency Tracking Thread",
-      "participants": [
-        "PM",
-        "Partner PM",
-        "TPM",
-        "Engineering Leads"
-      ],
-      "frequency": 8,
-      "timeSpentMinutes": 25,
-      "keywords": [
-        "dependency",
-        "Teams",
-        "cross-team",
-        "unblock",
-        "timeline",
-        "partner"
-      ],
-      "rawExcerpt": "Shared Teams channel thread used to surface and resolve cross-team dependencies. Messages reference specific work items and ask for status or action. 8 active threads this week, typically resolved within 1-2 business days.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Recruiting Coordination Chat",
-      "participants": [
-        "Hiring Manager",
-        "Recruiter",
-        "HR Partner"
-      ],
-      "frequency": 6,
-      "timeSpentMinutes": 15,
-      "keywords": [
-        "recruiting",
-        "Teams",
-        "interview",
-        "schedule",
-        "candidate",
-        "offer"
-      ],
-      "rawExcerpt": "Teams chat for coordinating interview scheduling, debrief logistics, and offer preparation. ~6 messages per active candidate; 2 active candidates this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Leadership Ask-Me-Anything Thread",
-      "participants": [
-        "Director",
-        "All ICs and PMs"
-      ],
-      "frequency": 10,
-      "timeSpentMinutes": 20,
-      "keywords": [
-        "AMA",
-        "leadership",
-        "Teams",
-        "questions",
-        "org",
-        "direction"
-      ],
-      "rawExcerpt": "Async Teams thread where team members post questions for leadership to answer. Active following all-hands. ~10 questions posted this week; answers provided within 24 hrs by director or delegate.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "Explaining concepts (eval-driven development, orchestration, models). Converts confusion into shared mental models.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     },
     {
       "source": "document",
-      "title": "Evals Metrics Dashboard (Read-only Review)",
+      "title": "Eval Frameworks and Tooling Artifacts",
       "participants": [
-        "Evals PM",
-        "Data Science Lead",
-        "Engineering Lead",
-        "Director"
+        "PM",
+        "Engineering Lead"
       ],
-      "frequency": 5,
-      "timeSpentMinutes": 75,
+      "frequency": 4,
+      "timeSpentMinutes": 90,
       "keywords": [
         "dashboard",
-        "metrics",
-        "evals",
-        "coverage",
-        "quality",
-        "KPI",
-        "SharePoint"
+        "scenario library",
+        "skill-detector",
+        "eval framework"
       ],
-      "rawExcerpt": "Weekly review of the Evals metrics dashboard in SharePoint — coverage rates, quality thresholds, regression trends. 5 views this week averaging 15 min each. Pattern: view dashboard -> screenshot for weekly report -> share in standup or review meeting.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "Dashboards, scenario libraries, skill-detector packages. Often created after meetings, then shared in Teams.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     },
     {
       "source": "document",
-      "title": "Sprint / Feature Spec Writing",
+      "title": "Presentation Decks (PowerPoint)",
       "participants": [
         "PM",
+        "Designer",
+        "Senior Leader"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 75,
+      "keywords": [
+        "pitch deck",
+        "enablement deck",
+        "Camp AIR materials",
+        "PowerPoint"
+      ],
+      "rawExcerpt": "Pitch decks, enablement decks, Camp AIR materials. Pattern: deck draft, review in chat, reuse across meetings.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Loop Documents as Living Coordination Hubs",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Cross-Functional Team"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "Loop",
+        "ownership",
+        "agenda",
+        "summaries",
+        "coordination hub"
+      ],
+      "rawExcerpt": "Used for ownership, agenda, summaries. Often referenced across meetings and chats.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Cross-Source: Announcement to Chat to Submission",
+      "participants": [
+        "Senior Leader",
+        "PM",
+        "Peer PM"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 40,
+      "keywords": [
+        "EvalCon",
+        "announcement",
+        "brainstorm",
+        "content proposal"
+      ],
+      "rawExcerpt": "Email: EvalCon announcement. Chat: brainstorm what to present. Outcome: content proposal action item.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Cross-Source: Customer Signal to Meeting to Toolkit",
+      "participants": [
+        "Field PM",
+        "PM",
         "Engineering Lead"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 90,
+      "keywords": [
+        "customer pain points",
+        "actionability",
+        "playbooks",
+        "prototypes",
+        "dashboards"
+      ],
+      "rawExcerpt": "Chat/email: customer eval pain points. Meeting: actionability brainstorm. Doc: playbooks, prototypes, dashboards.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Cross-Source: DevOps Signal to Passive Intake to Synthesis",
+      "participants": [
+        "DevOps System",
+        "PM"
+      ],
+      "frequency": 10,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "ADO",
+        "notifications",
+        "passive intake",
+        "synthesis",
+        "delayed action"
+      ],
+      "rawExcerpt": "Email: ADO notifications. No immediate response. Concepts reappear later in meetings or docs.",
+      "capturedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Cross-Source: Camp AIR to Transcript to Reusable Guidance",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Cross-Functional Team"
       ],
       "frequency": 3,
       "timeSpentMinutes": 120,
       "keywords": [
-        "spec",
-        "feature doc",
-        "requirements",
-        "SharePoint",
-        "OneNote",
-        "design",
-        "scope"
+        "Camp AIR",
+        "transcript",
+        "Loop",
+        "deck",
+        "repo",
+        "reusable guidance"
       ],
-      "rawExcerpt": "PM-authored feature specification documents in SharePoint. 3 new or updated specs this week, each taking ~40 min of writing time. Pattern: PM drafts spec -> shares for review -> engineering leaves comments -> PM updates -> final version approved.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Meeting Notes and Action Item Docs",
-      "participants": [
-        "PM",
-        "TPM",
-        "Note Taker (rotating)"
-      ],
-      "frequency": 7,
-      "timeSpentMinutes": 70,
-      "keywords": [
-        "meeting notes",
-        "action items",
-        "OneNote",
-        "SharePoint",
-        "recap",
-        "follow-up"
-      ],
-      "rawExcerpt": "Shared meeting notes documents updated after each significant meeting. Pattern: during meeting, note-taker captures decisions and AIs -> post-meeting, doc is shared via email -> recipients confirm AIs in Teams or email. 7 such docs updated this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Weekly Status Report (Authored)",
-      "participants": [
-        "PM",
-        "Engineering Lead"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "status report",
-        "weekly",
-        "SharePoint",
-        "OKR",
-        "highlights",
-        "blockers",
-        "metrics"
-      ],
-      "rawExcerpt": "A structured weekly status report authored in SharePoint and distributed via email. Consistent template: highlights, blockers, upcoming milestones, metric snapshot. Takes ~45 min to compile data, write, and review before send.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "document",
-      "title": "RFC / Technical Design Doc Review",
-      "participants": [
-        "Senior Engineer",
-        "Architect",
-        "Engineering Lead",
-        "PM"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "RFC",
-        "design doc",
-        "technical review",
-        "SharePoint",
-        "comments",
-        "feedback"
-      ],
-      "rawExcerpt": "Engineering RFCs and design docs shared for async review before design review meeting. Reviewers leave inline comments in SharePoint. 2 RFCs active this week; each takes ~30 min to thoroughly review and comment on.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "workflow",
-      "title": "Email Alert → Triage Meeting → Work Tracker Update → Status Email",
-      "participants": [
-        "On-call Engineer",
-        "Evals PM",
-        "Engineering Lead",
-        "QA Lead"
-      ],
-      "frequency": 7,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "cross-channel",
-        "workflow",
-        "evals",
-        "alert",
-        "triage",
-        "Work Tracker",
-        "status"
-      ],
-      "rawExcerpt": "End-to-end recurring workflow: (1) Automated evals regression alert email arrives -> (2) On-call engineer initiates Teams triage thread -> (3) Triage meeting called if not resolved in 30 min -> (4) Root cause documented in Work Tracker -> (5) Status update email sent to stakeholders. Full cycle takes 60-120 min per incident; 7 occurrences this week.",
-      "capturedAt": "2026-03-19T18:30:00Z"
-    },
-    {
-      "source": "workflow",
-      "title": "Meeting → Recap Email → Doc Update → Work Tracker Tasks",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "TPM",
-        "Meeting Participants"
-      ],
-      "frequency": 12,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "cross-channel",
-        "workflow",
-        "meeting recap",
-        "action items",
-        "Work Tracker",
-        "email",
-        "SharePoint"
-      ],
-      "rawExcerpt": "Highly consistent post-meeting workflow: (1) Meeting concludes -> (2) PM or TPM sends recap email within 2 hrs summarizing decisions and AIs -> (3) Shared notes doc updated in SharePoint -> (4) Work Tracker tasks created for each AI with owner and due date -> (5) Follow-up Teams ping to assignees. Occurs after every significant meeting. 12 instances this week totaling ~90 min of coordination overhead.",
-      "capturedAt": "2026-03-19T18:30:00Z"
+      "rawExcerpt": "Meeting (transcribed). Shared Loop / deck / repo. Referenced later in other forums.",
+      "capturedAt": "2026-03-19T12:00:00Z"
     }
   ]
 }

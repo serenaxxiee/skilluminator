@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { runCycle, validateSetup } from "./cycle.js";
 import { ensureDirs, readCycleHistory, DASHBOARD_PATH } from "./state.js";
+import { startFeedServer } from "./feed.js";
 import * as display from "./display.js";
 
 // ── Load .env ───────────────────────────────────────────────────────
@@ -44,6 +45,7 @@ async function main(): Promise<void> {
   display.success("Directories initialized");
   validateSetup();
   display.success("Claude Agent SDK found");
+  startFeedServer();
 
   // Resume cycle count from persisted history
   const history = readCycleHistory();
