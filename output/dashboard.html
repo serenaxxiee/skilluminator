@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator - Cycle 62 Dashboard</title>
+<title>Skilluminator - Cycle 68 Dashboard</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0f1117;--card:#1a1b2e;--card2:#12131f;--purple:#818cf8;--pink:#c084fc;--green:#22c55e;--amber:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--border:#2d2f4a}
@@ -113,19 +113,33 @@ tbody tr.clickable:hover .pn{color:var(--purple)}
 .exp-metric-val{font-size:1.45rem;font-weight:800;line-height:1}
 .exp-metric-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.25rem}
 .exp-skill-tag{display:inline-block;margin-top:.5rem;font-family:'Cascadia Code',Consolas,monospace;font-size:.68rem;background:#c084fc15;border:1px solid #c084fc35;color:#c084fc;border-radius:4px;padding:.25rem .6rem}
+/* ── Filter tabs ── */
+.ftab-bar{display:flex;gap:.4rem;padding:.9rem 1rem .6rem;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.ftab{background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:.73rem;font-weight:600;padding:.35rem .8rem;cursor:pointer;transition:background .15s,color .15s,border-color .15s;font-family:inherit;letter-spacing:.02em}
+.ftab:hover{background:#818cf815;color:var(--text);border-color:#818cf850}
+.ftab.active{background:linear-gradient(135deg,#818cf825,#c084fc20);color:var(--purple);border-color:#818cf870}
+/* ── Hours at Risk bar chart ── */
+.hbar-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem;font-size:.75rem;cursor:default}
+.hbar-row:last-child{margin-bottom:0}
+.hbar-lbl{width:190px;flex-shrink:0;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;font-size:.76rem}
+.hbar-track{flex:1;background:#1e2035;border-radius:5px;height:20px;position:relative;overflow:hidden;min-width:0}
+.hbar-cost{height:20px;border-radius:5px;transition:width 1.4s cubic-bezier(.4,0,.2,1);width:0;position:absolute;top:0;left:0;display:flex;align-items:center;padding-left:.5rem;font-size:.62rem;font-weight:700;color:rgba(255,255,255,.9);white-space:nowrap;overflow:hidden}
+.hbar-save{position:absolute;top:0;left:0;height:20px;border-radius:5px;transition:width 1.6s cubic-bezier(.4,0,.2,1);width:0;pointer-events:none}
+.hbar-hrs{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:38px;text-align:right}
+.hbar-badge{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.12rem .38rem;border-radius:3px;white-space:nowrap;flex-shrink:0}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-l">
     <div class="gtitle">Skilluminator</div>
-    <div class="hsub">Skilluminator Cycle <span>62</span> &nbsp;&middot;&nbsp; Week of <span>2026-03-20</span> &nbsp;&middot;&nbsp; Generated <span>2026-03-20</span> &nbsp;&middot;&nbsp; Data frozen at cycle <span>55</span></div>
+    <div class="hsub">Skilluminator Cycle <span>68</span> &nbsp;&middot;&nbsp; Week of <span>2026-03-20</span> &nbsp;&middot;&nbsp; Generated <span>2026-03-20</span> &nbsp;&middot;&nbsp; Data frozen at cycle <span>55</span></div>
   </div>
-  <div><div class="badge">&#128202; 62 Cycles &nbsp;&middot;&nbsp; 41 Patterns Tracked</div></div>
+  <div><div class="badge">&#128202; 68 Cycles &nbsp;&middot;&nbsp; 41 Patterns Tracked</div></div>
 </div>
 <div class="alert">
   <span style="font-size:1.2rem;flex-shrink:0">&#9888;</span>
-  <span><strong>WorkIQ Connectivity Outage &mdash; Consecutive Failure #9 (Skilluminator Cycles 53&ndash;62).</strong> All 15 WorkIQ queries returned null. Pattern data frozen at cycle 55 (last successful harvest). Source-Failure Guard ACTIVE: archival frozen, trend downgrades suspended. Action: verify M365 Copilot license &middot; re-accept WorkIQ EULA &middot; check M365 service health dashboard at admin.microsoft.com.</span>
+  <span><strong>WorkIQ Connectivity Outage &mdash; Consecutive Failure #15 (Skilluminator Cycles 53&ndash;68).</strong> All 15 WorkIQ queries returned null. Pattern data frozen at cycle 55 (last successful harvest). Source-Failure Guard ACTIVE: archival frozen, trend downgrades suspended. Action: verify M365 Copilot license &middot; re-accept WorkIQ EULA at github.com/microsoft/work-iq-mcp &middot; check M365 service health at admin.microsoft.com.</span>
 </div>
 <div class="main">
   <div class="stitle">Key Metrics</div>
@@ -163,8 +177,25 @@ tbody tr.clickable:hover .pn{color:var(--purple)}
     </div>
   </div>
 
+  <div class="stitle">Hours at Risk &mdash; Top 10 Patterns by Cumulative Time Cost</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem">
+    <div style="display:flex;gap:1.4rem;margin-bottom:1.1rem;font-size:.73rem;flex-wrap:wrap;align-items:center">
+      <span><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:#ef444455;border:1px solid #ef4444;vertical-align:middle;margin-right:.35rem"></span>Cumulative hrs (total cost)</span>
+      <span><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:#22c55e35;border:1px solid #22c55e60;vertical-align:middle;margin-right:.35rem"></span>Est. automation savings</span>
+      <span style="color:var(--muted);font-size:.68rem">Hover any row for weekly breakdown</span>
+    </div>
+    <div id="hbars"></div>
+  </div>
+
   <div class="stitle">Top Skill Candidates &mdash; Ranked by Composite Score &nbsp;<span style="font-weight:400;text-transform:none;letter-spacing:0;color:#565f89">Click any row to see trigger examples, rationale &amp; time savings</span></div>
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+    <div class="ftab-bar" id="ftb">
+      <button class="ftab active" data-filter="all">&#127358; All Patterns</button>
+      <button class="ftab" data-filter="rising">&#8593; Rising</button>
+      <button class="ftab" data-filter="quickwin">&#9889; Quick Wins <span style="font-weight:400;opacity:.6">(auto&ge;88)</span></button>
+      <button class="ftab" data-filter="highval">&#11088; High Value <span style="font-weight:400;opacity:.6">(value&ge;90)</span></button>
+    </div>
+    <div id="filter-count" style="padding:.4rem 1rem .1rem;font-size:.7rem;color:var(--muted)"></div>
     <div class="tw">
       <table>
         <thead><tr><th>Rank</th><th>Pattern / Skill <span style="font-weight:400;color:#565f89;font-size:.58rem;letter-spacing:0">&#9660; click row for details</span></th><th>Sources</th><th>Automation</th><th>Value</th><th>Trend</th><th>Hrs / Occ</th></tr></thead>
@@ -179,8 +210,8 @@ tbody tr.clickable:hover .pn{color:var(--purple)}
   <div class="stitle">Skill-Generator Input &mdash; Top 5 Candidates</div>
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem">
-      <span style="font-size:.78rem;color:var(--muted)">Ready for Anthropic skill-generator &middot; Cycle 62 &middot; Data: internal cycle 55</span>
-      <span style="font-size:.68rem;background:#818cf820;color:var(--purple);border:1px solid #818cf840;padding:.2rem .6rem;border-radius:4px;font-weight:600">HARVEST FAILED &mdash; cycle 55 data (frozen 7 cycles)</span>
+      <span style="font-size:.78rem;color:var(--muted)">Ready for Anthropic skill-generator &middot; Cycle 68 &middot; Data: internal cycle 55</span>
+      <span style="font-size:.68rem;background:#818cf820;color:var(--purple);border:1px solid #818cf840;padding:.2rem .6rem;border-radius:4px;font-weight:600">HARVEST FAILED &mdash; cycle 55 data (frozen 13 cycles)</span>
     </div>
     <div class="code" id="sgb"></div>
   </div>
@@ -191,7 +222,7 @@ tbody tr.clickable:hover .pn{color:var(--purple)}
   </div>
 </div>
 <div class="tip" id="tip"><strong id="tn"></strong><span id="tb"></span></div>
-<div class="footer">Skilluminator v62 &nbsp;&middot;&nbsp; Skilluminator Cycle 62 &nbsp;&middot;&nbsp; Data frozen at cycle 55 (9 consecutive harvest failures) &nbsp;&middot;&nbsp; Fully self-contained &middot; No external dependencies</div>
+<div class="footer">Skilluminator v68 &nbsp;&middot;&nbsp; Skilluminator Cycle 68 &nbsp;&middot;&nbsp; Data frozen at cycle 55 (15 consecutive harvest failures) &nbsp;&middot;&nbsp; Fully self-contained &middot; No external dependencies</div>
 
 <script>
 var P=[
@@ -252,7 +283,8 @@ var TLD=[
  {d:"a", c:"Cycles 28-29",  l:"Harvest Failures 1 and 2", x:"Agent cycles 28-29: all 15 WorkIQ queries returned null. Zero signals. Patterns frozen at cycle 55 state. Consecutive failure counter: 2."},
  {d:"a", c:"Cycles 57-59",   l:"Failures 4–6",              x:"Skilluminator cycles 57-59: consecutive null payload failures continue. Source-Failure Guard holds. Trend downgrades SUSPENDED. Dashboard v59 — skill-detector v2.7.0, archetype table completed."},
  {d:"a", c:"Cycles 60–61",   l:"Failures #7–8 — Dashboards v60–61",  x:"Consecutive null-payload failures. Action Plan cards deployed (v60). Skill-detector v2.8.0 deployed (v61) — First-Run Protocol, Adaptive Query Sequencing, Query Yield Triage matrix added. Pattern DB frozen at cycle 55."},
- {d:"r", c:"Cycle 62 - NOW", l:"Failure #9 — Dashboard v62", x:"Ninth consecutive null-payload failure (cycles 53–62). Dashboard upgrade: expandable pattern rows with trigger examples, automation rationale, and per-pattern time-savings math added to the Skills table. Pattern DB frozen at cycle 55."}
+ {d:"a", c:"Cycles 63–67",   l:"Failures #10–14",             x:"Five more consecutive null-payload failures. Skill-detector v2.9→v3.1 deployed — Role-Based Persona Query Library, Adaptive Query Sequencing, Pattern Cluster Map, Persistent Outage Mode (Phase 5). SKILL.md corruption remediated at cycle 67."},
+ {d:"r", c:"Cycle 68 - NOW", l:"Failure #15 — Dashboard v68", x:"Fifteenth consecutive null-payload failure (cycles 53–68, 13 cycles frozen at cycle 55 baseline). Dashboard upgrade: Hours at Risk bar chart added (top 10 patterns by cumulative time, automation savings overlay); filter tabs on skills table (All / Rising / Quick Wins / High Value)."}
 ];
 
 var PT={
@@ -415,7 +447,7 @@ function hjson(j){
     .replace(/([{}\[\],])/g,'<span class="jp">$1</span>');
 }
 function buildSG(){
-  var payload={generatedAtCycle:62,weekOf:"2026-03-20",harvestStatus:"FAILED - data from internal cycle 55 (9 consecutive failures)",candidateSkills:SG};
+  var payload={generatedAtCycle:68,weekOf:"2026-03-20",harvestStatus:"FAILED - data from internal cycle 55 (15 consecutive failures)",candidateSkills:SG};
   document.getElementById('sgb').innerHTML=hjson(JSON.stringify(payload,null,2));
 }
 
@@ -472,6 +504,112 @@ function buildTL(){
   });
 }
 
+function buildHBar(){
+  var active=P.filter(function(p){return p.m!=='archived';}).slice().sort(function(a,b){return b.h-a.h;}).slice(0,10);
+  var maxH=active[0].h;
+  var g=document.getElementById('hbars');
+  var tip=document.getElementById('tip');
+  active.forEach(function(p){
+    var pd2=PT[p.id];
+    var savePct=pd2?pd2.savePct:Math.round((p.a+p.v)/2*0.82);
+    var costW=(p.h/maxH*100).toFixed(1);
+    var saveW=(p.h/maxH*100*savePct/100).toFixed(1);
+    var wkH=(p.h/55).toFixed(1);
+    var wkSave=((p.h/55)*savePct/100).toFixed(1);
+    var trendCol=p.t==='rising'?'#22c55e':p.t==='declining'?'#ef4444':'#94a3b8';
+    var trendIco=p.t==='rising'?'&#8593;':p.t==='declining'?'&#8595;':'&#8594;';
+    var costColor=p.h>200?'#ef4444':p.h>80?'#f59e0b':'#818cf8';
+    var row=document.createElement('div');row.className='hbar-row';
+    row.innerHTML='<div class="hbar-lbl" title="'+p.L+'">'+p.L+'</div>'
+      +'<div class="hbar-track">'
+        +'<div class="hbar-cost" style="background:'+costColor+'55;border:1px solid '+costColor+'80" data-w="'+costW+'%">'
+          +(p.h>60?p.h.toFixed(0)+'h total':'')
+        +'</div>'
+        +'<div class="hbar-save" style="background:#22c55e30;border:1px solid #22c55e50" data-w="'+saveW+'%"></div>'
+      +'</div>'
+      +'<span class="hbar-badge" style="background:'+trendCol+'18;color:'+trendCol+';border:1px solid '+trendCol+'40">'+trendIco+' '+p.t+'</span>'
+      +'<div class="hbar-hrs">'+p.h.toFixed(0)+'h</div>';
+    row.addEventListener('mouseenter',function(pp,wh,ws,tc,sp){return function(e){
+      tip.style.display='block';tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px';
+      document.getElementById('tn').textContent=pp.L;
+      document.getElementById('tb').innerHTML='Cumulative hrs: <strong style="color:#f59e0b">'+pp.h.toFixed(1)+'h</strong><br>Cost/week: <strong style="color:#ef4444">~'+wh+'h</strong><br>Saved/week w/ automation: <strong style="color:#22c55e">~'+ws+'h</strong><br>Automatable: <strong style="color:#818cf8">'+sp+'%</strong><br>Occurrences: '+pp.o+'<br>Trend: <span style="color:'+tc+'">'+pp.t+'</span>';
+    };}(p,wkH,wkSave,trendCol,savePct));
+    row.addEventListener('mousemove',function(e){tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px';});
+    row.addEventListener('mouseleave',function(){tip.style.display='none';});
+    g.appendChild(row);
+  });
+  setTimeout(function(){
+    document.querySelectorAll('.hbar-cost').forEach(function(b){b.style.width=b.dataset.w;});
+    document.querySelectorAll('.hbar-save').forEach(function(b){b.style.width=b.dataset.w;});
+  },700);
+}
+
+var _curFilter='all';
+function applyFilter(f){
+  _curFilter=f;
+  document.querySelectorAll('.ftab').forEach(function(btn){btn.classList.toggle('active',btn.dataset.filter===f);});
+  var tb=document.getElementById('stb');
+  tb.innerHTML='';
+  var all=P.filter(function(p){return p.m!=='archived';}).slice().sort(function(a,b){return cs(b)-cs(a);});
+  var filtered;
+  if(f==='rising')      filtered=all.filter(function(p){return p.t==='rising';});
+  else if(f==='quickwin') filtered=all.filter(function(p){return p.a>=88;});
+  else if(f==='highval')  filtered=all.filter(function(p){return p.v>=90;});
+  else filtered=all.slice(0,10);
+  var shown=f==='all'?filtered:filtered.slice(0,15);
+  var fc=document.getElementById('filter-count');
+  if(fc)fc.textContent='Showing '+shown.length+' pattern'+(shown.length!==1?'s':'')+(f!=='all'?' matching filter':'');
+  shown.forEach(function(p,i){
+    var src=p.S.map(function(s){var c={email:'se',meeting:'sm',teams:'sv',document:'sd'};return'<span class="sb '+(c[s]||'')+'">'+s+'</span>';}).join('');
+    var tri=p.t==='rising'?'<span class="tr">&#8593; Rising</span>':p.t==='declining'?'<span class="td">&#8595; Declining</span>':'<span class="ts">&#8594; Stable</span>';
+    var tr2=document.createElement('tr');
+    tr2.className='clickable';
+    tr2.innerHTML='<td class="rk">#'+(i+1)+'</td>'
+      +'<td><div class="pn">'+p.L+'<span class="chev" id="chev-'+p.id+'-'+f+'">&#9660;</span></div><div class="ps">'+p.K+'</div></td>'
+      +'<td>'+src+'</td>'
+      +'<td><div style="display:flex;align-items:center"><div class="bw"><div class="bb"><div class="bf" style="background:'+sc(p.a)+'" data-w="'+p.a+'"></div></div></div><span class="sl" style="color:'+sc(p.a)+'">'+p.a+'</span></div></td>'
+      +'<td><div style="display:flex;align-items:center"><div class="bw"><div class="bb"><div class="bf" style="background:'+sc(p.v)+'" data-w="'+p.v+'"></div></div></div><span class="sl" style="color:'+sc(p.v)+'">'+p.v+'</span></div></td>'
+      +'<td>'+tri+'</td>'
+      +'<td class="tc">'+p.h.toFixed(1)+'h<br><span style="font-size:.67rem">'+p.o+' occ</span></td>';
+    var pd3=PT[p.id]||{savePct:Math.round((p.a+p.v)/2*0.82),triggers:['Run '+p.K+' on your next occurrence of this pattern'],why:'<strong>'+p.o+' occurrences, '+p.h.toFixed(1)+'h total.</strong> Pattern is consistent enough to automate.'};
+    var wkHrs2=(p.h/55);var wkSave2=(wkHrs2*pd3.savePct/100).toFixed(1);var yrSave2=Math.round(wkHrs2*pd3.savePct/100*52);
+    var trgHtml2=pd3.triggers.map(function(t){return'<span class="exp-trigger">'+t+'</span>';}).join('');
+    var trendCol2=p.t==='rising'?'#22c55e':p.t==='declining'?'#ef4444':'#94a3b8';
+    var erow2=document.createElement('tr');erow2.className='exp-row';
+    var eid='exp-'+p.id+'-'+f;
+    erow2.innerHTML='<td colspan="7"><div class="exp-inner" id="'+eid+'">'
+      +'<div class="exp-wrap">'
+        +'<div><div class="exp-lbl">&#9654; When to trigger this skill</div>'+trgHtml2+'</div>'
+        +'<div><div class="exp-lbl">&#128161; Why automate</div><div class="exp-why">'+pd3.why+'</div>'
+          +'<div style="margin-top:.7rem"><span class="exp-skill-tag">'+p.K+'</span></div>'
+        +'</div>'
+        +'<div class="exp-metrics">'
+          +'<div class="exp-metric"><div class="exp-metric-val" style="color:#22c55e">'+wkSave2+'h</div><div class="exp-metric-lbl">Saved / week</div></div>'
+          +'<div class="exp-metric"><div class="exp-metric-val" style="color:#818cf8">'+yrSave2+'h</div><div class="exp-metric-lbl">Saved / year</div></div>'
+          +'<div class="exp-metric"><div class="exp-metric-val" style="color:'+trendCol2+'">'+pd3.savePct+'%</div><div class="exp-metric-lbl">Automatable</div></div>'
+        +'</div>'
+      +'</div>'
+      +'</div></td>';
+    tr2.addEventListener('click',function(pid2,fid){return function(){
+      var inner2=document.getElementById('exp-'+pid2+'-'+fid);
+      var chv2=document.getElementById('chev-'+pid2+'-'+fid);
+      var isOpen2=inner2&&inner2.classList.contains('open');
+      if(inner2)inner2.classList.toggle('open',!isOpen2);
+      if(chv2)chv2.classList.toggle('open',!isOpen2);
+    };}(p.id,f));
+    tb.appendChild(tr2);
+    tb.appendChild(erow2);
+  });
+  setTimeout(function(){document.querySelectorAll('.bf').forEach(function(b){b.style.width=b.dataset.w+'%';});},700);
+}
+
+function buildFilterTabs(){
+  document.getElementById('ftb').addEventListener('click',function(e){
+    var btn=e.target.closest('.ftab');
+    if(btn)applyFilter(btn.dataset.filter);
+  });
+}
+
 window.addEventListener('DOMContentLoaded',function(){
   setTimeout(function(){
     ctr(document.getElementById('kv1'),41,1200);
@@ -479,7 +617,7 @@ window.addEventListener('DOMContentLoaded',function(){
     ctr(document.getElementById('kv3'),30,1600);
     ctr(document.getElementById('kv4'),5,800);
   },300);
-  buildTable();buildBubble();buildDonut();buildActionPlan();buildSG();buildTL();
+  applyFilter('all');buildBubble();buildDonut();buildHBar();buildActionPlan();buildSG();buildTL();buildFilterTabs();
 });
 </script>
 </body>
