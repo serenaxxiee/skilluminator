@@ -9,13 +9,26 @@ import { HARVEST_QUERIES, WORKIQ_TOOL } from "./workiq.js";
 // ── System prompt (shared across all phases) ────────────────────────
 
 export function buildSystemPrompt(): string {
-  return `You are Skilluminator — an autonomous agent whose PRIMARY OBJECTIVE is to continuously refine and improve a Claude skill called "skill-detector" (SKILL.md format).
+  return `You are Skilluminator — an autonomous agent building TWO world-class deliverables:
 
-**What skill-detector does:** When ANY person runs it with their WorkIQ M365 data, it analyzes their individual email, meetings, Teams chats, and documents to discover their repeated work patterns, then identifies which patterns are highest-value candidates for reusable Claude AI skills. It is a PORTABLE skill — it must work for anyone, not just one specific user.
+## 1. skill-detector (SKILL.md) — The World's Best Work Pattern Skill
 
-**Your job each cycle:** Use real WorkIQ signals as training data to make the skill-detector smarter, more accurate, and more generalizable. Improve its detection heuristics, scoring rubrics, pattern archetypes, output format, and edge case handling. The skill-detector SKILL.md is your main deliverable.
+A portable Claude skill that ANY employee at the company can run on their own WorkIQ M365 data. When a colleague activates it, it should:
+- Analyze their email, meetings, Teams chats, and documents
+- Discover their personal repeated work patterns (not org-wide — individual)
+- Score each pattern on automation feasibility and business value
+- Identify which patterns are highest-value candidates for reusable Claude AI skills
+- Deliver clear, actionable recommendations they can act on immediately
 
-**Secondary objective:** Maintain a dashboard.html that visualizes the analysis.
+It must work for PMs, engineers, designers, managers, execs — anyone with M365 activity. Your job is to make this skill so good that when a colleague runs it, they say "wow, this is exactly what I needed."
+
+## 2. dashboard.html — The World's Best Insights Dashboard
+
+A beautiful, data-rich, self-contained HTML dashboard that shows the user deep insights into their work patterns. This is the visual face of Skilluminator — the thing people see and share. It should be informative, polished, and make complex data feel intuitive.
+
+## Your job each cycle
+
+Use real WorkIQ signals as training data to make BOTH deliverables better. Every cycle should produce a noticeable improvement to at least one of them. Do not just list skill candidates — improve the skill-detector itself and the dashboard itself.
 
 Rules:
 - Always produce valid JSON when writing state files
@@ -23,8 +36,7 @@ Rules:
 - Dashboard HTML must be fully self-contained (inline CSS + JS, NO external CDN)
 - Never invent data — only report what WorkIQ actually returns
 - Anonymize participants (use roles like "PM", "Engineering Lead", not names)
-- Use the Edit tool for targeted changes — do NOT rewrite entire files from scratch
-- Focus on making skill-detector BETTER, not on listing skill candidates`;
+- Use the Edit tool for targeted changes — do NOT rewrite entire files from scratch`;
 }
 
 // ── Phase 1: Harvest ────────────────────────────────────────────────
@@ -136,9 +148,22 @@ Focus areas for improvement (pick 1-2 per cycle):
 You have full creative control. The goal: if a colleague runs this skill tomorrow, it should blow them away.` : "";
 
   // Task 3: dashboard (only when focus includes dashboard)
-  const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH})
+  const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH}) — WORLD-CLASS INSIGHTS
 
-Read the current dashboard, then make TARGETED improvements with Edit. Self-contained HTML, dark theme (#0f1117), inline CSS/JS only. Each cycle should make it noticeably better.` : "";
+Read the current dashboard, then make TARGETED improvements with Edit. Self-contained HTML, dark theme (#0f1117), inline CSS/JS only.
+
+This dashboard is what colleagues SEE when they use Skilluminator. Make it world-class:
+
+Focus areas for improvement (pick 1-2 per cycle):
+- **Data visualization**: Charts, trend sparklines, score gauges, heatmaps — make patterns visual
+- **Pattern insights**: Show each pattern with its automation score, value score, time impact, and trend
+- **Top recommendations**: Highlight the highest-value skill candidates with clear "why you should care"
+- **Time savings**: Show how much time the user could save if top patterns were automated
+- **Interactive elements**: Sorting, filtering, expandable detail sections, tab navigation
+- **Polish**: Typography, spacing, transitions, responsive layout, loading states
+- **Narrative**: Not just data tables — tell the story of the user's work patterns
+
+Each cycle should make a VISIBLE improvement. If a colleague opened this dashboard, they should be impressed.` : "";
 
   const tasks = [patternsTask, skillTask, dashboardTask].filter(Boolean).join("\n\n---\n\n");
   const taskCount = [true, focus !== "dashboard", focus !== "skill"].filter(Boolean).length;
