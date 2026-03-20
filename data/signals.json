@@ -1,383 +1,47 @@
 {
-  "cycleNum": 27,
-  "harvestedAt": "2026-03-19T12:00:00Z",
-  "weekOf": "2026-03-17",
+  "cycleNum": 29,
+  "harvestedAt": "2026-03-20T00:00:00.000Z",
+  "weekOf": "2026-03-16",
   "workiqQueriesRun": [
-    "Give me a comprehensive analysis of ALL my M365 activity from the past 7 days across email, meetings, Teams chats, and documents."
+    "What email threads did I send or receive most frequently in the past 7 days? List subject patterns, sender/recipient groups, and approximate time spent.",
+    "Are there recurring email types I write regularly — like status updates, approvals, scheduling requests, or data requests? Show examples from the past week.",
+    "Which emails required the most back-and-forth (most replies in a thread) this past week, and what was the topic?",
+    "What recurring meetings did I attend this past week? For each, what was the typical agenda type and who attends?",
+    "How much total time did I spend in meetings this past week, broken down by meeting type (1:1, team sync, external, etc.)?",
+    "Which meeting types happen every week at roughly the same time with the same people?",
+    "What Teams channels or chats am I most active in over the past 7 days? What topics come up repeatedly?",
+    "Are there questions I get asked repeatedly in Teams chats — things people regularly come to me for?",
+    "What types of information do I most frequently share or look up in Teams conversations this week?",
+    "What types of documents did I create, edit, or review most often this past week? Any recurring doc types like reports, specs, or decks?",
+    "Are there documents I update on a regular cadence (weekly/monthly reports, trackers, dashboards)?",
+    "What SharePoint sites or OneDrive folders do I access most frequently?",
+    "Across email, meetings, and Teams, what topics or projects consumed the most of my time this week?",
+    "Are there workflows that seem to repeat — where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?",
+    "What tasks do multiple people on my team seem to do independently that could be standardized?"
   ],
-  "signals": [
-    {
-      "source": "meeting",
-      "title": "Large Knowledge-Sharing Forums",
-      "participants": [
-        "Platform PM",
-        "Architect",
-        "Field Enablement Lead",
-        "CAT Member"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 180,
-      "keywords": [
-        "CAPE",
-        "Copilot Studio",
-        "Office Hours",
-        "BizChat Eval"
-      ],
-      "rawExcerpt": "CAPE Architecture Call, Copilot Studio Office Hours, BizChat Offline Eval Office Hour. Pattern: Listen, ask clarifying questions, redirect people to docs or follow-up syncs.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "V-Team Cross-Org Alignment Syncs",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Cross-Org Stakeholder"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 150,
-      "keywords": [
-        "Project Crucible",
-        "CAPE Compete",
-        "Customer Engagement",
-        "status review"
-      ],
-      "rawExcerpt": "Weekly Project Crucible, CAPE Compete, Customer Engagement Sync. Pattern: status review, gap identification, ownership assignment.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Deep Technical Working Sessions",
-      "participants": [
-        "PM",
-        "Technical Lead",
-        "Researcher"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "Golden Evals",
-        "Actionability",
-        "BIC AI",
-        "whiteboard",
-        "transcript"
-      ],
-      "rawExcerpt": "Golden Evals kickoff, Actionability brainstorm, BIC AI Project Crucible. Pattern: problem framing, whiteboard/transcript, artifact creation.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Camp AIR Multi-Day Immersive Block",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Design Lead",
-        "Cross-Functional Team"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 480,
-      "keywords": [
-        "Camp AIR",
-        "immersive",
-        "sub-sessions",
-        "document churn"
-      ],
-      "rawExcerpt": "Full-day bookings with multiple sub-sessions. Drives most of the chat + document churn this week.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Azure DevOps Notification Streams",
-      "participants": [
-        "DevOps System",
-        "Engineering Lead"
-      ],
-      "frequency": 30,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "ADO",
-        "Evals",
-        "Coverage",
-        "Jailing",
-        "IcM",
-        "tasks",
-        "epics"
-      ],
-      "rawExcerpt": "Tasks, requirements, epics related to Evals, Coverage, Jailing, IcM. High-volume, low-interaction stream.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Leadership and Program Announcements",
-      "participants": [
-        "Senior Leader",
-        "Program Manager"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "EvalCon",
-        "announcement",
-        "internal preview",
-        "broadcast"
-      ],
-      "rawExcerpt": "EvalCon announcement, internal previews. Pattern: broadcast email, Teams discussion, action item.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Customer and Field Coordination Threads",
-      "participants": [
-        "Field PM",
-        "Customer Success Lead",
-        "Account Manager"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "eval adoption",
-        "CRM",
-        "customer playbooks",
-        "field coordination"
-      ],
-      "rawExcerpt": "Topics: eval adoption, CRM tracking, customer playbooks. Often escalate into 1:1 or small group meetings.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Security and Compliance Alerts",
-      "participants": [
-        "Security System",
-        "Compliance Analyst"
-      ],
-      "frequency": 4,
-      "timeSpentMinutes": 20,
-      "keywords": [
-        "Purview",
-        "DLP",
-        "credentials",
-        "keys",
-        "file alert"
-      ],
-      "rawExcerpt": "File-level alerts for credentials or keys. Pattern: alert, manual file fix.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Eval Strategy and Actionability Discussions",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Data Scientist",
-        "Researcher"
-      ],
-      "frequency": 10,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "eval strategy",
-        "actionability",
-        "SEVAL",
-        "agent quality",
-        "orchestration"
-      ],
-      "rawExcerpt": "Repeated across multiple threads. Pattern: question, conceptual answer, link to repo/doc, offer meeting.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Artifact Exchange in Chat",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Designer"
-      ],
-      "frequency": 15,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "GitHub",
-        "SharePoint",
-        "zip",
-        "dashboard",
-        "repo link"
-      ],
-      "rawExcerpt": "Frequent sharing of GitHub repos, SharePoint links, zips, dashboards. Chat acts as a transport layer.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Meeting Coordination and Conflict Resolution",
-      "participants": [
-        "PM",
-        "Admin",
-        "Cross-Functional Team"
-      ],
-      "frequency": 7,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "reschedule",
-        "conflict",
-        "joining late",
-        "partial attendance",
-        "Camp AIR"
-      ],
-      "rawExcerpt": "Rescheduling, partial attendance, joining late due to Camp AIR. Pattern repeats daily.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Mentorship and Peer Sense-Making",
-      "participants": [
-        "PM",
-        "Junior Engineer",
-        "Peer PM"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "eval-driven development",
-        "orchestration",
-        "models",
-        "mental models",
-        "concepts"
-      ],
-      "rawExcerpt": "Explaining concepts (eval-driven development, orchestration, models). Converts confusion into shared mental models.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Eval Frameworks and Tooling Artifacts",
-      "participants": [
-        "PM",
-        "Engineering Lead"
-      ],
-      "frequency": 4,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "dashboard",
-        "scenario library",
-        "skill-detector",
-        "eval framework"
-      ],
-      "rawExcerpt": "Dashboards, scenario libraries, skill-detector packages. Often created after meetings, then shared in Teams.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Presentation Decks (PowerPoint)",
-      "participants": [
-        "PM",
-        "Designer",
-        "Senior Leader"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 75,
-      "keywords": [
-        "pitch deck",
-        "enablement deck",
-        "Camp AIR materials",
-        "PowerPoint"
-      ],
-      "rawExcerpt": "Pitch decks, enablement decks, Camp AIR materials. Pattern: deck draft, review in chat, reuse across meetings.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Loop Documents as Living Coordination Hubs",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Cross-Functional Team"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "Loop",
-        "ownership",
-        "agenda",
-        "summaries",
-        "coordination hub"
-      ],
-      "rawExcerpt": "Used for ownership, agenda, summaries. Often referenced across meetings and chats.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Cross-Source: Announcement to Chat to Submission",
-      "participants": [
-        "Senior Leader",
-        "PM",
-        "Peer PM"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 40,
-      "keywords": [
-        "EvalCon",
-        "announcement",
-        "brainstorm",
-        "content proposal"
-      ],
-      "rawExcerpt": "Email: EvalCon announcement. Chat: brainstorm what to present. Outcome: content proposal action item.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Cross-Source: Customer Signal to Meeting to Toolkit",
-      "participants": [
-        "Field PM",
-        "PM",
-        "Engineering Lead"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "customer pain points",
-        "actionability",
-        "playbooks",
-        "prototypes",
-        "dashboards"
-      ],
-      "rawExcerpt": "Chat/email: customer eval pain points. Meeting: actionability brainstorm. Doc: playbooks, prototypes, dashboards.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Cross-Source: DevOps Signal to Passive Intake to Synthesis",
-      "participants": [
-        "DevOps System",
-        "PM"
-      ],
-      "frequency": 10,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "ADO",
-        "notifications",
-        "passive intake",
-        "synthesis",
-        "delayed action"
-      ],
-      "rawExcerpt": "Email: ADO notifications. No immediate response. Concepts reappear later in meetings or docs.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Cross-Source: Camp AIR to Transcript to Reusable Guidance",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Cross-Functional Team"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "Camp AIR",
-        "transcript",
-        "Loop",
-        "deck",
-        "repo",
-        "reusable guidance"
-      ],
-      "rawExcerpt": "Meeting (transcribed). Shared Loop / deck / repo. Referenced later in other forums.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    }
-  ]
+  "workiqStatus": {
+    "queriesAttempted": 15,
+    "queriesSucceeded": 0,
+    "queriesFailed": 15,
+    "errorMessage": "An error occurred while processing your request.",
+    "rawResponses": [
+      { "queryIndex": 1,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 2,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 3,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 4,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 5,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 6,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 7,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 8,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 9,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 10, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 11, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 12, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 13, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 14, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
+      { "queryIndex": 15, "response": null, "conversationId": null, "error": "An error occurred while processing your request." }
+    ],
+    "diagnosticNote": "All 15 WorkIQ queries returned null response and null conversationId with the same generic error string. No M365 data was retrievable for the week of 2026-03-16. Possible causes: (1) WorkIQ EULA not yet accepted; (2) Microsoft 365 Copilot authentication session expired; (3) M365 Copilot license unavailable or not provisioned; (4) Transient WorkIQ service outage. No signals were fabricated. Re-run harvest after resolving connectivity."
+  },
+  "signals": []
 }
