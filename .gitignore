@@ -21,7 +21,10 @@ test-out.txt
 data/skill_*.txt
 data/signals_c*.json
 data/write-*.cjs
-scripts/
+scripts/write-dashboard.cjs
+!scripts/generate-dashboard.js
+!scripts/copilot-skill-detector.md
+!scripts/README-share.md
 write_*.cjs
 agentskilluminator*
 *.bak
