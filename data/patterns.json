@@ -1,10 +1,11 @@
 {
-  "lastUpdatedCycle": 57,
-  "totalCyclesRun": 57,
+  "lastUpdatedCycle": 58,
+  "totalCyclesRun": 58,
   "weekOf": "2026-03-20",
   "harvestStatusCycle29": "HARVEST FAILED (agent refinement cycle 29, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId with the same generic error as agent cycle 28. Zero signals harvested. Patterns DB remains at internal cycle 55 state (last successful harvest). No occurrenceCount increments, no new patterns added, no archival decisions triggered this pass. Consecutive agent-cycle harvest failures: 2 (cycles 28-29). All cycle-55 accumulated values carry forward unchanged.",
   "harvestStatusCycle30": "HARVEST FAILED (agent refinement cycle 30, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #3 (agent cycles 28-30, Skilluminator cycles 54-56). WorkIQ is confirmed ghosting — three separate harvest attempts across three calendar days have all returned identical null payload. OPERATOR ESCALATION RECOMMENDED: (1) Verify M365 Copilot license/auth session; (2) Accept WorkIQ EULA if pending; (3) Check for service outage in M365 admin center. Pattern staleness policy: because failures are source-connectivity failures (not pattern absence), NO pattern trend downgrades triggered this cycle. No occurrenceCount increments. Skilluminator cycle 56 accumulated values carry forward from cycle 55 unchanged. Resurrection registry and spawn registry unchanged. Archival rule suspended pending connectivity restoration.",
   "harvestStatusCycle57": "HARVEST FAILED (Skilluminator cycle 57, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #4 (agent cycles 28–31, Skilluminator cycles 53–57). WorkIQ has now failed across four separate agent-cycle attempts spanning multiple calendar days. Source-Failure Guard ACTIVE: archival rule FROZEN, all trend downgrades SUSPENDED (Type C Persistent Outage per v2.6 Connectivity Protocol). Operator escalation CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA; (3) Check M365 service health dashboard. Pattern data reflects internal cycle 55 state (last successful harvest). No occurrence counts incremented. All cycle-55 accumulated scores, trends, and velocities carry forward unchanged. Resurrection registry and spawn registry unchanged.",
+  "harvestStatusCycle58": "HARVEST FAILED (Skilluminator cycle 58, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #5 (agent cycles 28–32, Skilluminator cycles 53–58). Type C Persistent Outage now in fifth consecutive agent cycle spanning multiple calendar days. Source-Failure Guard ACTIVE: archival rule FROZEN, all trend downgrades SUSPENDED. Operator escalation CRITICAL — fifth failure with no recovery signal detected. Pattern data continues to reflect internal cycle 55 state (last successful harvest). No occurrence counts incremented. All cycle-55 accumulated scores, trends, velocities, and maturity levels carry forward unchanged. Resurrection registry and spawn registry unchanged. No new patterns admitted. Dashboard updated with cycle 58 metadata and actionable insights improvements.",
   "patterns": [
     {
       "patternId": "meeting-notes-action-item-capture",
@@ -779,11 +780,11 @@
     ]
   },
   "skillGeneratorInput": {
-    "generatedAtCycle": 57,
-    "agentRefinementCycle": 31,
-    "skilluminatorCycle": 57,
-    "weekOf": "2026-03-16",
-    "harvestNote": "Agent refinement cycle 31 (Skilluminator cycle 57): harvest failed (0 signals) — CONSECUTIVE FAILURE #4. Data reflects internal cycle 55 state (last successful harvest). Top 5 rankings unchanged. WorkIQ connectivity outage persistent; Source-Failure Guard ACTIVE, archival rule FROZEN. knowledge-forum-facilitation and peer-concept-translation remain at 'signal' maturity (require 2+ confirmation cycles post-connectivity-restore). No trend downgrades applied. Skill Spec Card output format and Scoring Confidence Bands added in v2.6 — all top-5 candidates are VALIDATED (occ >= 100).",
+    "generatedAtCycle": 58,
+    "agentRefinementCycle": 32,
+    "skilluminatorCycle": 58,
+    "weekOf": "2026-03-20",
+    "harvestNote": "Agent refinement cycle 32 (Skilluminator cycle 58): harvest failed (0 signals) — CONSECUTIVE FAILURE #5 (agent cycles 28–32, Skilluminator cycles 53–58). Data reflects internal cycle 55 state (last successful harvest). Top 5 rankings unchanged. WorkIQ connectivity outage persistent; Source-Failure Guard ACTIVE, archival rule FROZEN. knowledge-forum-facilitation and peer-concept-translation remain at 'signal' maturity (require 2+ confirmation cycles post-connectivity-restore). No trend downgrades applied. All top-5 candidates remain VALIDATED (occ >= 100). Dashboard cycle 58 improvements: org-wide section removed; Actionable Insights panel added with per-week cost estimates and ready-to-use Claude trigger prompts for top 5 patterns.",
     "candidateSkills": [
       {
         "rank": 1,

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator — Cycle 57 Dashboard</title>
+<title>Skilluminator — Cycle 58 Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -163,6 +163,37 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
 .fpill{background:var(--card2);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:0.73rem;color:var(--muted);cursor:pointer;transition:all .2s;user-select:none}
 .fpill:hover{border-color:var(--purple);color:var(--text)}
 .fpill.active{background:var(--purple);border-color:var(--purple);color:#fff}
+
+/* ── ACTIONABLE INSIGHTS ── */
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+@media(max-width:680px){.ins-grid{grid-template-columns:1fr}}
+.ins-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.ins-card:hover{box-shadow:0 6px 32px rgba(34,197,94,.12)}
+.ins-card.t-rising{border-top:3px solid var(--green)}
+.ins-card.t-stable{border-top:3px solid var(--amber)}
+.ins-card.t-declining{border-top:3px solid var(--red)}
+.ins-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.ins-rankbadge{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;margin-top:1px}
+.ins-rb1{background:linear-gradient(135deg,#f59e0b,#fcd34d);color:#111}
+.ins-rb2{background:linear-gradient(135deg,#94a3b8,#c0cfe0);color:#111}
+.ins-rb3{background:linear-gradient(135deg,#c2410c,#f97316);color:#fff}
+.ins-rbn{background:var(--card2);color:var(--muted);border:1px solid var(--border)}
+.ins-title{font-weight:700;font-size:0.88rem;color:var(--text);line-height:1.3;flex:1}
+.ins-cost-strip{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.ins-cost{display:inline-flex;align-items:center;gap:5px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;color:#f87171}
+.ins-trend-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:0.7rem;font-weight:600}
+.ins-tb-r{background:rgba(34,197,94,.1);color:var(--green)}
+.ins-tb-s{background:rgba(148,163,184,.1);color:var(--muted)}
+.ins-tb-d{background:rgba(239,68,68,.1);color:var(--red)}
+.ins-divider{height:1px;background:var(--border);margin:10px 0}
+.ins-block{margin-bottom:11px}
+.ins-lbl{font-size:0.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.ins-body{font-size:0.76rem;color:var(--text);line-height:1.55}
+.ins-cta{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 12px;margin-top:12px}
+.ins-cta-lbl{font-size:0.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.ins-cta-prompt{font-size:0.75rem;color:#d1fae5;line-height:1.5;font-family:'Cascadia Code','Fira Code',monospace;word-break:break-word}
+.ins-copy-btn{float:right;margin-top:-2px;background:rgba(34,197,94,.15);border:none;border-radius:6px;padding:2px 8px;font-size:0.65rem;color:var(--green);cursor:pointer;transition:background .2s}
+.ins-copy-btn:hover{background:rgba(34,197,94,.3)}
 </style>
 </head>
 <body>
@@ -177,15 +208,15 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
       <h1>Skilluminator</h1>
     </div>
     <div class="meta-row">
-      <div class="badge"><span class="dot dot-purple"></span>Agent Refinement Cycle 57</div>
+      <div class="badge"><span class="dot dot-purple"></span>Agent Refinement Cycle 58</div>
       <div class="badge"><span class="dot dot-amber"></span>Patterns DB · Internal Cycle 55</div>
       <div class="badge"><span class="dot dot-green"></span>Week of 2026-03-20</div>
       <div class="badge"><span class="dot dot-green"></span>Generated 2026-03-20</div>
-      <div class="badge"><span class="dot dot-red"></span>41 Individual · 27 Org-Wide Patterns</div>
+      <div class="badge"><span class="dot dot-red"></span>41 Patterns · 28 Active · 13 Archived</div>
     </div>
     <div class="harvest-warn">
-      ⚠️&nbsp;<div><strong style="color:#fca5a5">Harvest Alert — 4 Consecutive Agent-Cycle Failures (Type C Persistent Outage)</strong><br>
-      Agent cycles 28–31 (Skilluminator cycles 53–57): all 15 WorkIQ queries returned null each run. <strong style="color:#fca5a5">Source-Failure Guard ACTIVE</strong> — trend downgrades frozen, archival rule suspended. Dashboard renders from last successful harvest (internal cycle 55). All scores, velocities, and trends reflect that confirmed state. No data was fabricated. Escalation recommended: verify M365 Copilot license, re-accept WorkIQ EULA, check service health dashboard.</div>
+      ⚠️&nbsp;<div><strong style="color:#fca5a5">Harvest Alert — 5 Consecutive Agent-Cycle Failures (Type C Persistent Outage)</strong><br>
+      Agent cycles 28–32 (Skilluminator cycles 53–58): all 15 WorkIQ queries returned null each run. <strong style="color:#fca5a5">Source-Failure Guard ACTIVE</strong> — trend downgrades frozen, archival rule suspended. Dashboard renders from last successful harvest (internal cycle 55). All scores, velocities, and trends reflect that confirmed state. No data was fabricated. Escalation recommended: verify M365 Copilot license, re-accept WorkIQ EULA, check service health dashboard.</div>
     </div>
   </div>
 </div>
@@ -199,7 +230,7 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
     <div class="kpi-card">
       <div class="kpi-label">Total Patterns Tracked</div>
       <div class="kpi-num" id="kpi0">0</div>
-      <div class="kpi-sub">41 individual (13 archived) · 27 org-wide confirmed</div>
+      <div class="kpi-sub">28 active patterns · 13 archived · tracked since cycle 1</div>
     </div>
     <div class="kpi-card k-amber">
       <div class="kpi-label">Top Automation Score</div>
@@ -217,6 +248,12 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
       <div class="kpi-sub">Top 5 by composite ≥ 90 · queue ready · $814,558/yr est.</div>
     </div>
   </div>
+</section>
+
+<!-- ── ACTIONABLE INSIGHTS ── -->
+<section>
+  <div class="section-title">Actionable Insights — What to Do This Week</div>
+  <div class="ins-grid" id="insights"></div>
 </section>
 
 <!-- ── 2. TABLE ── -->
@@ -257,12 +294,6 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
       </div>
     </div>
   </div>
-</section>
-
-<!-- ── 5. ORG-WIDE ── -->
-<section>
-  <div class="section-title">Org-Wide Patterns — Confirmed Across 3+ Participants</div>
-  <div class="org-grid" id="ogrid"></div>
 </section>
 
 <!-- ── 6. SKILL CARDS ── -->
@@ -336,35 +367,7 @@ const SKILLGEN=[
   {rank:5,name:"weekly-status-report-generator",compositeScore:90,automationScore:87,valueScore:90,patternId:"weekly-status-report-generation",description:"Generates standardized weekly status reports from Loop docs, Teams threads, email updates, and meeting notes. Resolves 5-format parallel creation gap. RISING trend. 152 occurrences, 4 participants. V-Team Cross-Org Syncs confirmed as primary trigger.",triggerExamples:["Generate this week's CAPE eval status merging all sources","Draft unified XFN Report Out from parallel Teams posts this week","Create EOD debrief template for Camp AIR daily standup follow-up","Refresh weekly status from Loop doc, Teams, and email summaries"],valueProposition:"Saves ~43.64 hrs across 4 roles. 152 occ RISING. 5 parallel formats. Est. ~$113,464/yr."}
 ];
 
-const ORGWIDE=[
-  {patternId:"meeting-notes-action-item-capture",compositeScore:93,participantCount:4,timeSpentHoursTotal:67.70},
-  {patternId:"eval-results-analysis-reporting",compositeScore:91,participantCount:5,timeSpentHoursTotal:110.89},
-  {patternId:"ado-notification-triage",compositeScore:91,participantCount:3,timeSpentHoursTotal:31.84},
-  {patternId:"eval-template-scaffolder",compositeScore:90,participantCount:4,timeSpentHoursTotal:55.46},
-  {patternId:"weekly-status-report-generation",compositeScore:90,participantCount:4,timeSpentHoursTotal:43.64},
-  {patternId:"eval-coaching-and-scoping",compositeScore:89,participantCount:4,timeSpentHoursTotal:53.34},
-  {patternId:"team-status-standardization-gap",compositeScore:88,participantCount:4,timeSpentHoursTotal:31.92},
-  {patternId:"transcript-to-loop-ppt-pipeline",compositeScore:88,participantCount:4,timeSpentHoursTotal:53.73},
-  {patternId:"recurring-meeting-agenda-generator",compositeScore:87,participantCount:6,timeSpentHoursTotal:82.52},
-  {patternId:"post-meeting-external-followup-drafter",compositeScore:87,participantCount:5,timeSpentHoursTotal:38.56},
-  {patternId:"fragmented-action-item-tracking",compositeScore:87,participantCount:4,timeSpentHoursTotal:19.05},
-  {patternId:"meeting-load-triage",compositeScore:87,participantCount:6,timeSpentHoursTotal:401.64},
-  {patternId:"cross-tool-context-fragmentation",compositeScore:87,participantCount:5,timeSpentHoursTotal:51.94},
-  {patternId:"voc-customer-ask-dedup-routing",compositeScore:86,participantCount:4,timeSpentHoursTotal:17.45},
-  {patternId:"copilot-platform-faq-responder",compositeScore:85,participantCount:6,timeSpentHoursTotal:67.80},
-  {patternId:"partner-eval-enablement-meetings",compositeScore:84,participantCount:5,timeSpentHoursTotal:101.64},
-  {patternId:"training-event-artifact-coordinator",compositeScore:84,participantCount:7,timeSpentHoursTotal:244.36},
-  {patternId:"builder-user-prototype",compositeScore:82,participantCount:3,timeSpentHoursTotal:44.75},
-  {patternId:"redundant-deck-creation",compositeScore:82,participantCount:4,timeSpentHoursTotal:44.15},
-  {patternId:"skill-library-socialization",compositeScore:81,participantCount:3,timeSpentHoursTotal:12.42},
-  {patternId:"customer-enablement-asset-standardization",compositeScore:80,participantCount:4,timeSpentHoursTotal:7.25},
-  {patternId:"customer-signal-to-guidance-pipeline",compositeScore:76,participantCount:4,timeSpentHoursTotal:10.00},
-  {patternId:"access-governance-alert-classifier",compositeScore:74,participantCount:1,timeSpentHoursTotal:7.08},
-  {patternId:"knowledge-forum-facilitation",compositeScore:71,participantCount:4,timeSpentHoursTotal:3.00},
-  {patternId:"presentation-narrative-framing",compositeScore:71,participantCount:4,timeSpentHoursTotal:19.51},
-  {patternId:"peer-concept-translation",compositeScore:70,participantCount:3,timeSpentHoursTotal:1.00},
-  {patternId:"stakeholder-fyi-classifier",compositeScore:72,participantCount:5,timeSpentHoursTotal:10.94}
-];
+// ORGWIDE section removed — this dashboard shows INDIVIDUAL patterns only (Cycle 58).
 
 const HIST=[
   {c:1,n:9},{c:5,n:16},{c:10,n:22},{c:15,n:25},
@@ -520,25 +523,7 @@ top10.forEach((p,i)=>{
   });
 })();
 
-// ═══════════════════════════════════════════
-// ORG-WIDE GRID
-// ═══════════════════════════════════════════
-const og=document.getElementById('ogrid');
-ORGWIDE.forEach(o=>{
-  const lbl=findLbl(o.patternId);
-  const sc=o.compositeScore;
-  const col=sc>=90?'var(--green)':sc>=85?'var(--amber)':'var(--purple)';
-  og.innerHTML+=`<div class="ocard">
-    <div class="ocard-top">
-      <div class="ocard-name">${lbl}</div>
-      <div class="ocard-score" style="color:${col}">${sc}</div>
-    </div>
-    <div class="ocard-meta">
-      <span>&#128101; ${o.participantCount}</span>
-      <span>&#9200; ${hrsLbl(o.timeSpentHoursTotal)}</span>
-    </div>
-  </div>`;
-});
+// ORG-WIDE GRID removed (cycle 58 — individual patterns only).
 
 // ═══════════════════════════════════════════
 // SKILL GEN JSON
@@ -640,6 +625,92 @@ ORGWIDE.forEach(o=>{
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     document.querySelectorAll('.roi-fill[data-w]').forEach(b=>{b.style.width=b.dataset.w});
   }));
+})();
+
+// ═══════════════════════════════════════════
+// ACTIONABLE INSIGHTS
+// ═══════════════════════════════════════════
+(function(){
+  const INSIGHTS=[
+    {
+      patternId:"meeting-notes-action-item-capture",
+      rank:1,
+      weeklyHrs:1.2,
+      youDo:"Manually writing meeting notes, tagging owners, extracting action items, and drafting follow-up emails after every meeting — across 12+ recurring meeting types.",
+      skillDoes:"Auto-extracts structured action items (owner + due date), generates a decisions log, drafts the follow-up email, and creates ADO task stubs — all from the transcript in seconds.",
+      startHere:"Extract action items from [paste transcript] and create a Loop doc with owners, due dates, and a follow-up email draft"
+    },
+    {
+      patternId:"ado-notification-triage",
+      rank:2,
+      weeklyHrs:0.6,
+      youDo:"Scanning 30+ ADO notification emails per week to mentally sort action-required vs FYI — then routing them to the right workstream by hand.",
+      skillDoes:"Classifies each notification by work-item type, workstream prefix, and urgency. Surfaces your action items, auto-archives FYIs, and groups by workstream in one pass.",
+      startHere:"Triage my ADO notification inbox — categorize by workstream (IcM / coverage / AI Eval) and list only items needing my response before EOD"
+    },
+    {
+      patternId:"eval-results-analysis-reporting",
+      rank:3,
+      weeklyHrs:2.0,
+      youDo:"Reading through eval strategy threads, meeting transcripts, and customer-donated eval discussions to synthesize a coherent progress report by hand each week.",
+      skillDoes:"Ingests eval results, strategy threads, and donated eval data — produces a standardized report with gap analysis, coverage breakdown, and prioritized next steps.",
+      startHere:"Synthesize this week's eval progress from [paste Teams thread + meeting notes] into a standardized report with gap analysis and top 3 action items"
+    },
+    {
+      patternId:"meeting-load-triage",
+      rank:4,
+      weeklyHrs:7.3,
+      youDo:"Manually deciding which of your 12+ recurring meeting types to accept, decline, or join late — with no systematic priority framework, costing ~7 hrs/week in context-switching and calendar stress.",
+      skillDoes:"Analyzes your calendar for conflicts, scores each meeting against your current sprint priorities, and outputs a recommended accept/decline/delegate list with rationale for each.",
+      startHere:"Review my calendar for next week and recommend which meetings I should decline, delegate, or join late — my priority this sprint is [your focus area]"
+    },
+    {
+      patternId:"weekly-status-report-generation",
+      rank:5,
+      weeklyHrs:0.8,
+      youDo:"Aggregating the same weekly status from 5 different sources (Loop docs, Teams posts, email threads, meeting notes, ADO) and writing parallel versions for different audiences.",
+      skillDoes:"Pulls status signals from all sources, deduplicates, and generates a unified weekly report in your preferred format — one command replaces 5 manual workflows.",
+      startHere:"Generate this week's CAPE eval status from [paste Loop doc + Teams thread] in standard V-Team XFN format — flag any items that need escalation"
+    }
+  ];
+
+  const rbCls=['ins-rb1','ins-rb2','ins-rb3','ins-rbn','ins-rbn'];
+  const trendCls=t=>t==='rising'?'ins-tb-r':t==='declining'?'ins-tb-d':'ins-tb-s';
+  const trendLbl=t=>t==='rising'?'↑ rising':t==='declining'?'↓ declining':'→ stable';
+  const cardTrend=t=>t==='rising'?'t-rising':t==='declining'?'t-declining':'t-stable';
+  const con=document.getElementById('insights');
+
+  INSIGHTS.forEach((ins,i)=>{
+    const p=PAT.find(x=>x.id===ins.patternId)||{trend:'stable'};
+    const div=document.createElement('div');
+    div.className=`ins-card ${cardTrend(p.trend)}`;
+    div.innerHTML=`
+      <div class="ins-header">
+        <div class="ins-rankbadge ${rbCls[i]||'ins-rbn'}">${ins.rank}</div>
+        <div class="ins-title">${p.label||ins.patternId}</div>
+      </div>
+      <div class="ins-cost-strip">
+        <div class="ins-cost">⏱ ~${ins.weeklyHrs} hrs/week</div>
+        <div class="ins-trend-badge ${trendCls(p.trend)}">${trendLbl(p.trend)}</div>
+      </div>
+      <div class="ins-divider"></div>
+      <div class="ins-block">
+        <div class="ins-lbl">What you're doing manually</div>
+        <div class="ins-body">${ins.youDo}</div>
+      </div>
+      <div class="ins-block">
+        <div class="ins-lbl">What a Claude skill does instead</div>
+        <div class="ins-body">${ins.skillDoes}</div>
+      </div>
+      <div class="ins-cta">
+        <div class="ins-cta-lbl">
+          💡 Try this with Claude now
+          <button class="ins-copy-btn" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.closest('.ins-cta').querySelector('.ins-cta-prompt').textContent);this.textContent='✓ Copied';setTimeout(()=>{this.textContent='Copy'},1500)">Copy</button>
+        </div>
+        <div class="ins-cta-prompt">${ins.startHere}</div>
+      </div>`;
+    con.appendChild(div);
+  });
 })();
 
 // ═══════════════════════════════════════════
