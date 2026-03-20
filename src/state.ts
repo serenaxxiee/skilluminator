@@ -138,7 +138,13 @@ export function readCycleHistory(): CycleHistory {
 
 export function appendCycleLog(log: CycleLog): void {
   const history = readCycleHistory();
-  history.cycles.push(log);
+  // Dedup: replace if same cycleNum exists (re-run protection)
+  const idx = history.cycles.findIndex((c) => c.cycleNum === log.cycleNum);
+  if (idx >= 0) {
+    history.cycles[idx] = log;
+  } else {
+    history.cycles.push(log);
+  }
   writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2), "utf-8");
 }
 

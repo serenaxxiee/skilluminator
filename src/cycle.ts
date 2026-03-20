@@ -1,4 +1,4 @@
-// ── Cycle execution: two-phase agent invocation per cycle ───────────
+// ── Cycle execution: phased agent invocation per cycle ──────────────
 
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
@@ -70,8 +70,7 @@ function saveUsageHistory(history: UsageHistory): void {
 }
 
 function extractUsage(msg: any): { input: number; output: number } {
-  // SDK result messages may include usage stats in various locations
-  const usage = msg.usage ?? msg.result_meta?.usage ?? msg.data?.usage ?? {};
+  const usage = msg.usage ?? msg.result_meta?.usage ?? msg.data?.usage ?? msg.result?.usage ?? {};
   return {
     input: usage.input_tokens ?? usage.inputTokens ?? 0,
     output: usage.output_tokens ?? usage.outputTokens ?? 0,
@@ -117,10 +116,8 @@ function createCycleBranch(cycleNum: number): string {
 function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDetected: number, topCandidate: string): string {
   const branch = `cycle-${cycleNum}`;
 
-  // Stage all changes (skill-detector, patterns, dashboard, etc.)
   git("add -A");
 
-  // Check if there are changes to commit
   const status = git("status --porcelain");
   if (!status) {
     display.warning("No changes to commit this cycle");
@@ -128,10 +125,9 @@ function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDete
     return "";
   }
 
-  // Commit — use a temp file for the message to avoid shell escaping issues
   const commitMsgPath = path.join(PROJECT_ROOT, ".git", "CYCLE_COMMIT_MSG");
-  const commitMsg = `cycle ${cycleNum}: refine skill-detector\n\n${refineSummary.slice(0, 200).replace(/["\n]/g, " ")}\n\nPatterns: ${patternsDetected} | Top: ${topCandidate}`;
-  writeFileSync(commitMsgPath, commitMsg, "utf-8");
+  const safeRefine = refineSummary.slice(0, 300).replace(/["\n\r]/g, " ");
+  writeFileSync(commitMsgPath, `cycle ${cycleNum}: refine skill-detector\n\n${safeRefine}\n\nPatterns: ${patternsDetected} | Top: ${topCandidate}`, "utf-8");
   try {
     execSync(`git commit -F .git/CYCLE_COMMIT_MSG`, {
       cwd: PROJECT_ROOT, encoding: "utf-8", timeout: 30_000,
@@ -142,28 +138,30 @@ function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDete
     return "";
   }
 
-  // Push
   git(`push -u origin ${branch}`);
 
-  // Create PR — use temp file for body to avoid shell escaping issues
   const prBodyPath = path.join(PROJECT_ROOT, ".git", "PR_BODY");
-  const prBody = `## Cycle ${cycleNum} — Skill-Detector Refinement\n\n### Changes\n${refineSummary.slice(0, 500).replace(/"/g, "'")}\n\n### Stats\n- Patterns tracked: ${patternsDetected}\n- Top candidate: ${topCandidate}\n\n---\n*Automated by Skilluminator*`;
-  writeFileSync(prBodyPath, prBody, "utf-8");
+  writeFileSync(prBodyPath, `## Cycle ${cycleNum}\n\n${safeRefine}\n\n- Patterns: ${patternsDetected}\n- Top: ${topCandidate}\n\n*Automated by Skilluminator*`, "utf-8");
 
   const prUrl = gh(`pr create --title "Cycle ${cycleNum}: refine skill-detector" --body-file .git/PR_BODY --base main --head ${branch}`);
 
   if (prUrl) {
     display.success(`PR created: ${prUrl}`);
-
-    // Merge immediately so next cycle builds on latest
     gh(`pr merge ${branch} --squash --delete-branch`);
   }
 
-  // Return to main and pull merged changes
   git("checkout main");
   git("pull origin main");
 
   return prUrl;
+}
+
+// ── Signal freshness check ──────────────────────────────────────────
+
+function signalAgeHours(): number {
+  const signals = readSignals();
+  if (!signals?.harvestedAt) return 999;
+  return (Date.now() - new Date(signals.harvestedAt).getTime()) / (1000 * 3600);
 }
 
 // ── Exports ─────────────────────────────────────────────────────────
@@ -203,54 +201,59 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
     systemPrompt,
   };
 
-  // Token accumulators per phase
   let harvestTokens = { input: 0, output: 0 };
   let refineTokens = { input: 0, output: 0 };
   let summaryTokens = { input: 0, output: 0 };
 
-  // ── Phase 0: Check for steering messages from Serena ──────────
-  display.sectionHeader("Phase 0: Checking Teams for Steering Input");
+  // ── Phase 0: Steering (every 3 cycles) ────────────────────────
   let steeringInput = "";
-  try {
-    for await (const message of query({
-      prompt: buildSteeringPrompt(cycleNum),
-      options: {
-        ...baseOptions,
-        tools: [],
-        allowedTools: [TEAMS_READ_TOOL],
-        disallowedTools: ["AskUserQuestion"],
-        mcpServers: teamsMcp,
-      },
-    })) {
-      const msg = message as any;
-      if ("result" in msg) {
-        steeringInput = msg.result ?? "";
+  if (cycleNum % 3 === 1 || cycleNum <= 3) {
+    display.sectionHeader("Phase 0: Checking Teams for Steering Input");
+    try {
+      for await (const message of query({
+        prompt: buildSteeringPrompt(cycleNum),
+        options: {
+          ...baseOptions,
+          tools: [],
+          allowedTools: [TEAMS_READ_TOOL],
+          disallowedTools: ["AskUserQuestion"],
+          mcpServers: teamsMcp,
+        },
+      })) {
+        const msg = message as any;
+        if ("result" in msg) {
+          steeringInput = msg.result ?? "";
+        }
       }
+      if (steeringInput && !steeringInput.toLowerCase().includes("no steering input")) {
+        display.info("Steering", "Found operator instructions");
+        display.agentOutput(steeringInput.slice(0, 300));
+      } else {
+        steeringInput = "";
+        display.info("Steering", "No operator instructions");
+      }
+    } catch (err: any) {
+      display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
     }
-    if (steeringInput && !steeringInput.toLowerCase().includes("no steering input")) {
-      display.info("Steering", "Found operator instructions");
-      display.agentOutput(steeringInput.slice(0, 300));
-    } else {
-      steeringInput = "";
-      display.info("Steering", "No operator instructions");
-    }
-  } catch (err: any) {
-    display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
+    display.sectionEnd();
+  } else {
+    display.sectionHeader("Phase 0: Steering — skipped (runs every 3 cycles)");
+    display.sectionEnd();
   }
-  display.sectionEnd();
 
-  // ── Phase 1: Harvest (only if no signals exist yet) ────────────
-  const existingSignals = readSignals();
+  // ── Phase 1: Harvest (when signals are stale >24h) ────────────
+  const ageHrs = signalAgeHours();
   let harvestSummary = "";
   let harvestToolCalls = 0;
 
-  if (existingSignals && existingSignals.signals.length > 0) {
-    display.sectionHeader("Phase 1: Harvest SKIPPED — using existing signals");
-    display.info("Signals", `${existingSignals.signals.length} from cycle ${existingSignals.cycleNum}`);
-    harvestSummary = `Reusing ${existingSignals.signals.length} signals from previous harvest`;
+  if (ageHrs < 24) {
+    const existingSignals = readSignals();
+    display.sectionHeader("Phase 1: Harvest SKIPPED — signals fresh");
+    display.info("Signals", `${existingSignals?.signals?.length ?? 0} signals, ${ageHrs.toFixed(1)}h old`);
+    harvestSummary = `Reusing ${existingSignals?.signals?.length ?? 0} signals (${ageHrs.toFixed(1)}h old)`;
     display.sectionEnd();
   } else {
-    display.sectionHeader("Phase 1: Harvesting M365 Signals via WorkIQ");
+    display.sectionHeader(`Phase 1: Harvesting M365 Signals (signals ${ageHrs >= 999 ? "missing" : `${ageHrs.toFixed(0)}h old`})`);
 
     try {
       for await (const message of query({
@@ -310,23 +313,21 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
     display.sectionEnd();
   }
 
-  // ── Phase 2: Refine & Report (on a cycle branch) ─────────────
-  display.sectionHeader("Phase 2: Pattern Analysis & Dashboard Generation");
+  // ── Phase 2: Refine (on a cycle branch) ───────────────────────
+  display.sectionHeader("Phase 2: Refine Skill-Detector & Dashboard");
   const cycleBranch = createCycleBranch(cycleNum);
   let refineSummary = "";
   let refineToolCalls = 0;
 
-  const refineOptions: any = {
-    ...baseOptions,
-    tools: ["Read", "Write", "Edit", "Bash", "Glob"],
-    allowedTools: ["Read", "Write", "Edit", "Bash", "Glob"],
-    disallowedTools: ["AskUserQuestion"],
-  };
-
   try {
     for await (const message of query({
       prompt: buildRefinePrompt(cycleNum, steeringInput || undefined),
-      options: refineOptions,
+      options: {
+        ...baseOptions,
+        tools: ["Read", "Write", "Edit", "Bash", "Glob"],
+        allowedTools: ["Read", "Write", "Edit", "Bash", "Glob"],
+        disallowedTools: ["AskUserQuestion"],
+      },
     })) {
       const msg = message as any;
 
@@ -374,7 +375,7 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   }
   display.sectionEnd();
 
-  // ── Phase 2b: Commit & PR ────────────────────────────────────
+  // ── Phase 2b: Commit & PR ─────────────────────────────────────
   display.sectionHeader("Phase 2b: Git Commit & Pull Request");
   let prUrl = "";
   try {
@@ -394,18 +395,18 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   }
   display.sectionEnd();
 
-  // ── Phase 3: Post update to Teams (every cycle) ────────────────
+  // ── Phase 3: Teams update ─────────────────────────────────────
   let summarySent = false;
   let summaryToolCalls = 0;
   {
     display.sectionHeader("Phase 3: Sending Summary to Teams");
     try {
       for await (const message of query({
-        prompt: buildSummaryPrompt(cycleNum, prUrl),
+        prompt: buildSummaryPrompt(cycleNum, prUrl, refineSummary),
         options: {
           ...baseOptions,
-          tools: ["Read", "Write"],
-          allowedTools: ["Read", "Write", TEAMS_POST_TOOL],
+          tools: ["Write"],
+          allowedTools: ["Write", TEAMS_POST_TOOL],
           disallowedTools: ["AskUserQuestion"],
           mcpServers: teamsMcp,
         },
@@ -455,7 +456,6 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   display.info("Teams", `${formatTokens(summaryTokens.input)} in / ${formatTokens(summaryTokens.output)} out`);
   display.info("Cycle Total", `${formatTokens(totalInput)} in / ${formatTokens(totalOutput)} out = ${formatTokens(totalTokens)} total`);
 
-  // Persist to usage history
   const history = loadUsageHistory();
   const cycleUsage: CycleUsage = {
     cycleNum,
@@ -475,10 +475,9 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   display.info("Cumulative", `${formatTokens(history.cumulative.totalTokens)} total across ${history.cumulative.totalCycles} cycles`);
   display.sectionEnd();
 
-  // ── Log this cycle (after ALL phases complete) ────────────────
+  // ── Log this cycle ────────────────────────────────────────────
   const durationMs = Date.now() - startMs;
 
-  // Resilient pattern reading — the agent may write varying JSON schemas
   let patternsDetected = 0;
   let newPatterns = 0;
   let topCandidate = "none";
@@ -500,7 +499,7 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
         topScore = Math.round((sorted[0].automationScore + sorted[0].valueScore) / 2);
       }
     }
-  } catch { /* patterns file may not match expected schema — that's ok */ }
+  } catch { /* patterns file may not match expected schema */ }
 
   const cycleLog: CycleLog = {
     cycleNum,

@@ -17,7 +17,7 @@ if (existsSync(envPath)) {
   }
 }
 
-const CYCLE_DELAY_MS = 10_000;
+const CYCLE_DELAY_MS = parseInt(process.env.SKILLUMINATOR_CYCLE_DELAY_MS ?? "10000", 10);
 
 function formatTokens(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`;
