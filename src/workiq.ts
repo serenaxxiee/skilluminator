@@ -1,9 +1,4 @@
-// ── MCP server configs: WorkIQ + Teams ──────────────────────────────
-
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// ── MCP server config: WorkIQ ────────────────────────────────────────
 
 /** WorkIQ MCP config matching the user's ~/.claude/.mcp.json */
 export function getWorkIQMcpConfig(): Record<string, any> {
@@ -15,21 +10,7 @@ export function getWorkIQMcpConfig(): Record<string, any> {
   };
 }
 
-/** Teams MCP config for posting summaries to team channel */
-export function getTeamsMcpConfig(): Record<string, any> {
-  const serverPath = path.join(__dirname, "teams-server.ts");
-  const tsxBin = path.join(__dirname, "..", "node_modules", ".bin", "tsx");
-  return {
-    "teams-skilluminator": {
-      command: tsxBin,
-      args: [serverPath],
-    },
-  };
-}
-
 export const WORKIQ_TOOL = "mcp__workiq__ask_work_iq";
-export const TEAMS_POST_TOOL = "mcp__teams-skilluminator__post_message";
-export const TEAMS_READ_TOOL = "mcp__teams-skilluminator__read_steering";
 
 /**
  * Single broad query focused on individual work patterns.
