@@ -1,5 +1,5 @@
 {
-  "cycleNum": 30,
+  "cycleNum": 31,
   "harvestedAt": "2026-03-20T00:00:00.000Z",
   "weekOf": "2026-03-16",
   "workiqQueriesRun": [
@@ -19,31 +19,113 @@
     "Are there workflows that seem to repeat — where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?",
     "What tasks do multiple people on my team seem to do independently that could be standardized?"
   ],
-  "workiqStatus": {
-    "queriesAttempted": 15,
-    "queriesSucceeded": 0,
-    "queriesFailed": 15,
-    "errorMessage": "An error occurred while processing your request.",
-    "rawResponses": [
-      { "queryIndex": 1,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 2,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 3,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 4,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 5,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 6,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 7,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 8,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 9,  "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 10, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 11, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 12, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 13, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 14, "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-      { "queryIndex": 15, "response": null, "conversationId": null, "error": "An error occurred while processing your request." }
-    ],
-    "diagnosticNote": "All 15 WorkIQ queries returned null response and null conversationId with the same generic error string. This is the second consecutive cycle (cycles 29 and 30) with a total harvest failure. Possible causes: (1) WorkIQ EULA not yet accepted; (2) M365 Copilot authentication session expired or not established; (3) M365 Copilot license unavailable or not provisioned; (4) Transient WorkIQ service outage. No signals were fabricated. Re-run after resolving connectivity.",
-    "consecutiveFailureCycles": 2,
-    "previousFailureCycle": 29
-  },
-  "signals": []
+  "queryResults": [
+    {
+      "queryIndex": 1,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 2,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 3,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 4,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 5,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 6,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 7,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 8,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 9,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 10,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 11,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 12,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 13,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 14,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    },
+    {
+      "queryIndex": 15,
+      "status": "error",
+      "error": "An error occurred while processing your request.",
+      "response": null,
+      "conversationId": null
+    }
+  ],
+  "signals": [],
+  "harvestNotes": "All 15 WorkIQ queries for Cycle 31 (week of 2026-03-16) returned service errors with no response payload and no conversationId. No M365 data was accessible. Zero signals were extracted. No data was fabricated. Possible causes: WorkIQ service outage, authentication/session expiry, or EULA not yet accepted for this environment."
 }
