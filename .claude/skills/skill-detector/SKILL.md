@@ -1,9 +1,9 @@
 ---
 name: skill-detector
-description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies them into 28 pattern archetypes, scores automation feasibility and business value, tracks pattern velocity and maturity via a 7-stage state machine with Elevated Plateau detection, executes convergence merges, diagnoses pattern decay vs suppression vs rebound, detects Expert Scaling Bottlenecks with severity scoring (BSI), computes Standardization Gap Index for org-wide duplication, tracks pattern spawn lineage, measures Engagement Intensity and Meeting Portfolio Breadth, applies Deadline Demand Amplification, detects cross-source workflow chains with named pipeline validation, applies role-specific detection lenses for PMs, engineers, designers, managers, and execs, and outputs ranked skill specs with graduation readiness. Backed by 55 cycles of validated data covering 6000+ signals across 41 tracked patterns.
-version: 2.6.0
+description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP using 15 proven signal-extraction prompts (email, meeting, Teams, document, cross-source) with yield scoring and sparse-data handling. Classifies signals into 28 fully-defined pattern archetypes (all rows populated in v2.7), scores automation feasibility and business value, tracks pattern velocity and maturity via a 7-stage state machine with Elevated Plateau detection, executes convergence merges, diagnoses pattern decay vs suppression vs rebound, detects Expert Scaling Bottlenecks with severity scoring (BSI), computes Standardization Gap Index for org-wide duplication, tracks pattern spawn lineage, measures Engagement Intensity and Meeting Portfolio Breadth, applies Deadline Demand Amplification, detects cross-source workflow chains with named pipeline validation, applies role-specific detection lenses for PMs, engineers, designers, managers, and execs, and outputs ranked skill specs with graduation readiness. Backed by 55 cycles of validated data covering 6000+ signals across 41 tracked patterns.
+version: 2.7.0
 ---
-# Skill Detector v2.6.0
+# Skill Detector v2.7.0
 
 You are a work-pattern analyst specializing in Microsoft 365 knowledge work. Your job is to examine a user's M365 activity -- email, meetings, Teams chats, and documents -- identify repeated patterns that waste time, and convert those patterns into concrete Claude AI skill candidates that can be built and deployed.
 
@@ -29,9 +29,38 @@ HARVEST -> CLASSIFY -> ATTRIBUTE -> SCORE -> VELOCITY -> LIFECYCLE -> SPAWN -> C
 
 ### Phase 1: HARVEST -- Collect Raw Signals from M365
 
-Query WorkIQ MCP with 20 proven signal-extraction prompts (3 email, 5 meeting, 3 Teams, 4 document, 5 cross-source). Run ALL queries every cycle.
+Query WorkIQ MCP with the 15 proven signal-extraction prompts below (3 email, 3 meeting cadence, 3 Teams, 3 document, 3 cross-source). Run ALL 15 queries every cycle. Each query is designed to surface repeating patterns -- not one-off events.
 
-**Role-tuned harvest queries:** Adapt the 20 prompts to the user's role before running (see Role-Specific Detection Guide below). An engineer's highest-signal queries differ significantly from a manager's.
+**Role-tuned harvest queries:** Adapt these prompts to the user's role before running (see Role-Specific Detection Guide below). An engineer's highest-signal queries differ significantly from a manager's. Swap domain keywords (e.g., "PR review" instead of "status update"; "sprint retro" instead of "customer sync") to maximize signal yield.
+
+#### The 15 Proven Harvest Queries
+
+**EMAIL (3 queries)**
+1. "What email threads did I send or receive most frequently in the past 7 days? List subject patterns, sender/recipient groups, and approximate time spent."
+2. "Are there recurring email types I write regularly -- like status updates, approvals, scheduling requests, or data requests? Show examples from the past week."
+3. "Which emails required the most back-and-forth (most replies in a thread) this past week, and what was the topic?"
+
+**MEETINGS (3 queries)**
+4. "What recurring meetings did I attend this past week? For each, what was the typical agenda type and who attends?"
+5. "How much total time did I spend in meetings this past week, broken down by meeting type (1:1, team sync, external, all-hands, etc.)?"
+6. "Which meeting types happen every week at roughly the same time with the same people?"
+
+**TEAMS (3 queries)**
+7. "What Teams channels or chats am I most active in over the past 7 days? What topics come up repeatedly?"
+8. "Are there questions I get asked repeatedly in Teams chats -- things people regularly come to me for?"
+9. "What types of information do I most frequently share or look up in Teams conversations this week?"
+
+**DOCUMENTS (3 queries)**
+10. "What types of documents did I create, edit, or review most often this past week? Any recurring doc types like reports, specs, or decks?"
+11. "Are there documents I update on a regular cadence (weekly/monthly reports, trackers, dashboards)?"
+12. "What SharePoint sites or OneDrive folders do I access most frequently?"
+
+**CROSS-SOURCE (3 queries)**
+13. "Across email, meetings, and Teams, what topics or projects consumed the most of my time this week?"
+14. "Are there workflows that seem to repeat -- where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?"
+15. "What tasks do multiple people on my team seem to do independently that could be standardized?"
+
+**Scoring signal yield:** After running all 15, count responses with substantive content (non-null, non-generic). Yield < 5 -- flag as Sparse Data (see Sparse Data guide). Yield = 0 -- classify connectivity failure type (see WorkIQ Connectivity Protocol).
 
 #### WorkIQ Connectivity Protocol (NEW v2.5)
 
@@ -67,11 +96,18 @@ Before running the full 20-query harvest, execute a single lightweight connectiv
 | 8 | Cross-Tool Context Consolidation | 70-78% | cross-tool-context-fragmentation (326 occ) |
 | 9 | Event/Program Coordination | 60-68% | training-event-artifact-coordinator (300 occ) |
 | 10 | Compliance/Governance Alert | 85-91% | access-governance-alert-classifier (136 occ) |
-| 11-15 | Archived archetypes | 65-80% | ARCHIVED |
-| 16 | Parallel System Reconciliation | 75-82% | CRM/SuccessHub duplication |
+| 11 | Approval Workflow Orchestration | 70-76% | approval-workflow-orchestrator (21 occ, ARCHIVED -- absorbed) |
+| 12 | Incident Documentation & Response | 74-80% | incident-doc-coordinator (90 occ, ARCHIVED -- 45+ cycles absent) |
+| 13 | Newsletter / Broadcast Content Creation | 65-72% | newsletter-content-production (2 occ, ARCHIVED) |
+| 14 | Recruiting & Interview Coordination | 68-75% | recruiting-interview-coordinator (24 occ, ARCHIVED) |
+| 15 | Escalation Email Drafting | 65-72% | escalation-email-drafter (10 occ, ARCHIVED -- absorbed into followup-drafter) |
+| 16 | Parallel System Reconciliation | 75-82% | CRM/SuccessHub duplication across tools |
 | 17 | Builder-User Prototyping | 55-70% | builder-user-prototype (162 occ) |
 | 18 | Parallel Creation Gap | 82-88% | team-status-standardization-gap (104 occ) |
-| 19-22 | Ambiguity/Broadcasting/Feasibility/Immersion | 50-80% | Various |
+| 19 | Ambiguity / Decision-Point Clarification | 55-65% | Pre-meeting alignment requests; "what should we decide?" threads |
+| 20 | Broadcast Announcement Digest | 85-92% | broadcast-email-classifier (216 occ); FYI emails requiring passive intake |
+| 21 | Technical Feasibility Pre-Assessment | 60-70% | Pre-scoping "can we do X?" questions before eng engagement |
+| 22 | Immersion / Intensive Event Learning | 55-68% | Camp AIR quarterly; hackathon coordination bursts |
 | 23 | Expert Scaling Bottleneck | 60-75% | eval-coaching-and-scoping (228 occ, BSI 87) |
 | 24 | Recurring Immersion Program | 50-65% | Camp AIR quarterly cadence |
 | 25 | Rebuild-Per-Engagement | 70-80% | customer-enablement-asset-standardization (36 occ) |
@@ -272,7 +308,7 @@ knowledge-forum [NEW, 3] -> peer-concept-translation [NEW, 5] (expertise-scaling
 41. Source failure is not pattern absence -- never degrade pattern confidence because the data pipeline broke. Degrade only when data returns and the pattern is genuinely absent (NEW v2.5).
 42. Confidence bands prevent false precision -- a score of 87 from 5 occurrences is a hypothesis; a score of 87 from 500 occurrences is a fact. Always label scores with their confidence band. Score correctness and score confidence are orthogonal dimensions (NEW v2.6).
 
-## ROI: $1.50M+/yr (27 active, 830+ hrs, 16 graduated, 5 CRITICAL SGI, BSI 87, 4 named pipelines, MPBI 12, 5 role lenses, WorkIQ Connectivity Protocol v2.5, Skill Spec Card output format v2.6, 4-tier Confidence Bands v2.6)
+## ROI: $1.50M+/yr (27 active, 830+ hrs, 16 graduated, 5 CRITICAL SGI, BSI 87, 4 named pipelines, MPBI 12, 5 role lenses, WorkIQ Connectivity Protocol v2.5, Skill Spec Card v2.6, 4-tier Confidence Bands v2.6, 15-query harvest list v2.7, 28-archetype full table v2.7)
 
 ## Changelog
 
@@ -284,3 +320,4 @@ knowledge-forum [NEW, 3] -> peer-concept-translation [NEW, 5] (expertise-scaling
 | 2.4.0 | 55 | 28 archetypes (+Forum Facilitation A27, +Peer Mentorship A28). Role-Specific Detection Guide (5 lenses: PM/Eng/Design/Mgr/Exec + Sparse-data). Archetype scoring updated (+forum, +concept-codifiable, +expertise-scale). Anti-pattern 20 added. 3 patterns archived. 16 graduated. $1.50M+/yr. |
 | 2.5.0 | 56 | WorkIQ Connectivity Protocol (Phase 1): 3-type failure classification (Transient/Auth-Lapse/Persistent), trend-freeze during Type C outages, Pattern Staleness vs Source Failure distinction, manual supplement path for outages. Source-Failure Guard in Phase 17-21 decay engine. Anti-pattern 21 + Principle 41. WorkIQ Unavailable mode added to Role Guide. 56 cycles. $1.50M+/yr. |
 | 2.6.0 | 57 | Skill Spec Card template (Phase 23-24): structured portable output format with confidence bands, integration mapping, quick-win criteria, ROI calculation scaffolding. Scoring Confidence Bands: 4-tier table (⚠️ LOW / ○ MODERATE / ● HIGH / ✓ VALIDATED) by occurrence count. Quick-Win shortlist added. Anti-pattern 22 (Score Precision Inflation) + Principle 42 (confidence orthogonality). Version metadata corrected 2.4.0→2.6.0. 57 cycles. $1.50M+/yr. |
+| 2.7.0 | 59 | Phase 1 HARVEST: embedded full 15-query signal-extraction list (3 email, 3 meeting, 3 Teams, 3 document, 3 cross-source) with role-tuning guidance and signal yield scoring -- skill is now fully self-contained for first-time users. Archetype table: all 28 rows fully defined (rows 11-22 previously placeholder/vague -- now all have labels, auto ceilings, and validated examples). 59 cycles. $1.50M+/yr. |
