@@ -1,5 +1,5 @@
 {
-  "cycleNum": 31,
+  "cycleNum": 32,
   "harvestedAt": "2026-03-20T00:00:00.000Z",
   "weekOf": "2026-03-16",
   "workiqQueriesRun": [
@@ -127,5 +127,5 @@
     }
   ],
   "signals": [],
-  "harvestNotes": "All 15 WorkIQ queries for Cycle 31 (week of 2026-03-16) returned service errors with no response payload and no conversationId. No M365 data was accessible. Zero signals were extracted. No data was fabricated. Possible causes: WorkIQ service outage, authentication/session expiry, or EULA not yet accepted for this environment."
+  "harvestNotes": "All 15 WorkIQ queries for Cycle 32 (week of 2026-03-16) returned service errors with no response payload and no conversationId. No M365 data was accessible. Zero signals were extracted. No data was fabricated. This is the second consecutive cycle (Cycle 31 and Cycle 32) with identical total failure. Most likely cause: WorkIQ EULA not yet accepted, or persistent authentication/session issue requiring manual re-authorization."
 }
