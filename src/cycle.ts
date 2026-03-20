@@ -7,7 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import {
   buildSystemPrompt, buildHarvestPrompt,
-  buildRefinePrompt,
+  buildRefinePrompt, type RefineFocus,
 } from "./prompts.js";
 import { getWorkIQMcpConfig, WORKIQ_TOOL } from "./workiq.js";
 import {
@@ -113,29 +113,16 @@ function gh(cmd: string): string {
   }
 }
 
-function createCycleBranch(cycleNum: number): string {
-  const branch = `cycle-${cycleNum}`;
-  git("checkout main");
-  git(`checkout -b ${branch}`);
-  display.info("Git", `Created branch ${branch}`);
-  return branch;
-}
-
 function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDetected: number, topCandidate: string): string {
   const branch = `cycle-${cycleNum}`;
 
+  // Create branch now (deferred from before refine)
+  git(`checkout -b ${branch}`);
   git("add -A");
-
-  const status = git("status --porcelain");
-  if (!status) {
-    display.warning("No changes to commit this cycle");
-    git("checkout main");
-    return "";
-  }
 
   const commitMsgPath = path.join(PROJECT_ROOT, ".git", "CYCLE_COMMIT_MSG");
   const safeRefine = refineSummary.slice(0, 300).replace(/["\n\r]/g, " ");
-  writeFileSync(commitMsgPath, `cycle ${cycleNum}: refine skill-detector\n\n${safeRefine}\n\nPatterns: ${patternsDetected} | Top: ${topCandidate}`, "utf-8");
+  writeFileSync(commitMsgPath, `cycle ${cycleNum}: refine [${cycleNum % 2 === 1 ? "skill" : "dashboard"}]\n\n${safeRefine}\n\nPatterns: ${patternsDetected} | Top: ${topCandidate}`, "utf-8");
   try {
     execSync(`git commit -F .git/CYCLE_COMMIT_MSG`, {
       cwd: PROJECT_ROOT, encoding: "utf-8", timeout: 30_000,
@@ -151,7 +138,7 @@ function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDete
   const prBodyPath = path.join(PROJECT_ROOT, ".git", "PR_BODY");
   writeFileSync(prBodyPath, `## Cycle ${cycleNum}\n\n${safeRefine}\n\n- Patterns: ${patternsDetected}\n- Top: ${topCandidate}\n\n*Automated by Skilluminator*`, "utf-8");
 
-  const prUrl = gh(`pr create --title "Cycle ${cycleNum}: refine skill-detector" --body-file .git/PR_BODY --base main --head ${branch}`);
+  const prUrl = gh(`pr create --title "Cycle ${cycleNum}: refine" --body-file .git/PR_BODY --base main --head ${branch}`);
 
   if (prUrl) {
     display.success(`PR created: ${prUrl}`);
@@ -162,6 +149,24 @@ function commitAndCreatePR(cycleNum: number, refineSummary: string, patternsDete
   git("pull origin main");
 
   return prUrl;
+}
+
+function commitDirectToMain(cycleNum: number, refineSummary: string, patternsDetected: number, topCandidate: string): string {
+  git("add -A");
+  const commitMsgPath = path.join(PROJECT_ROOT, ".git", "CYCLE_COMMIT_MSG");
+  const safeRefine = refineSummary.slice(0, 300).replace(/["\n\r]/g, " ");
+  writeFileSync(commitMsgPath, `cycle ${cycleNum}: refine [${cycleNum % 2 === 1 ? "skill" : "dashboard"}]\n\n${safeRefine}\n\nPatterns: ${patternsDetected} | Top: ${topCandidate}`, "utf-8");
+  try {
+    execSync(`git commit -F .git/CYCLE_COMMIT_MSG`, {
+      cwd: PROJECT_ROOT, encoding: "utf-8", timeout: 30_000,
+    });
+    display.success(`Committed cycle ${cycleNum} to main`);
+    git("push origin main");
+    return "";
+  } catch (err: any) {
+    display.warning(`Commit failed: ${err.message.split("\n")[0]}`);
+    return "";
+  }
 }
 
 // ── Signal freshness check ──────────────────────────────────────────
@@ -200,7 +205,7 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   const systemPrompt = buildSystemPrompt();
 
   const baseOptions: any = {
-    cwd: "C:/agent/skilluminator",
+    cwd: PROJECT_ROOT,
     pathToClaudeCodeExecutable: CLI_JS,
     permissionMode: "bypassPermissions",
     allowDangerouslySkipPermissions: true,
@@ -298,15 +303,16 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
     display.sectionEnd();
   }
 
-  // ── Phase 2: Refine (on a cycle branch) ───────────────────────
-  display.sectionHeader("Phase 2: Refine Skill-Detector & Dashboard");
-  const cycleBranch = createCycleBranch(cycleNum);
+  // ── Phase 2: Refine (alternating focus) ─────────────────────
+  // Steering overrides alternation — if operator is steering, do both
+  const focus: RefineFocus = steeringInput ? "both" : (cycleNum % 2 === 1 ? "skill" : "dashboard");
+  display.sectionHeader(`Phase 2: Refine [${focus.toUpperCase()}]`);
   let refineSummary = "";
   let refineToolCalls = 0;
 
   try {
     for await (const message of query({
-      prompt: buildRefinePrompt(cycleNum, steeringInput || undefined),
+      prompt: buildRefinePrompt(cycleNum, steeringInput || undefined, focus),
       options: {
         ...baseOptions,
         model: REFINE_MODEL,
@@ -362,30 +368,41 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   }
   display.sectionEnd();
 
-  // ── Phase 2b: Commit & PR ─────────────────────────────────────
-  display.sectionHeader("Phase 2b: Git Commit & Pull Request");
+  // ── Phase 2b: Commit & PR (deferred — only if changes exist) ──
+  display.sectionHeader("Phase 2b: Git Commit");
   let prUrl = "";
   try {
-    const raw = readPatterns();
-    const patCount = raw ? (Array.isArray(raw.patterns) ? raw.patterns.length : 0) : 0;
-    const topCand = (() => {
-      if (!raw || !Array.isArray(raw.patterns)) return "none";
-      const sorted = raw.patterns
-        .filter((p: any) => typeof p.automationScore === "number" && typeof p.valueScore === "number")
-        .sort((a: any, b: any) => ((b.automationScore + b.valueScore) / 2) - ((a.automationScore + a.valueScore) / 2));
-      return sorted[0]?.candidateSkillName ?? "none";
-    })();
-    prUrl = commitAndCreatePR(cycleNum, refineSummary, patCount, topCand);
+    const status = git("status --porcelain");
+    if (!status) {
+      display.info("Git", "No changes this cycle — skipping commit");
+    } else {
+      const raw = readPatterns();
+      const patCount = raw ? (Array.isArray(raw.patterns) ? raw.patterns.length : 0) : 0;
+      const topCand = (() => {
+        if (!raw || !Array.isArray(raw.patterns)) return "none";
+        const sorted = raw.patterns
+          .filter((p: any) => typeof p.automationScore === "number" && typeof p.valueScore === "number")
+          .sort((a: any, b: any) => ((b.automationScore + b.valueScore) / 2) - ((a.automationScore + a.valueScore) / 2));
+        return sorted[0]?.candidateSkillName ?? "none";
+      })();
+
+      if (SKIP_PR) {
+        // Fast path: commit directly to main
+        prUrl = commitDirectToMain(cycleNum, refineSummary, patCount, topCand);
+      } else {
+        prUrl = commitAndCreatePR(cycleNum, refineSummary, patCount, topCand);
+      }
+    }
   } catch (err: any) {
-    display.failure(`PR creation error: ${err.message}`);
+    display.failure(`Commit error: ${err.message}`);
     git("checkout main");
   }
   display.sectionEnd();
 
-  // ── Phase 3: Post to feed ───────────────────────────────────────
+  // ── Phase 3: Post to feed (only when interesting) ──────────────
   let summarySent = false;
   {
-    display.sectionHeader("Phase 3: Posting to Feed");
+    display.sectionHeader("Phase 3: Feed");
     try {
       const raw = readPatterns();
       const patCount = raw?.patterns?.length ?? 0;
@@ -395,21 +412,49 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
       const topName = topPat?.candidateSkillName ?? "none";
       const topScoreVal = topPat ? Math.round((topPat.automationScore + topPat.valueScore) / 2) : 0;
 
-      const refineOneLiner = refineSummary
-        .split("\n").find((l: string) => l.trim() && !l.startsWith("#") && !l.startsWith("-"))?.trim().slice(0, 150)
-        ?? `${patCount} patterns, top=${topName}`;
+      // Decide if this cycle is worth posting about
+      const hasNewPatterns = raw?.patterns?.some((p: any) => p.firstSeenCycle === cycleNum) ?? false;
+      const hadSteering = steeringInput.length > 0;
+      const hadError = refineSummary.startsWith("Error:");
+      const hadPR = prUrl.length > 0;
+      const isPeriodicPost = cycleNum % 5 === 0;  // post at least every 5 cycles
+      const isFirstCycle = cycleNum <= 1;
+      const hadCommit = prUrl.length > 0 || refineToolCalls > 3;  // agent did real work
 
-      postAgentUpdate({
-        cycleNum,
-        message: refineOneLiner,
-        prUrl: prUrl || undefined,
-        patternsDetected: patCount,
-        topCandidate: topName,
-        topScore: topScoreVal,
-        durationMin: Math.round((Date.now() - startMs) / 60000),
-      });
-      summarySent = true;
-      display.success("Posted to feed");
+      const shouldPost = hasNewPatterns || hadSteering || hadError || hadCommit || isPeriodicPost || isFirstCycle;
+
+      if (!shouldPost) {
+        display.info("Feed", "Routine cycle — skipping post");
+      } else {
+        // Extract the fun blog post from the agent's output (## FEED POST section)
+        let feedMessage = "";
+        const feedPostMatch = refineSummary.match(/## FEED POST\s*\n([\s\S]*?)(?:\n## |\n---|\s*$)/i);
+        if (feedPostMatch) {
+          feedMessage = feedPostMatch[1].trim();
+        }
+        // Fallback: use first meaningful paragraph from refine output
+        if (!feedMessage) {
+          feedMessage = refineSummary
+            .split("\n")
+            .filter((l: string) => l.trim() && !l.startsWith("#") && !l.startsWith("---"))
+            .slice(0, 5)
+            .join("\n")
+            .trim()
+            .slice(0, 500) || `Cycle ${cycleNum}: ${patCount} patterns tracked, top=${topName} (${topScoreVal})`;
+        }
+
+        postAgentUpdate({
+          cycleNum,
+          message: feedMessage,
+          prUrl: prUrl || undefined,
+          patternsDetected: patCount,
+          topCandidate: topName,
+          topScore: topScoreVal,
+          durationMin: Math.round((Date.now() - startMs) / 60000),
+        });
+        summarySent = true;
+        display.success("Posted to feed");
+      }
     } catch (err: any) {
       display.failure(`Feed post failed: ${err.message.split("\n")[0]}`);
     }

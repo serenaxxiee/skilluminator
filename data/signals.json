@@ -1,383 +1,706 @@
 {
-  "cycleNum": 27,
-  "harvestedAt": "2026-03-19T12:00:00Z",
+  "cycleNum": 12,
+  "harvestedAt": "2026-03-19T08:00:00Z",
   "weekOf": "2026-03-17",
   "workiqQueriesRun": [
-    "Give me a comprehensive analysis of ALL my M365 activity from the past 7 days across email, meetings, Teams chats, and documents."
+    "What email threads did I send or receive most frequently in the past 7 days? List subject patterns, sender/recipient groups, and approximate time spent.",
+    "Are there recurring email types I write regularly like status updates, approvals, scheduling requests, or data requests? Show examples from the past week.",
+    "Which emails required the most back-and-forth (most replies in a thread) this past week, and what was the topic?",
+    "What recurring meetings did I attend this past week? For each, what was the typical agenda type and who attends?",
+    "How much total time did I spend in meetings this past week, broken down by meeting type (1:1, team sync, external, etc.)?",
+    "Which meeting types happen every week at roughly the same time with the same people?",
+    "What Teams channels or chats am I most active in over the past 7 days? What topics come up repeatedly?",
+    "Are there questions I get asked repeatedly in Teams chats -- things people regularly come to me for?",
+    "What types of information do I most frequently share or look up in Teams conversations this week?",
+    "What types of documents did I create, edit, or review most often this past week? Any recurring doc types like reports, specs, or decks?",
+    "Are there documents I update on a regular cadence (weekly/monthly reports, trackers, dashboards)?",
+    "What SharePoint sites or OneDrive folders do I access most frequently?",
+    "Across email, meetings, and Teams, what topics or projects consumed the most of my time this week?",
+    "Are there workflows that seem to repeat where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?",
+    "What tasks do multiple people on my team seem to do independently that could be standardized?"
   ],
   "signals": [
     {
-      "source": "meeting",
-      "title": "Large Knowledge-Sharing Forums",
-      "participants": [
-        "Platform PM",
-        "Architect",
-        "Field Enablement Lead",
-        "CAT Member"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 180,
-      "keywords": [
-        "CAPE",
-        "Copilot Studio",
-        "Office Hours",
-        "BizChat Eval"
-      ],
-      "rawExcerpt": "CAPE Architecture Call, Copilot Studio Office Hours, BizChat Offline Eval Office Hour. Pattern: Listen, ask clarifying questions, redirect people to docs or follow-up syncs.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "V-Team Cross-Org Alignment Syncs",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Cross-Org Stakeholder"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 150,
-      "keywords": [
-        "Project Crucible",
-        "CAPE Compete",
-        "Customer Engagement",
-        "status review"
-      ],
-      "rawExcerpt": "Weekly Project Crucible, CAPE Compete, Customer Engagement Sync. Pattern: status review, gap identification, ownership assignment.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Deep Technical Working Sessions",
-      "participants": [
-        "PM",
-        "Technical Lead",
-        "Researcher"
-      ],
-      "frequency": 2,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "Golden Evals",
-        "Actionability",
-        "BIC AI",
-        "whiteboard",
-        "transcript"
-      ],
-      "rawExcerpt": "Golden Evals kickoff, Actionability brainstorm, BIC AI Project Crucible. Pattern: problem framing, whiteboard/transcript, artifact creation.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "meeting",
-      "title": "Camp AIR Multi-Day Immersive Block",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Design Lead",
-        "Cross-Functional Team"
-      ],
-      "frequency": 1,
-      "timeSpentMinutes": 480,
-      "keywords": [
-        "Camp AIR",
-        "immersive",
-        "sub-sessions",
-        "document churn"
-      ],
-      "rawExcerpt": "Full-day bookings with multiple sub-sessions. Drives most of the chat + document churn this week.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
       "source": "email",
-      "title": "Azure DevOps Notification Streams",
+      "title": "Azure DevOps Eval Work-Item Notification Triage",
       "participants": [
-        "DevOps System",
-        "Engineering Lead"
+        "PM (subscriber)",
+        "Engineering Team",
+        "Build Service"
       ],
       "frequency": 30,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "ADO",
-        "Evals",
-        "Coverage",
-        "Jailing",
-        "IcM",
-        "tasks",
-        "epics"
-      ],
-      "rawExcerpt": "Tasks, requirements, epics related to Evals, Coverage, Jailing, IcM. High-volume, low-interaction stream.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Leadership and Program Announcements",
-      "participants": [
-        "Senior Leader",
-        "Program Manager"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "EvalCon",
-        "announcement",
-        "internal preview",
-        "broadcast"
-      ],
-      "rawExcerpt": "EvalCon announcement, internal previews. Pattern: broadcast email, Teams discussion, action item.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Customer and Field Coordination Threads",
-      "participants": [
-        "Field PM",
-        "Customer Success Lead",
-        "Account Manager"
-      ],
-      "frequency": 5,
       "timeSpentMinutes": 45,
       "keywords": [
-        "eval adoption",
-        "CRM",
-        "customer playbooks",
-        "field coordination"
+        "Azure DevOps",
+        "Evals",
+        "Task",
+        "Requirement",
+        "Bug",
+        "Feature",
+        "Epic",
+        "notification"
       ],
-      "rawExcerpt": "Topics: eval adoption, CRM tracking, customer playbooks. Often escalate into 1:1 or small group meetings.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "By far the largest cluster in your last 7 days (dozens of distinct but thematically identical threads). Subject patterns: Task ####### - Eval, Requirement ####### - Evals, Bug ####### - Evaluation. You are consistently a subscriber or mentioned recipient rather than the direct assignee in many cases.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     },
     {
       "source": "email",
-      "title": "Security and Compliance Alerts",
+      "title": "CAPE and Evals Leadership Strategy Thread Participation",
       "participants": [
-        "Security System",
-        "Compliance Analyst"
+        "PM",
+        "Program Manager",
+        "Engineering Lead",
+        "Partner PM",
+        "Evals DL"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 40,
+      "keywords": [
+        "CAPE",
+        "Project Crucible",
+        "evals-first",
+        "playbook",
+        "EvalCon",
+        "deepdive",
+        "learnings"
+      ],
+      "rawExcerpt": "Fewer threads than ADO notifications, but each includes long content, summaries, and action items. Threads: Re: CAPE East Project Crucible Deepdive Evals-first Mindset March 18; Re: Customer donated evals added Playbook; Fw: Announcing EvalCon.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Security and Compliance Alert Review",
+      "participants": [
+        "PM (sole recipient)",
+        "Office365/Purview system",
+        "Compliance DL"
+      ],
+      "frequency": 7,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "Action Required",
+        "File Blocked",
+        "Administrator",
+        "Loop workspace",
+        "compliance",
+        "Purview"
+      ],
+      "rawExcerpt": "Several distinct alerts across the week. Subject patterns: Action Required: File Blocked; elevated/revoked as Administrator; Loop workspace needs your attention. Senders: Office365/Purview, Open Source Notifications, Microsoft Digital Compliance.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Loop Workspace Collaboration Invite Dispatch",
+      "participants": [
+        "PM (sender)",
+        "Collaborator",
+        "Engineer"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 5,
+      "keywords": [
+        "Loop",
+        "looped in",
+        "Skilluminator Workspace",
+        "collaboration",
+        "invite"
+      ],
+      "rawExcerpt": "At least two outbound Loop workspace invitations in the last 7 days. Subject: You have been looped in! Sent to two colleagues for the Skilluminator Workspace. Auto-generated by M365 when collaboration is initiated.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Viva Engage and Community Digest Consumption",
+      "participants": [
+        "PM (passive recipient)",
+        "Community owners"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 15,
+      "keywords": [
+        "Viva Engage",
+        "Daily Digest",
+        "Weekly Digest",
+        "Copilot Tasks",
+        "SharePoint AI",
+        "community"
+      ],
+      "rawExcerpt": "Regular but not dominant. Subject patterns: Microsoft Daily Digest / Weekly Digest, community announcements (Copilot Tasks, Copilot Champs, Immigration Q&A, SharePoint AI tips). Passive recipient.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "High-Urgency Escalation Email Authoring",
+      "participants": [
+        "PM (sender)",
+        "External Institution"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "URGENT",
+        "escalation",
+        "data correction",
+        "administrative",
+        "issue resolution"
+      ],
+      "rawExcerpt": "One manually written high-urgency email this week. URGENT Degree CANNOT be Located sent to an external university address. PM switches into a very direct escalation style when something is blocking progress.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Multi-Reply Strategic Thread: Project Crucible Evals-First",
+      "participants": [
+        "PM",
+        "Cross-org leadership",
+        "CAPE team",
+        "Partner teams"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "Project Crucible",
+        "evals-first",
+        "mindset",
+        "progress",
+        "learnings",
+        "alignment",
+        "cross-org"
+      ],
+      "rawExcerpt": "Most discussion-heavy email conversation last week. Re: CAPE East Project Crucible Deepdive: Evals-first Mindset, Progress and Learnings March 18. Involves a very large cross-org audience (CAPE, Copilot, leadership, partners).",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Urgent Technical Coordination: Declarative Agent Architecture",
+      "participants": [
+        "PM",
+        "Senior Stakeholders",
+        "Technical Owners"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 25,
+      "keywords": [
+        "URGENT",
+        "Declarative Agent",
+        "SharePoint",
+        "grounding",
+        "architecture",
+        "feasibility",
+        "risk"
+      ],
+      "rawExcerpt": "RE: URGENT: DBS: Declarative Agent grounded in 170+ SharePoint sites. Multiple senior stakeholders and technical owners. Strong signal of iterative clarification and coordination around architecture and readiness.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "email",
+      "title": "Weekly Status Update Reporting (Parallel Team Effort)",
+      "participants": [
+        "PM",
+        "Program Managers",
+        "Team leads"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "status update",
+        "weekly update",
+        "newsletter",
+        "Cape Day",
+        "leadership summary",
+        "blockers",
+        "bi-weekly"
+      ],
+      "rawExcerpt": "Weekly updates requested in a specific format (done/next/blockers). Separate efforts to prepare weekly sync updates, bi-weekly newsletters, Cape Day/LT slides. Teams asked multiple times to restate progress in different artifacts.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Weekly Evals Sync (Recurring, Tuesdays 3:05-3:30 PM)",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Program Manager",
+        "Engineer"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 25,
+      "keywords": [
+        "evals",
+        "sync",
+        "weekly",
+        "progress",
+        "alignment",
+        "Tuesday"
+      ],
+      "rawExcerpt": "Tuesdays, 3:05-3:30 PM. Weekly cadence. Same small group, same time, consistent focus on evals progress and alignment. Extended through August.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Weekly Project Crucible v-Team Sync (Mondays 8:05-8:30 AM)",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Program Manager",
+        "Partner PM",
+        "Cross-org v-team"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 25,
+      "keywords": [
+        "Project Crucible",
+        "v-team",
+        "weekly",
+        "cross-org",
+        "delivery",
+        "Monday"
+      ],
+      "rawExcerpt": "Mondays, 8:05-8:30 AM. Strongly recurring with a consistent cross-team group; same slot every Monday. Extended through August.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Weekly Manager-Led Team Meeting (Mondays 11:05-11:45 AM)",
+      "participants": [
+        "PM",
+        "Engineering Lead (manager)",
+        "Team directs"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 40,
+      "keywords": [
+        "team meeting",
+        "weekly",
+        "manager",
+        "directs",
+        "Monday",
+        "operating rhythm"
+      ],
+      "rawExcerpt": "Mondays, 11:05-11:45 AM. Weekly cadence. Same manager-led group, same time slot each week.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Weekly Solution Library Check-In (Mondays 9:05-9:30 AM)",
+      "participants": [
+        "PM",
+        "Program Manager",
+        "Solution Library working group"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 25,
+      "keywords": [
+        "Solution Library",
+        "check-in",
+        "weekly",
+        "Monday",
+        "intake",
+        "progress"
+      ],
+      "rawExcerpt": "Mondays, 9:05-9:30 AM. Highly regular cadence and participant set, focused on solution intake and progress.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Learning and Scaling Fridays (Fridays 2:05-5:00 PM)",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Program Manager",
+        "Engineer",
+        "PM Lead"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 175,
+      "keywords": [
+        "learning",
+        "scaling",
+        "Friday",
+        "weekly",
+        "skill-building"
+      ],
+      "rawExcerpt": "Fridays, 2:05-5:00 PM. Same small group, same long learning block each Friday. Consistent group with stable participants.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Golden Evals v-Team Bi-Weekly Review (Thursdays)",
+      "participants": [
+        "PM",
+        "Eval leadership group"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 55,
+      "keywords": [
+        "golden evals",
+        "v-team",
+        "bi-weekly",
+        "Thursday",
+        "eval leadership"
+      ],
+      "rawExcerpt": "Thursdays 2:05 PM, bi-weekly. Consistent eval leadership group. Secondary but shows strong repetition with same people.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "CAPE Camp AIR Immersive Training and Hackathon (Multi-Day)",
+      "participants": [
+        "PM",
+        "CAPE team",
+        "Cross-org attendees"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 900,
+      "keywords": [
+        "Camp AIR",
+        "hackathon",
+        "training",
+        "Copilot Cowork",
+        "CRM",
+        "Dataverse",
+        "agentic workflows",
+        "standup",
+        "debrief"
+      ],
+      "rawExcerpt": "Two full-day events (~9 hours each, Mon and Tue) plus dozens of adjacent sessions: Workflow, Mindset, Environment Prep, M365 Copilot productivity, CRM and Dataverse integration, Hackathon standups and EOD debriefs. Accounts for ~70-80% of scheduled meeting time this week.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "External Partner and Customer Eval Sessions (50+ Domains)",
+      "participants": [
+        "PM",
+        "External partners (SIs, customers)"
+      ],
+      "frequency": 6,
+      "timeSpentMinutes": 780,
+      "keywords": [
+        "external",
+        "partner",
+        "customer",
+        "SI",
+        "eval sessions",
+        "multi-domain"
+      ],
+      "rawExcerpt": "Total external meeting time: ~13+ hours, spread across 50+ distinct external domains. Examples: accenture.com (2h), hcltech.com (1h 50m), ey.com (55m), kpmg groups (3h total), avanade.com (1h), cognizant.com (1h).",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "1:1 Check-Ins with Stakeholders (6 per week)",
+      "participants": [
+        "PM",
+        "Individual stakeholders"
+      ],
+      "frequency": 6,
+      "timeSpentMinutes": 225,
+      "keywords": [
+        "1:1",
+        "check-in",
+        "stakeholder",
+        "alignment",
+        "weekly"
+      ],
+      "rawExcerpt": "6 one-on-one meetings scheduled this week, 3h 45m total. 1:1s are a relatively small slice of total meeting load (under 4 hours).",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Meeting to Notes to Follow-Up Workflow Execution (Recurring)",
+      "participants": [
+        "PM",
+        "Cross-org team"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "meeting notes",
+        "follow-up",
+        "Loop",
+        "action items",
+        "owners",
+        "decisions",
+        "workflow"
+      ],
+      "rawExcerpt": "PM repeatedly creates Loop meeting notes after meetings. Workflow: Meeting scheduled then Notes doc created then Decisions and action items captured then Follow-up work continues asynchronously. Appears across many months -- a stable pattern.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Inbound Eval Strategy and Guidance Q&A (Repeated Pings)",
+      "participants": [
+        "PM (answerer)",
+        "Field Engineers",
+        "PMs",
+        "Designers"
+      ],
+      "frequency": 10,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "eval strategy",
+        "eval cases",
+        "metrics",
+        "groundedness",
+        "rubric",
+        "Compare Meaning",
+        "tool_call_accuracy",
+        "eval-driven development"
+      ],
+      "rawExcerpt": "PM is explicitly referenced as the person doing a lot of eval guidance for FDEs and customers. Multiple chats ask PM to advise on eval depth, timing, or structure for customer sessions. Common questions: how many eval cases are enough?, what metrics to use?, when in agent lifecycle should evals happen?",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Eval Tooling CLI and Implementation Troubleshooting",
+      "participants": [
+        "PM (advisor)",
+        "Engineers",
+        "Field Engineers"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "CLI",
+        "CSV",
+        "tool_call_accuracy",
+        "preview",
+        "feature flag",
+        "import",
+        "export",
+        "bug vs expected behavior"
+      ],
+      "rawExcerpt": "People come to PM for hands-on clarity when things break. Common questions: CSV import/export quirks, feature flags and preview availability, whether metrics are supported yet, how CLI eval tooling compares to in-product tooling. PM directly answering CSV formatting and tool-call accuracy flags.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "teams",
+      "title": "Cross-Org Navigation and VOC Routing Assistance",
+      "participants": [
+        "PM (router)",
+        "Field Engineers",
+        "MCS Analytics",
+        "PG Team"
       ],
       "frequency": 4,
       "timeSpentMinutes": 20,
       "keywords": [
-        "Purview",
-        "DLP",
-        "credentials",
-        "keys",
-        "file alert"
+        "VOC",
+        "routing",
+        "DRI",
+        "who owns",
+        "product feedback",
+        "MCS Analytics",
+        "eval team",
+        "contact recommendation"
       ],
-      "rawExcerpt": "File-level alerts for credentials or keys. Pattern: alert, manual file fix.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "PM explains VOC routing and DRIs for eval-related asks. People ask PM to recommend the right contacts within MCS Analytics or Eval teams. PM functioning as an informal routing layer between field, PM, and PG.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     },
     {
       "source": "teams",
-      "title": "Eval Strategy and Actionability Discussions",
+      "title": "EvalCon Content Planning and Positioning Discussions",
       "participants": [
         "PM",
         "Engineering Lead",
-        "Data Scientist",
-        "Researcher"
-      ],
-      "frequency": 10,
-      "timeSpentMinutes": 120,
-      "keywords": [
-        "eval strategy",
-        "actionability",
-        "SEVAL",
-        "agent quality",
-        "orchestration"
-      ],
-      "rawExcerpt": "Repeated across multiple threads. Pattern: question, conceptual answer, link to repo/doc, offer meeting.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Artifact Exchange in Chat",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Designer"
-      ],
-      "frequency": 15,
-      "timeSpentMinutes": 45,
-      "keywords": [
-        "GitHub",
-        "SharePoint",
-        "zip",
-        "dashboard",
-        "repo link"
-      ],
-      "rawExcerpt": "Frequent sharing of GitHub repos, SharePoint links, zips, dashboards. Chat acts as a transport layer.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Meeting Coordination and Conflict Resolution",
-      "participants": [
-        "PM",
-        "Admin",
-        "Cross-Functional Team"
-      ],
-      "frequency": 7,
-      "timeSpentMinutes": 30,
-      "keywords": [
-        "reschedule",
-        "conflict",
-        "joining late",
-        "partial attendance",
-        "Camp AIR"
-      ],
-      "rawExcerpt": "Rescheduling, partial attendance, joining late due to Camp AIR. Pattern repeats daily.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "teams",
-      "title": "Mentorship and Peer Sense-Making",
-      "participants": [
-        "PM",
-        "Junior Engineer",
-        "Peer PM"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "eval-driven development",
-        "orchestration",
-        "models",
-        "mental models",
-        "concepts"
-      ],
-      "rawExcerpt": "Explaining concepts (eval-driven development, orchestration, models). Converts confusion into shared mental models.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Eval Frameworks and Tooling Artifacts",
-      "participants": [
-        "PM",
-        "Engineering Lead"
+        "Program Manager"
       ],
       "frequency": 4,
-      "timeSpentMinutes": 90,
-      "keywords": [
-        "dashboard",
-        "scenario library",
-        "skill-detector",
-        "eval framework"
-      ],
-      "rawExcerpt": "Dashboards, scenario libraries, skill-detector packages. Often created after meetings, then shared in Teams.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Presentation Decks (PowerPoint)",
-      "participants": [
-        "PM",
-        "Designer",
-        "Senior Leader"
-      ],
-      "frequency": 3,
-      "timeSpentMinutes": 75,
-      "keywords": [
-        "pitch deck",
-        "enablement deck",
-        "Camp AIR materials",
-        "PowerPoint"
-      ],
-      "rawExcerpt": "Pitch decks, enablement decks, Camp AIR materials. Pattern: deck draft, review in chat, reuse across meetings.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "document",
-      "title": "Loop Documents as Living Coordination Hubs",
-      "participants": [
-        "PM",
-        "Engineering Lead",
-        "Cross-Functional Team"
-      ],
-      "frequency": 5,
-      "timeSpentMinutes": 60,
-      "keywords": [
-        "Loop",
-        "ownership",
-        "agenda",
-        "summaries",
-        "coordination hub"
-      ],
-      "rawExcerpt": "Used for ownership, agenda, summaries. Often referenced across meetings and chats.",
-      "capturedAt": "2026-03-19T12:00:00Z"
-    },
-    {
-      "source": "email",
-      "title": "Cross-Source: Announcement to Chat to Submission",
-      "participants": [
-        "Senior Leader",
-        "PM",
-        "Peer PM"
-      ],
-      "frequency": 2,
       "timeSpentMinutes": 40,
       "keywords": [
         "EvalCon",
-        "announcement",
-        "brainstorm",
-        "content proposal"
+        "content",
+        "CAPE positioning",
+        "blockers",
+        "framing",
+        "submission",
+        "deadline",
+        "leadership alignment"
       ],
-      "rawExcerpt": "Email: EvalCon announcement. Chat: brainstorm what to present. Outcome: content proposal action item.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "Ongoing discussions about EvalCon: whether/what CAPE should present, framing blockers and challenges, process learnings, deadlines, submissions, and alignment with leadership. Multiple threads touching strategy, framing, and deadlines across different days.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     },
     {
-      "source": "meeting",
-      "title": "Cross-Source: Customer Signal to Meeting to Toolkit",
+      "source": "teams",
+      "title": "Technical Artifact Distribution via Teams (Repos, ZIPs, Specs)",
       "participants": [
-        "Field PM",
-        "PM",
-        "Engineering Lead"
+        "PM (sharer)",
+        "Engineer",
+        "Collaborator"
       ],
-      "frequency": 2,
-      "timeSpentMinutes": 90,
+      "frequency": 8,
+      "timeSpentMinutes": 25,
       "keywords": [
-        "customer pain points",
-        "actionability",
-        "playbooks",
-        "prototypes",
-        "dashboards"
+        "GitHub",
+        "repo",
+        "ZIP",
+        "skill-detector",
+        "PRD",
+        "YAML",
+        "Loop",
+        "SharePoint",
+        "demo",
+        "template"
       ],
-      "rawExcerpt": "Chat/email: customer eval pain points. Meeting: actionability brainstorm. Doc: playbooks, prototypes, dashboards.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "A large portion of messages involve sharing concrete assets. Commonly shared: GitHub repos (Copilot SDK, skills agents, templates, playbooks), ZIP files with specs, markdown files, YAML, Loop components. PM uses Teams as a distribution hub for working artifacts.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     },
     {
-      "source": "email",
-      "title": "Cross-Source: DevOps Signal to Passive Intake to Synthesis",
+      "source": "teams",
+      "title": "Agent Architecture and MCP/Skills Scoping Discussions",
       "participants": [
-        "DevOps System",
-        "PM"
+        "PM",
+        "Engineer",
+        "Collaborator"
       ],
-      "frequency": 10,
+      "frequency": 5,
+      "timeSpentMinutes": 35,
+      "keywords": [
+        "MCP",
+        "CLI",
+        "skills",
+        "skill-detector",
+        "skill-creator",
+        "PRD generator",
+        "WorkIQ",
+        "declarative",
+        "custom agent",
+        "SDK",
+        "Copilot Studio"
+      ],
+      "rawExcerpt": "Recurring topics: MCP servers, CLI vs UI tradeoffs, WorkIQ integration constraints, skills (skill-creator, skills-detective, PRD generator) and how agents discover or run them. One of the richest technical threads in the dataset.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Skilluminator Cycle Dashboard Weekly HTML Refresh",
+      "participants": [
+        "PM (author)"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "dashboard",
+        "Skilluminator",
+        "cycle",
+        "HTML",
+        "analytics",
+        "weekly refresh",
+        "signal ingestion",
+        "pattern detection"
+      ],
+      "rawExcerpt": "dashboard.html shows explicit cycle markers like Cycle 3 and Week of 2026-03-16, indicating a weekly or per-cycle refresh cadence. PM runs a repeat loop: signal ingestion to pattern detection to dashboard refresh to refinement notes.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Agent Eval Sets Template Maintenance (Recurring Excel)",
+      "participants": [
+        "PM (maintainer)",
+        "Engineering Team",
+        "Field Engineers"
+      ],
+      "frequency": 1,
       "timeSpentMinutes": 30,
       "keywords": [
-        "ADO",
-        "notifications",
-        "passive intake",
-        "synthesis",
-        "delayed action"
+        "Agent Eval Sets",
+        "template",
+        "Excel",
+        "tracker",
+        "eval scenarios",
+        "quality bar",
+        "customer evals"
       ],
-      "rawExcerpt": "Email: ADO notifications. No immediate response. Concepts reappear later in meetings or docs.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "Agent Eval Sets_Template.xlsx has been shared repeatedly over time (Nov 2025 to Jan 2026), functioning as a living template/tracker that gets reused and updated as eval needs evolve.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     },
     {
-      "source": "meeting",
-      "title": "Cross-Source: Camp AIR to Transcript to Reusable Guidance",
+      "source": "document",
+      "title": "Loop Meeting Notes Creation and Post-Meeting Action Capture",
       "participants": [
         "PM",
-        "Engineering Lead",
-        "Cross-Functional Team"
+        "Team directs",
+        "Cross-org collaborators"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 40,
+      "keywords": [
+        "Loop",
+        "meeting notes",
+        "decisions",
+        "action items",
+        "open questions",
+        "agenda",
+        "follow-up",
+        "PM review"
+      ],
+      "rawExcerpt": "PM repeatedly creates or contributes to Loop Meeting Notes files with same structure: Agenda, Meeting notes, Decisions/Open questions, Follow-up tasks. MCS Analytics and Evaluations CAPECAT-PM Review 2026-03-11.loop is a clear PM-style review and decision doc.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Skill-Detector Technical Spec Iterative Build Cycle",
+      "participants": [
+        "PM (author)",
+        "Engineer"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "skill-detector",
+        "ZIP",
+        "SKILL.md",
+        "spec",
+        "JSON",
+        "shell script",
+        "config",
+        "agent state",
+        "prototype"
+      ],
+      "rawExcerpt": "ZIP packages (skill-detector.zip, skill-detector 1.zip) containing SKILL.md specs plus scripts and config files (.sh, .json, .db) produced repeatedly over short intervals. Suggests recurring work on product/engineering-adjacent specs, prototypes, and local tooling.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Parallel Eval Enablement Deck Creation (Team-Wide Duplication)",
+      "participants": [
+        "PM",
+        "Program Manager",
+        "Field Engineer"
       ],
       "frequency": 3,
-      "timeSpentMinutes": 120,
+      "timeSpentMinutes": 90,
       "keywords": [
-        "Camp AIR",
-        "transcript",
-        "Loop",
-        "deck",
-        "repo",
-        "reusable guidance"
+        "enablement deck",
+        "playbook",
+        "PowerPoint",
+        "eval convo",
+        "pitch deck",
+        "TFM Agent Evals",
+        "CAPE_EVALs_Playbook",
+        "multiple versions"
       ],
-      "rawExcerpt": "Meeting (transcribed). Shared Loop / deck / repo. Referenced later in other forums.",
-      "capturedAt": "2026-03-19T12:00:00Z"
+      "rawExcerpt": "Multiple versions of eval intro decks, playbooks, pitch decks, and execution plans created and shared by different people (TFM Agent Evals, Evaluation.pptx, CAPE_EVALs_Playbook_v5, eval convo decks). Meetings explicitly call out we have multiple versions floating and ask to consolidate.",
+      "capturedAt": "2026-03-19T08:00:00Z"
+    },
+    {
+      "source": "document",
+      "title": "Daily Personal Day-Prep Planning Page",
+      "participants": [
+        "PM (sole author)"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 25,
+      "keywords": [
+        "daily prep",
+        "planning",
+        "personal ops",
+        "day preparation",
+        "recurring",
+        "morning routine"
+      ],
+      "rawExcerpt": "Files like [Mar 19] Help me prepare for my day indicate a repeat personal cadence where PM updates a structured planning artifact rather than starting from scratch each time.",
+      "capturedAt": "2026-03-19T08:00:00Z"
     }
   ]
 }

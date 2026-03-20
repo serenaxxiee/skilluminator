@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator — Cycle 27 Dashboard</title>
+<title>Skilluminator — Cycle 42 Dashboard</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -184,6 +184,20 @@
   #cycleHistoryWrap { width: 100%; overflow-x: auto; }
   #cycleHistorySvg { min-width: 700px; }
 
+  /* SKILL FAMILY BARS */
+  .family-bars-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .family-bar-row { display: flex; align-items: center; gap: 12px; }
+  .family-label { font-size: 12px; font-weight: 600; width: 170px; text-align: right; flex-shrink: 0; line-height: 1.3; }
+  .family-bar-outer { flex: 1; background: var(--border); border-radius: 5px; height: 22px; position: relative; overflow: hidden; }
+  .family-bar-inner { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 800; color: rgba(0,0,0,0.8); white-space: nowrap; min-width: 52px; width: 0; transition: width 1.1s cubic-bezier(.22,.68,0,1.2); }
+  .family-meta { font-size: 11px; color: var(--muted); width: 110px; flex-shrink: 0; }
+  .family-summary { display: flex; gap: 24px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .family-stat { font-size: 12px; }
+  .family-stat strong { color: var(--accent4); }
+
+  /* COMPOSITE SCORE */
+  .comp-score { font-size: 13px; font-weight: 800; width: 32px; text-align: center; }
+
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -198,10 +212,10 @@
     <span class="subtitle">M365 Work Pattern Mining &middot; Autonomous Analyst</span>
   </div>
   <div class="badges">
-    <span class="badge badge-cycle">Cycle 27</span>
-    <span class="badge badge-week">Week of 2026-03-17</span>
-    <span class="badge badge-signals">19 Signals Ingested</span>
-    <span class="badge badge-version">v2.3.0</span>
+    <span class="badge badge-cycle">Cycle 42</span>
+    <span class="badge badge-week">Week of 2026-03-20</span>
+    <span class="badge badge-signals">31 Signals Ingested</span>
+    <span class="badge badge-version">v2.4.0</span>
   </div>
 </div>
 
@@ -209,32 +223,32 @@
 
   <!-- KPI CARDS -->
   <div class="section">
-    <div class="section-title">Cycle 27 Key Metrics</div>
+    <div class="section-title">Cycle 42 Key Metrics</div>
     <div class="kpi-row">
       <div class="kpi-card">
         <div class="kpi-label">Active Patterns</div>
         <div class="kpi-value" id="kpi0">0</div>
-        <div class="kpi-sub">27 active &middot; 2 declining &middot; 11 archived</div>
+        <div class="kpi-sub">20 active &middot; 0 declining &middot; 8 skill families</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Top Auto Score</div>
         <div class="kpi-value" id="kpi1">0</div>
-        <div class="kpi-sub">ado-notification-router &middot; 833 occ SATURATED</div>
+        <div class="kpi-sub">ado-notification-router &middot; 90 occ SATURATED</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Graduated Patterns</div>
+        <div class="kpi-label">Skill Families</div>
         <div class="kpi-value" id="kpi2">0</div>
-        <div class="kpi-sub">100+ occ, institutional, composite &ge; 85</div>
+        <div class="kpi-sub">55.77h event-coord leads &middot; 49h eval-enablement</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Named Pipelines</div>
         <div class="kpi-value" id="kpi3">0</div>
-        <div class="kpi-sub">NEW v2.3 &middot; Cross-source validated</div>
+        <div class="kpi-sub">v2.4 &middot; Cross-source validated workflows</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">BSI Critical</div>
         <div class="kpi-value" id="kpi4">0</div>
-        <div class="kpi-sub">Eval SME PM &middot; 8+ request types</div>
+        <div class="kpi-sub">Eval SME PM &middot; 15 req/cycle &middot; &#9650; rising</div>
       </div>
     </div>
   </div>
@@ -243,11 +257,20 @@
   <div class="section">
     <div class="section-title">Bottleneck Severity Alert</div>
     <div class="bsi-alert">
-      <div class="bsi-score">87</div>
+      <div class="bsi-score">90</div>
       <div class="bsi-detail">
-        <div class="bsi-title">CRITICAL: Eval SME PM &mdash; Single Point of Failure</div>
-        <div class="bsi-meta">15 inbound signals/cycle &middot; 8+ distinct request types &middot; PM sole DRI for 19 cycles &middot; Zero delegation observed &middot; $129K+/yr codification value</div>
+        <div class="bsi-title">CRITICAL &#9650; RAISED: Eval SME PM &mdash; Single Point of Failure (Cycle 42)</div>
+        <div class="bsi-meta">15 inbound signals/cycle (10 strategy Q&amp;A + 5 CLI troubleshooting) &middot; Camp AIR generated fresh intake &middot; EvalCon deadline 2026-04-02 accelerating &middot; PM sole DRI for 42 cycles &middot; Zero delegation observed &middot; BSI raised from 87 &rarr; 90</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SKILL FAMILY TIME INVESTMENT -->
+  <div class="section">
+    <div class="section-title">Skill Family Time Investment &mdash; Cycle 42 (hours this cycle per family)</div>
+    <div class="chart-panel">
+      <div class="family-bars-wrap" id="familyBars"></div>
+      <div class="family-summary" id="familySummary"></div>
     </div>
   </div>
 
@@ -300,7 +323,7 @@
         <div class="bubble-tooltip" id="bubbleTip"></div>
       </div>
       <div class="chart-panel">
-        <div class="chart-title">Signal Sources &mdash; Cycle 27</div>
+        <div class="chart-title">Signal Sources &mdash; Cycle 42</div>
         <div id="donutWrap">
           <svg id="donutSvg" width="160" height="160" viewBox="0 0 160 160"></svg>
           <div class="donut-legend" id="donutLegend"></div>
@@ -311,10 +334,10 @@
 
   <!-- TOP-10 TABLE -->
   <div class="section">
-    <div class="section-title">Top 10 Patterns by Composite Score</div>
+    <div class="section-title">Top 10 Patterns by Composite Score &mdash; Cycle 42</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>#</th><th>Pattern &middot; Skill</th><th>Sources</th><th>Auto</th><th>Value</th><th>Trend</th><th>Hrs Total</th></tr></thead>
+        <thead><tr><th>#</th><th>Pattern &middot; Skill</th><th>Sources</th><th>Auto</th><th>Value</th><th>&#x2316; Comp</th><th>Trend</th><th>Hrs Total</th></tr></thead>
         <tbody id="patternTable"></tbody>
       </table>
     </div>
@@ -326,7 +349,7 @@
     <div class="sgi-block">
       <div class="sgi-header">
         <span class="sgi-header-title">skillGeneratorInput</span>
-        <span class="sgi-header-meta">generatedAtCycle: 28 &middot; weekOf: 2026-03-17 &middot; 5 candidates</span>
+        <span class="sgi-header-meta">generatedAtCycle: 42 &middot; weekOf: 2026-03-20 &middot; 5 candidates</span>
       </div>
       <div class="sgi-code" id="sgiCode"></div>
     </div>
@@ -334,7 +357,7 @@
 
   <!-- CYCLE HISTORY -->
   <div class="section">
-    <div class="section-title">Cycle History &mdash; Active Pattern Count (C1 &rarr; C27)</div>
+    <div class="section-title">Cycle History &mdash; Active Pattern Count (C1 &rarr; C42)</div>
     <div id="cycleHistoryWrap">
       <svg id="cycleHistorySvg" height="200"></svg>
     </div>
@@ -343,78 +366,95 @@
 </div>
 
 <script>
-const KPI_TARGETS = [39, 95, 15, 4, 87];
+const KPI_TARGETS = [20, 92, 8, 5, 90];
 
 const TOP10 = [
-  { rank:1,  label:"Meeting Notes & Action Item Capture",         skill:"meeting-notes-action-extractor",       sources:["document","meeting","email","teams"], auto:91, value:93, composite:92, trend:"stable",   hrs:60.20,  maturity:"institutional" },
-  { rank:2,  label:"Agent Eval Setup, Analysis & Reporting",      skill:"eval-report-synthesizer",              sources:["document","teams","email","meeting"],  auto:85, value:95, composite:91, trend:"rising",   hrs:106.89, maturity:"institutional" },
-  { rank:3,  label:"Azure DevOps Notification Triage",            skill:"ado-notification-router",              sources:["email","teams"],                      auto:95, value:85, composite:90, trend:"stable",   hrs:30.34,  maturity:"institutional" },
-  { rank:4,  label:"Eval Framework Template & Coverage Scaffolding",skill:"eval-template-scaffolder",           sources:["document","teams","meeting"],          auto:85, value:93, composite:89, trend:"stable",   hrs:52.96,  maturity:"institutional" },
-  { rank:5,  label:"Weekly Project Status Report Generation",      skill:"weekly-status-report-generator",      sources:["document","email","teams"],            auto:87, value:90, composite:89, trend:"rising",   hrs:42.64,  maturity:"institutional" },
-  { rank:6,  label:"Eval Design Scoping & Expert Coaching",        skill:"eval-design-advisor",                 sources:["teams","meeting"],                     auto:84, value:92, composite:89, trend:"rising",   hrs:49.84,  maturity:"institutional" },
-  { rank:7,  label:"Team Status Parallel Creation Gap",            skill:"team-status-template-generator",      sources:["document","teams","email"],            auto:87, value:87, composite:87, trend:"stable",   hrs:31.42,  maturity:"institutional" },
-  { rank:8,  label:"Meeting Transcript to Loop/PPT Pipeline",      skill:"meeting-summary-publisher",           sources:["meeting","document","teams"],          auto:88, value:85, composite:87, trend:"rising",   hrs:49.73,  maturity:"institutional" },
-  { rank:9,  label:"External Post-Meeting Recap & Escalation",     skill:"external-meeting-followup-drafter",   sources:["email","meeting"],                     auto:85, value:87, composite:86, trend:"rising",   hrs:37.81,  maturity:"institutional" },
-  { rank:10, label:"Calendar Overload & Meeting Invite Triage",    skill:"calendar-triage-advisor",             sources:["meeting","email","teams"],              auto:77, value:95, composite:86, trend:"stable",   hrs:393.14, maturity:"institutional" }
+  { rank:1,  label:"Meeting-to-Loop Notes & Action Item Capture",    skill:"meeting-notes-action-extractor",   sources:["meeting","document"],         auto:88, value:90, composite:89, trend:"stable",  hrs:7.01  },
+  { rank:2,  label:"Azure DevOps Work-Item Notification Triage",     skill:"ado-notification-router",          sources:["email"],                      auto:92, value:82, composite:87, trend:"stable",  hrs:2.25  },
+  { rank:3,  label:"Parallel Eval Enablement Deck Creation",         skill:"eval-enablement-standardizer",     sources:["document"],                   auto:84, value:86, composite:85, trend:"rising",  hrs:4.5   },
+  { rank:4,  label:"Weekly Status Update Reporting (Multi-Format)",  skill:"weekly-status-report-generator",   sources:["email"],                      auto:82, value:80, composite:81, trend:"stable",  hrs:2.25  },
+  { rank:5,  label:"Security & Compliance Alert Review (Purview)",   skill:"compliance-alert-classifier",      sources:["email"],                      auto:88, value:72, composite:80, trend:"stable",  hrs:0.99  },
+  { rank:6,  label:"Eval Strategy Guidance & CLI Troubleshooting",   skill:"eval-design-advisor",              sources:["teams"],                      auto:65, value:92, composite:79, trend:"rising",  hrs:4.5   },
+  { rank:7,  label:"Recurring Weekly Sync Meeting Cadence",          skill:"calendar-triage-advisor",          sources:["meeting"],                    auto:75, value:78, composite:77, trend:"stable",  hrs:6.67  },
+  { rank:8,  label:"Strategic Leadership Thread Synthesis (CAPE)",   skill:"strategic-thread-synthesizer",     sources:["email"],                      auto:62, value:82, composite:72, trend:"stable",  hrs:3.84  },
+  { rank:9,  label:"External Partner & Customer Eval Sessions",      skill:"partner-eval-enablement-pack-generator", sources:["meeting"],             auto:50, value:92, composite:71, trend:"rising",  hrs:39.0  },
+  { rank:10, label:"Agent Architecture & MCP/Skills Scoping",        skill:"architecture-feasibility-advisor", sources:["teams","email"],              auto:58, value:80, composite:69, trend:"rising",  hrs:3.0   }
 ];
 
 const ALL_BUBBLES = [
-  ...TOP10,
-  { label:"Recurring Meeting Agenda Preparation",    auto:84, value:86, hrs:79.02,  trend:"stable",   maturity:"institutional", skill:"recurring-agenda-generator", sources:["meeting","document","teams"] },
-  { label:"Action Items Fragmented Systems",         auto:82, value:88, hrs:18.30,  trend:"stable",   maturity:"institutional", skill:"unified-action-item-tracker", sources:["teams","meeting","email","document"] },
-  { label:"VoC Customer Ask Dedup & Routing",        auto:84, value:85, hrs:16.70,  trend:"stable",   maturity:"institutional", skill:"voc-ask-deduplicator", sources:["teams","email"] },
-  { label:"Cross-Tool Context Fragmentation",        auto:78, value:92, hrs:50.54,  trend:"stable",   maturity:"institutional", skill:"knowledge-context-consolidator", sources:["teams","email","document","meeting"] },
-  { label:"Partner & Customer Eval Enablement",      auto:74, value:91, hrs:99.39,  trend:"rising",   maturity:"institutional", skill:"partner-eval-enablement-pack-generator", sources:["meeting","email","document","teams"] },
-  { label:"Training/Hackathon Event Coordination",   auto:72, value:93, hrs:234.36, trend:"rising",   maturity:"institutional", skill:"event-artifact-coordinator", sources:["meeting","teams","document","email"] },
-  { label:"Copilot Platform Architecture Q&A",       auto:74, value:92, hrs:63.80,  trend:"stable",   maturity:"institutional", skill:"copilot-platform-faq-responder", sources:["teams","meeting","email"] },
-  { label:"Self-Authored Tool & Prototype Building",  auto:70, value:90, hrs:43.25,  trend:"stable",   maturity:"institutional", skill:"prototype-scaffold-generator", sources:["document","teams"] },
-  { label:"Redundant Deck Creation",                 auto:72, value:88, hrs:42.90,  trend:"stable",   maturity:"institutional", skill:"deck-content-reuse-advisor", sources:["document","meeting","teams"] },
-  { label:"AI Skill Library Socialization",           auto:77, value:80, hrs:11.67,  trend:"rising",   maturity:"institutional", skill:"skill-library-socializer", sources:["teams","document"] },
-  { label:"Customer Enablement Asset Standardization",auto:79, value:86, hrs:6.75,   trend:"rising",   maturity:"confirmed",    skill:"customer-enablement-pack-generator", sources:["document","teams","meeting"] },
-  { label:"Customer Signal to Guidance Pipeline",    auto:75, value:81, hrs:8.50,   trend:"rising",   maturity:"confirmed",    skill:"customer-signal-synthesizer", sources:["meeting","email","teams","document"] },
-  { label:"Access Governance Alert Triage",          auto:91, value:55, hrs:6.75,   trend:"stable",   maturity:"mature",       skill:"access-governance-alert-router", sources:["email"] },
-  { label:"Broadcast Email Classification",          auto:92, value:43, hrs:12.87,  trend:"stable",   maturity:"mature",       skill:"broadcast-email-classifier", sources:["email"] }
+  { label:"Meeting-to-Loop Notes & Action Item Capture",   skill:"meeting-notes-action-extractor",         auto:88, value:90, composite:89, hrs:7.01,  trend:"stable",  sources:["meeting","document"] },
+  { label:"Azure DevOps Work-Item Notification Triage",    skill:"ado-notification-router",                auto:92, value:82, composite:87, hrs:2.25,  trend:"stable",  sources:["email"] },
+  { label:"Parallel Eval Enablement Deck Creation",        skill:"eval-enablement-standardizer",           auto:84, value:86, composite:85, hrs:4.5,   trend:"rising",  sources:["document"] },
+  { label:"Weekly Status Update Reporting",                skill:"weekly-status-report-generator",         auto:82, value:80, composite:81, hrs:2.25,  trend:"stable",  sources:["email"] },
+  { label:"Security & Compliance Alert Review",            skill:"compliance-alert-classifier",            auto:88, value:72, composite:80, hrs:0.99,  trend:"stable",  sources:["email"] },
+  { label:"Eval Strategy Guidance & CLI Troubleshooting",  skill:"eval-design-advisor",                    auto:65, value:92, composite:79, hrs:4.5,   trend:"rising",  sources:["teams"] },
+  { label:"Recurring Weekly Sync Meeting Cadence",         skill:"calendar-triage-advisor",                auto:75, value:78, composite:77, hrs:6.67,  trend:"stable",  sources:["meeting"] },
+  { label:"Strategic Leadership Thread Synthesis",         skill:"strategic-thread-synthesizer",           auto:62, value:82, composite:72, hrs:3.84,  trend:"stable",  sources:["email"] },
+  { label:"External Partner & Customer Eval Sessions",     skill:"partner-eval-enablement-pack-generator", auto:50, value:92, composite:71, hrs:39.0,  trend:"rising",  sources:["meeting"] },
+  { label:"Agent Architecture & MCP/Skills Scoping",       skill:"architecture-feasibility-advisor",       auto:58, value:80, composite:69, hrs:3.0,   trend:"rising",  sources:["teams","email"] },
+  { label:"EvalCon Content Planning & CAPE Positioning",   skill:"conference-content-planner",             auto:65, value:78, composite:72, hrs:2.01,  trend:"rising",  sources:["teams"] },
+  { label:"Technical Artifact Distribution via Teams",     skill:"artifact-distribution-hub",              auto:75, value:70, composite:73, hrs:1.34,  trend:"stable",  sources:["teams"] },
+  { label:"1:1 Stakeholder Check-Ins (6/week)",            skill:"one-on-one-prep-assistant",              auto:60, value:72, composite:66, hrs:7.5,   trend:"stable",  sources:["meeting"] },
+  { label:"Daily Personal Day-Prep Planning",              skill:"daily-briefing-composer",                auto:80, value:65, composite:73, hrs:1.26,  trend:"stable",  sources:["document"] },
+  { label:"VOC & Cross-Org Navigation Routing",            skill:"voc-routing-guide",                      auto:74, value:76, composite:75, hrs:0.99,  trend:"stable",  sources:["teams"] },
+  { label:"CAPE Camp AIR Immersive Training (Cascade)",    skill:"event-artifact-coordinator",             auto:45, value:70, composite:58, hrs:45.0,  trend:"stable",  sources:["meeting"] },
+  { label:"Skill-Detector Spec Iterative Build (Meta)",    skill:"skill-spec-scaffold-generator",          auto:72, value:68, composite:70, hrs:2.75,  trend:"rising",  sources:["document","teams"] },
+  { label:"Agent Eval Sets Template Maintenance",          skill:"eval-template-manager",                  auto:72, value:72, composite:72, hrs:1.0,   trend:"stable",  sources:["document"] },
+  { label:"Learning & Scaling Fridays (3h block)",         skill:"learning-session-curator",               auto:40, value:60, composite:50, hrs:8.76,  trend:"stable",  sources:["meeting"] },
+  { label:"Viva Engage Digest Passive Consumption",        skill:"digest-summarizer",                      auto:70, value:35, composite:53, hrs:0.5,   trend:"stable",  sources:["email"] }
 ];
 
 const SIGNAL_SOURCES = [
-  { label:"Meeting",  count:7, color:"#d2a8ff" },
-  { label:"Email",    count:5, color:"#58a6ff" },
-  { label:"Teams",    count:4, color:"#ffa657" },
-  { label:"Document", count:3, color:"#3fb950" }
+  { label:"Meeting",  count:10, color:"#d2a8ff" },
+  { label:"Email",    count:9,  color:"#58a6ff" },
+  { label:"Teams",    count:6,  color:"#ffa657" },
+  { label:"Document", count:6,  color:"#3fb950" }
 ];
-const SIGNAL_TOTAL = 19;
+const SIGNAL_TOTAL = 31;
 
 const CYCLE_HISTORY = [
   {c:1,n:8},{c:3,n:14},{c:5,n:17},{c:7,n:21},{c:9,n:25},
   {c:11,n:27},{c:13,n:27},{c:15,n:27},{c:17,n:27},{c:19,n:28},
-  {c:21,n:27},{c:23,n:27},{c:25,n:27},{c:27,n:27}
+  {c:21,n:27},{c:23,n:27},{c:25,n:27},{c:27,n:27},
+  {c:28,n:20},{c:30,n:20},{c:33,n:20},{c:36,n:20},{c:39,n:20},{c:42,n:20}
 ];
 
 const SGI_DATA = {
-  generatedAtCycle: 28, weekOf: "2026-03-17",
+  generatedAtCycle: 42, weekOf: "2026-03-20",
   candidateSkills: [
-    { rank:1, name:"meeting-notes-action-extractor", compositeScore:92, automationScore:91, valueScore:93, patternId:"meeting-notes-action-item-capture",
-      description:"Ingests meeting transcript, agenda, or Loop doc and emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for 2 downstream patterns. 331 occ across 28 unbroken cycles.",
-      triggerExamples:["Extract action items from Camp AIR standup","Summarize customer meeting into Loop page","Create standardized 1:1 notes template","Generate post-meeting recap from CAPE Architecture Call"],
-      valueProposition:"Replaces ~60 hrs across 4 roles. Est. ~$156K/yr." },
-    { rank:2, name:"eval-report-synthesizer", compositeScore:91, automationScore:85, valueScore:95, patternId:"eval-results-analysis-reporting",
-      description:"Ingests eval results, strategy discussions, actionability brainstorms. RISING with eval strategy surging. 426 occ. Highest value score (95).",
-      triggerExamples:["Synthesize eval progress from CAPE threads","Generate actionability analysis from working session","Prepare Golden Evals kickoff report","Create eval strategy overview from Teams threads"],
-      valueProposition:"Saves ~107 hrs across 5 roles. RISING. Est. ~$278K/yr." },
-    { rank:3, name:"ado-notification-router", compositeScore:90, automationScore:95, valueScore:85, patternId:"ado-notification-triage",
-      description:"Classifies ADO notifications by work-item type, workstream, urgency. SATURATED at 833 occ. Highest automation score (95).",
-      triggerExamples:["Triage ADO inbox - action vs FYI","Classify by workstream","Which notifications need PM response?","Route task to correct DRI"],
-      valueProposition:"Eliminates ~30 hrs. 833 occ SATURATED. Est. ~$79K/yr." },
-    { rank:4, name:"eval-design-advisor", compositeScore:89, automationScore:84, valueScore:92, patternId:"eval-coaching-and-scoping",
-      description:"Codifies eval expert knowledge. BSI 87 CRITICAL. RISING with strongest intake ever. Unblocks expert bottleneck.",
-      triggerExamples:["How many evals for 3-intent agent?","Keyword match vs semantic grading?","Guide actionability assessment","Golden eval methodology"],
-      valueProposition:"Unblocks BSI 87 CRITICAL. 213 occ. Est. ~$130K/yr." },
-    { rank:5, name:"weekly-status-report-generator", compositeScore:89, automationScore:87, valueScore:90, patternId:"weekly-status-report-generation",
-      description:"Generates standardized weekly status from Loop, Teams, email, meetings. Resolves 5-format parallel creation gap. RISING.",
-      triggerExamples:["Generate CAPE eval status","Draft XFN Report Out","Create EOD debrief template","Refresh weekly status from all sources"],
-      valueProposition:"Saves ~43 hrs across 4 roles. 147 occ RISING. Est. ~$111K/yr." }
+    { rank:1, name:"meeting-notes-action-extractor", compositeScore:89, automationScore:88, valueScore:90, patternId:"meeting-notes-loop-capture",
+      description:"Generates structured Loop-compatible notes from any meeting context: Agenda → Notes → Decisions/Open Questions → Action Items (owner + due date) → Follow-up email draft. Chain head for meeting-workflow family (21.18h/wk composite). 24 occ across 42 unbroken cycles.",
+      triggerExamples:["Create Loop notes for today's Evals sync","Extract action items from Camp AIR standup","Summarize Project Crucible weekly decisions","Set up 1:1 prep and notes page for stakeholder check-in"],
+      valueProposition:"SGI 89 CRITICAL. 7h recovered this cycle. Meeting-workflow family: 21.18h/wk. Chain head unlocking calendar-triage-advisor and one-on-one-prep-assistant." },
+    { rank:2, name:"ado-notification-router", compositeScore:87, automationScore:92, valueScore:82, patternId:"ado-notification-triage",
+      description:"Classifies ADO work-item notifications by type (Task/Bug/Requirement/Feature/Epic) and action-required status. PM is subscriber not assignee — most are FYI. Machine-parseable subjects. 90 cumulative occ, saturated at 30/week. Signal confidence 97.",
+      triggerExamples:["Triage my ADO Evals notifications this week","Which ADO items need my direct action?","Filter noise from Bug/Feature threads I'm subscribed to","Route task to correct DRI"],
+      valueProposition:"Auto score 92 (highest tracked). 90 occ SATURATED. Decompose into 5 sub-classifiers for max yield. Shares classifier infra with compliance-alert-classifier." },
+    { rank:3, name:"eval-enablement-standardizer", compositeScore:85, automationScore:84, valueScore:86, patternId:"parallel-eval-deck-duplication",
+      description:"Generates canonical eval enablement decks from a single template, audience-contextualized for SI partners, field engineers, or leadership. Eliminates 3+ parallel floating versions per cycle. EvalCon 2026-04-02 deadline in 13 days.",
+      triggerExamples:["Create eval intro deck for new SI partner (Accenture)","Consolidate the 5 floating eval deck versions","Generate CAPE evals playbook for EvalCon submission"],
+      valueProposition:"SGI 85 RISING. EvalCon deadline amplifies urgency. 3 new parallel instances this cycle. Eval-enablement family: 49h/wk. Deploy before 2026-04-02." },
+    { rank:4, name:"eval-design-advisor", compositeScore:79, automationScore:65, valueScore:92, patternId:"eval-strategy-guidance-bottleneck",
+      description:"Codifies PM eval expertise into a tiered Q&A skill. Tier 1: deflects common strategy questions (eval case count, metric selection, lifecycle timing). Tier 2: structures complex design. Tier 3: escalates to PM. Also handles CLI troubleshooting (CSV format, feature flags, tool_call_accuracy).",
+      triggerExamples:["How many eval cases for a 3-intent agent?","What metrics for a retrieval-augmented agent?","CSV import format for CLI evals?","When in agent lifecycle should evals run?"],
+      valueProposition:"BSI 90 CRITICAL — raised from 87. 45 cumulative occ. 15 inbound signals this cycle. PM is sole DRI. Unblocking enables autonomy across 50+ external partner engagements." },
+    { rank:5, name:"weekly-status-report-generator", compositeScore:81, automationScore:82, valueScore:80, patternId:"weekly-status-report-assembly",
+      description:"Assembles weekly status report from done/next/blockers across 4 parallel formats: weekly email, bi-weekly newsletter, Cape Day/LT slides, leadership summary. Same progress restated 4 times — this skill collapses to one.",
+      triggerExamples:["Generate weekly CAPE status update","Draft done/next/blockers from meeting notes","Create LT slide from weekly progress","Compose bi-weekly newsletter from done items"],
+      valueProposition:"3 occ tracked. 2.25h total. Multi-format duplication eliminated. Status-reporting family composite: 6.09h/wk. Composes from meeting-notes-action-extractor output." }
   ]
 };
+
+const SKILL_FAMILIES_DATA = [
+  { name:"Event Coordination",    hours:55.77, patterns:3, color:"#d2a8ff", skills:["event-artifact-coordinator","learning-session-curator","conference-content-planner"] },
+  { name:"Eval Enablement",       hours:49.0,  patterns:4, color:"#f0883e", skills:["eval-design-advisor","eval-enablement-standardizer","partner-eval-enablement-pack-generator","eval-template-manager"] },
+  { name:"Meeting Workflow",      hours:21.18, patterns:3, color:"#58a6ff", skills:["meeting-notes-action-extractor","calendar-triage-advisor","one-on-one-prep-assistant"] },
+  { name:"Status Reporting",      hours:6.09,  patterns:2, color:"#79c0ff", skills:["weekly-status-report-generator","strategic-thread-synthesizer"] },
+  { name:"Architecture Advisory", hours:5.75,  patterns:2, color:"#ffa657", skills:["architecture-feasibility-advisor","skill-spec-scaffold-generator"] },
+  { name:"Notification Mgmt",     hours:3.74,  patterns:3, color:"#f78166", skills:["ado-notification-router","compliance-alert-classifier","digest-summarizer"] },
+  { name:"Knowledge Mgmt",        hours:2.33,  patterns:2, color:"#3fb950", skills:["voc-routing-guide","artifact-distribution-hub"] },
+  { name:"Personal Ops",          hours:1.26,  patterns:1, color:"#a5d6ff", skills:["daily-briefing-composer"] }
+];
 
 // ── KPI ANIMATION ──
 function animateKPI(el, target, duration) {
@@ -430,7 +470,7 @@ function animateKPI(el, target, duration) {
 }
 window.addEventListener('DOMContentLoaded', () => {
   KPI_TARGETS.forEach((v, i) => animateKPI(document.getElementById('kpi' + i), v, 1200));
-  buildTable(); buildBubbleChart(); buildDonut(); buildSGI(); buildCycleHistory();
+  buildTable(); buildSkillFamilies(); buildBubbleChart(); buildDonut(); buildSGI(); buildCycleHistory();
 });
 
 // ── TABLE ──
@@ -443,11 +483,59 @@ function srcBadge(s) { return '<span class="src-badge src-' + s + '">' + s + '</
 function scoreBar(val, cls) {
   return '<div class="score-bar-wrap"><div class="score-bar"><div class="score-fill ' + cls + '" style="width:' + val + '%"></div></div><span class="score-num">' + val + '</span></div>';
 }
+function compColor(c) {
+  if (c >= 85) return '#3fb950';
+  if (c >= 75) return '#58a6ff';
+  if (c >= 65) return '#ffa657';
+  return '#8b949e';
+}
 function buildTable() {
   var tbody = document.getElementById('patternTable');
   tbody.innerHTML = TOP10.map(function(p) {
-    return '<tr><td><span class="rank-num">' + p.rank + '</span></td><td><div class="pattern-name">' + p.label + '</div><div class="skill-name">' + p.skill + '</div></td><td><div class="src-badges">' + p.sources.map(srcBadge).join('') + '</div></td><td>' + scoreBar(p.auto,'score-fill-auto') + '</td><td>' + scoreBar(p.value,'score-fill-value') + '</td><td>' + trendIcon(p.trend) + '</td><td><span class="hrs-cell">' + p.hrs.toFixed(1) + ' hrs</span></td></tr>';
+    var comp = p.composite || Math.round((p.auto + p.value) / 2);
+    return '<tr><td><span class="rank-num">' + p.rank + '</span></td>'
+      + '<td><div class="pattern-name">' + p.label + '</div><div class="skill-name">' + p.skill + '</div></td>'
+      + '<td><div class="src-badges">' + p.sources.map(srcBadge).join('') + '</div></td>'
+      + '<td>' + scoreBar(p.auto,'score-fill-auto') + '</td>'
+      + '<td>' + scoreBar(p.value,'score-fill-value') + '</td>'
+      + '<td><span class="comp-score" style="color:' + compColor(comp) + '">' + comp + '</span></td>'
+      + '<td>' + trendIcon(p.trend) + '</td>'
+      + '<td><span class="hrs-cell">' + p.hrs.toFixed(1) + ' hrs</span></td></tr>';
   }).join('');
+}
+
+// ── SKILL FAMILY BARS ──
+function buildSkillFamilies() {
+  var container = document.getElementById('familyBars');
+  var summary = document.getElementById('familySummary');
+  if (!container) return;
+  var maxHrs = Math.max.apply(null, SKILL_FAMILIES_DATA.map(function(d){return d.hours;}));
+  var totalHrs = SKILL_FAMILIES_DATA.reduce(function(s,d){return s+d.hours;},0);
+  var html = '';
+  SKILL_FAMILIES_DATA.forEach(function(d) {
+    var pct = (d.hours / maxHrs * 100).toFixed(1);
+    html += '<div class="family-bar-row">';
+    html += '<span class="family-label" style="color:' + d.color + '">' + d.name + '</span>';
+    html += '<div class="family-bar-outer"><div class="family-bar-inner" id="fb_' + d.name.replace(/\s+/g,'_') + '" style="width:0;background:' + d.color + '" data-target="' + pct + '">' + d.hours.toFixed(1) + 'h</div></div>';
+    html += '<span class="family-meta">' + d.patterns + ' pattern' + (d.patterns > 1 ? 's' : '') + ' &middot; ' + (d.hours/totalHrs*100).toFixed(0) + '%</span>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+  if (summary) {
+    summary.innerHTML = '<div class="family-stat">Total tracked: <strong>' + totalHrs.toFixed(1) + 'h</strong> this cycle</div>'
+      + '<div class="family-stat">Largest family: <strong>Event Coordination</strong> (55.77h — Camp AIR dominant)</div>'
+      + '<div class="family-stat">Highest-value family: <strong>Eval Enablement</strong> (49h, BSI 90 bottleneck)</div>'
+      + '<div class="family-stat">Most generalizable: <strong>Meeting Workflow</strong> (21.18h, 3 skills)</div>';
+  }
+  // Animate bars after paint
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      SKILL_FAMILIES_DATA.forEach(function(d) {
+        var el = document.getElementById('fb_' + d.name.replace(/\s+/g,'_'));
+        if (el) el.style.width = el.getAttribute('data-target') + '%';
+      });
+    });
+  });
 }
 
 // ── BUBBLE CHART ──
@@ -536,19 +624,35 @@ function buildCycleHistory() {
   svg.setAttribute('width',W); svg.setAttribute('viewBox','0 0 '+W+' '+H);
   var PAD={top:20,right:30,bottom:40,left:46};
   var cW=W-PAD.left-PAD.right; var cH=H-PAD.top-PAD.bottom;
-  var maxN=32; var maxC=27;
+  var maxN=32; var maxC=42;
   function xC(c){return PAD.left+((c-1)/(maxC-1))*cW;}
   function yC(n){return PAD.top+((maxN-n)/maxN)*cH;}
   var g='<defs><linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/><stop offset="100%" stop-color="#58a6ff" stop-opacity="0"/></linearGradient></defs>';
   [0,8,16,24,32].forEach(function(n){var y=yC(n);g+='<line x1="'+PAD.left+'" y1="'+y+'" x2="'+(W-PAD.right)+'" y2="'+y+'" stroke="#30363d" stroke-width="1"/>';g+='<text x="'+(PAD.left-6)+'" y="'+(y+4)+'" fill="#8b949e" font-size="10" text-anchor="end">'+n+'</text>';});
   var pts=CYCLE_HISTORY.map(function(d){return xC(d.c)+','+yC(d.n);}).join(' ');
-  g+='<polygon points="'+pts+' '+xC(27)+','+yC(0)+' '+xC(1)+','+yC(0)+'" fill="url(#lineGrad)" fill-opacity="0.15"/>';
-  g+='<polyline points="'+pts+'" fill="none" stroke="#58a6ff" stroke-width="2.5" stroke-linejoin="round"/>';
+  var lastPt=CYCLE_HISTORY[CYCLE_HISTORY.length-1];
+  g+='<polygon points="'+pts+' '+xC(lastPt.c)+','+yC(0)+' '+xC(1)+','+yC(0)+'" fill="url(#lineGrad)" fill-opacity="0.15"/>';
+  // draw segment C28-drop in orange to mark restructuring
+  var preReorg=CYCLE_HISTORY.filter(function(d){return d.c<=27;});
+  var postReorg=CYCLE_HISTORY.filter(function(d){return d.c>=28;});
+  var prePts=preReorg.map(function(d){return xC(d.c)+','+yC(d.n);}).join(' ');
+  var postPts=postReorg.map(function(d){return xC(d.c)+','+yC(d.n);}).join(' ');
+  g+='<polyline points="'+prePts+'" fill="none" stroke="#58a6ff" stroke-width="2.5" stroke-linejoin="round"/>';
+  g+='<polyline points="'+postPts+'" fill="none" stroke="#3fb950" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="6,3"/>';
+  // annotation for restructuring
+  var reorgX=xC(28); var reorgY=yC(20);
+  g+='<line x1="'+reorgX+'" y1="'+yC(27)+'" x2="'+reorgX+'" y2="'+reorgY+'" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,3"/>';
+  g+='<text x="'+reorgX+'" y="'+(reorgY-6)+'" fill="#f0883e" font-size="9" text-anchor="middle">family reorg</text>';
   CYCLE_HISTORY.forEach(function(d){
-    var cx=xC(d.c),cy=yC(d.n); var isLast=d.c===27;
-    g+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(isLast?6:4)+'" fill="'+(isLast?'#58a6ff':'var(--surface)')+'" stroke="#58a6ff" stroke-width="2"/>';
-    g+='<text x="'+cx+'" y="'+(cy-10)+'" fill="'+(isLast?'#58a6ff':'#8b949e')+'" font-size="11" text-anchor="middle" font-weight="'+(isLast?700:400)+'">'+d.n+'</text>';
-    g+='<text x="'+cx+'" y="'+(H-PAD.bottom+14)+'" fill="#8b949e" font-size="10" text-anchor="middle">C'+d.c+'</text>';
+    var cx=xC(d.c),cy=yC(d.n); var isLast=d.c===42; var isReorg=d.c===28;
+    var col = d.c >= 28 ? '#3fb950' : '#58a6ff';
+    g+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(isLast?6:3)+'" fill="'+(isLast?col:'var(--surface)')+'" stroke="'+col+'" stroke-width="2"/>';
+    if (isLast || d.c % 9 === 0 || d.c === 1 || isReorg) {
+      g+='<text x="'+cx+'" y="'+(cy-10)+'" fill="'+(isLast?col:'#8b949e')+'" font-size="11" text-anchor="middle" font-weight="'+(isLast?700:400)+'">'+d.n+'</text>';
+    }
+    if (d.c % 6 === 0 || d.c === 1 || d.c === 28 || d.c === 42) {
+      g+='<text x="'+cx+'" y="'+(H-PAD.bottom+14)+'" fill="'+(isLast?col:'#8b949e')+'" font-size="10" text-anchor="middle" font-weight="'+(isLast?700:400)+'">C'+d.c+'</text>';
+    }
   });
   svg.innerHTML=g;
 }
