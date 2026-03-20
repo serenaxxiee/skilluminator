@@ -148,22 +148,24 @@ Focus areas for improvement (pick 1-2 per cycle):
 You have full creative control. The goal: if a colleague runs this skill tomorrow, it should blow them away.` : "";
 
   // Task 3: dashboard (only when focus includes dashboard)
-  const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH}) — WORLD-CLASS INSIGHTS
+  const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH}) — MAKE IT ACTUALLY USEFUL
 
 Read the current dashboard, then make TARGETED improvements with Edit. Self-contained HTML, dark theme (#0f1117), inline CSS/JS only.
 
-This dashboard is what colleagues SEE when they use Skilluminator. Make it world-class:
+CRITICAL RULES:
+- **NO org-wide patterns section.** This dashboard is about INDIVIDUAL patterns only. Remove any org-wide sections if they exist.
+- **Focus on being USEFUL**, not just pretty. A colleague should open this and immediately understand their work patterns and what to do about them.
 
 Focus areas for improvement (pick 1-2 per cycle):
-- **Data visualization**: Charts, trend sparklines, score gauges, heatmaps — make patterns visual
-- **Pattern insights**: Show each pattern with its automation score, value score, time impact, and trend
-- **Top recommendations**: Highlight the highest-value skill candidates with clear "why you should care"
-- **Time savings**: Show how much time the user could save if top patterns were automated
-- **Interactive elements**: Sorting, filtering, expandable detail sections, tab navigation
-- **Polish**: Typography, spacing, transitions, responsive layout, loading states
-- **Narrative**: Not just data tables — tell the story of the user's work patterns
+- **Actionable insights**: For each top pattern, show "what this means for you" and "what you can do about it"
+- **Time savings**: Show how many hours/week each pattern costs and how much automation could save
+- **Data visualization**: Charts, sparklines, score gauges — make the data intuitive at a glance
+- **Top recommendations**: Highlight highest-value skill candidates with clear "why you should care"
+- **Interactive elements**: Sorting, filtering, expandable details, tabs
+- **Pattern detail**: Each pattern should show sources, frequency, automation score, value score, trend
+- **Polish**: Typography, spacing, transitions, responsive layout
 
-Each cycle should make a VISIBLE improvement. If a colleague opened this dashboard, they should be impressed.` : "";
+Each cycle should make a VISIBLE improvement. Think: would this dashboard make someone say "I need to automate this pattern immediately"?` : "";
 
   const tasks = [patternsTask, skillTask, dashboardTask].filter(Boolean).join("\n\n---\n\n");
   const taskCount = [true, focus !== "dashboard", focus !== "skill"].filter(Boolean).length;
@@ -184,20 +186,16 @@ ${tasks}
 
 ---
 
-## FINAL STEP — Blog Post (MANDATORY, DO NOT SKIP)
+## FINAL STEP — Blog Post (MANDATORY)
 
-You MUST end your entire response with a section that starts with exactly these characters on their own line:
+End your response with exactly this on its own line:
 
 ## FEED POST
 
-Followed by a fun, lighthearted blog post (3-6 sentences) for the operator. This is NOT optional. Write in a witty, personality-filled tone — like a teammate posting a standup update with humor. Include:
-- What you did this cycle and what changed
-- Interesting findings or highlights from the data
-- Top skill candidate(s) with scores
-- Any challenges, gaps, or funny observations
-- A dash of personality — puns, metaphors, or playful commentary welcome
-
-This post will be shown directly to the operator on the feed page. If you do not include a ## FEED POST section, the operator will see a boring fallback message instead of your personality.`;
+Then write a short, funny update (3-5 sentences) with:
+- Highlights: what went well, cool findings
+- Lowlights: what broke, what's still wonky, challenges
+- Keep it casual and witty — like a teammate's standup update`;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
