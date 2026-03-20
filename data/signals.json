@@ -1,42 +1,553 @@
 {
-  "cycleNum": 35,
+  "cycleNum": 47,
   "harvestedAt": "2026-03-20T00:00:00.000Z",
   "weekOf": "2026-03-16",
-  "harvestStatus": "FAILED",
   "workiqQueriesRun": [
-    "What email threads did I send or receive most frequently in the past 7 days? List subject patterns, sender/recipient groups, and approximate time spent.",
-    "Are there recurring email types I write regularly — like status updates, approvals, scheduling requests, or data requests? Show examples from the past week.",
-    "Which emails required the most back-and-forth (most replies in a thread) this past week, and what was the topic?",
-    "What recurring meetings did I attend this past week? For each, what was the typical agenda type and who attends?",
-    "How much total time did I spend in meetings this past week, broken down by meeting type (1:1, team sync, external, etc.)?",
-    "Which meeting types happen every week at roughly the same time with the same people?",
-    "What Teams channels or chats am I most active in over the past 7 days? What topics come up repeatedly?",
-    "Are there questions I get asked repeatedly in Teams chats — things people regularly come to me for?",
-    "What types of information do I most frequently share or look up in Teams conversations this week?",
-    "What types of documents did I create, edit, or review most often this past week? Any recurring doc types like reports, specs, or decks?",
-    "Are there documents I update on a regular cadence (weekly/monthly reports, trackers, dashboards)?",
-    "What SharePoint sites or OneDrive folders do I access most frequently?",
-    "Across email, meetings, and Teams, what topics or projects consumed the most of my time this week?",
-    "Are there workflows that seem to repeat — where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?",
-    "What tasks do multiple people on my team seem to do independently that could be standardized?"
+    "Give me a comprehensive analysis of ALL my M365 activity from the past 7 days across email, meetings, Teams chats, and documents. For each source, list: the most frequent/recurring activities, estimated time spent, key participants (by role not name), and any repeating patterns or workflows. Include specific examples of recurring email types, meeting types, chat topics, and document types. Also identify cross-source workflows. Be thorough - I need at least 15 distinct activity patterns."
   ],
-  "queryResults": [
-    { "queryIndex": 1,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 2,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 3,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 4,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 5,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 6,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 7,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 8,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 9,  "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 10, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 11, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 12, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 13, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 14, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." },
-    { "queryIndex": 15, "status": "error", "response": null, "conversationId": null, "error": "An error occurred while processing your request." }
-  ],
-  "signals": [],
-  "harvestNotes": "All 15 WorkIQ queries for Cycle 35 (week of 2026-03-16) returned service errors with null response and null conversationId. Zero signals extracted. No data invented — signals array is intentionally empty per policy. This is a repeated failure pattern also observed in cycles 31-33. Most likely root cause: WorkIQ EULA has not been accepted. Required action: user must explicitly authorize EULA acceptance via mcp__workiq__accept_eula with URL https://github.com/microsoft/work-iq-mcp, then re-run Cycle 35 harvest."
+  "signals": [
+    {
+      "source": "email",
+      "title": "Azure DevOps Notification Triage",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "TPM"
+      ],
+      "frequency": 25,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "Azure DevOps",
+        "Epic",
+        "Feature",
+        "Requirement",
+        "Task",
+        "eval coverage",
+        "IcM",
+        "jailing",
+        "ownership"
+      ],
+      "rawExcerpt": "New Epics / Features / Requirements / Tasks for evals, coverage, jailing, IcM, and tooling arrive continuously. Pattern: skim, decide relevance, mentally map to ownership.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "Security & DLP Compliance Remediation",
+      "participants": [
+        "Security/Compliance System",
+        "PM"
+      ],
+      "frequency": 6,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "Purview",
+        "DLP",
+        "Action Required",
+        "File Blocked",
+        "credentials",
+        "cert key",
+        "sanitize",
+        "OneDrive"
+      ],
+      "rawExcerpt": "Repeated Action Required: File Blocked alerts on files you modified. Pattern: receive, open file, sanitize, re-save. Examples: credentials, cert key detections.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "EvalCon Coordination & Leadership Nudges",
+      "participants": [
+        "Director/Manager",
+        "Peer PM"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "EvalCon",
+        "April 2",
+        "announcement",
+        "deadline",
+        "positioning",
+        "v-team"
+      ],
+      "rawExcerpt": "Forwarded announcements + deadline pressure + positioning guidance. Pattern: email triggers Teams follow-up. Example: EvalCon April 2 announcement.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "File-Share Review Notifications",
+      "participants": [
+        "Peer PM",
+        "Product Team Member"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 15,
+      "keywords": [
+        "shared with you",
+        "edit",
+        "review",
+        "evaluation docs",
+        "ESS product team",
+        "response quality"
+      ],
+      "rawExcerpt": "Others sharing evaluation docs for edit/review. Example: Response quality evaluations from the ESS product team.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "External Administrative Context Switches",
+      "participants": [
+        "External Party"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 10,
+      "keywords": [
+        "degree certification",
+        "administrative",
+        "external",
+        "non-work",
+        "context switch"
+      ],
+      "rawExcerpt": "Non-work but time-consuming context switches (e.g., degree certification).",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Full-Day Workshop (Camp AIR)",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Architect",
+        "Leadership"
+      ],
+      "frequency": 1,
+      "timeSpentMinutes": 480,
+      "keywords": [
+        "Camp AIR",
+        "CAPE",
+        "workshop",
+        "plenary",
+        "breakout",
+        "full-day",
+        "prototype"
+      ],
+      "rawExcerpt": "Long blocks (8h+), mix of plenary + breakouts. Example: CAPE Camp AIR (single event spanning the day).",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Standing Team / V-Team Weekly Sync",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "TPM",
+        "V-Team Member"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 150,
+      "keywords": [
+        "v-team",
+        "weekly sync",
+        "standing",
+        "cadence",
+        "Project Crucible",
+        "large attendance"
+      ],
+      "rawExcerpt": "Weekly cadence, large attendance. Example: Project Crucible v-Team.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Customer / Partner Eval Deep Dive",
+      "participants": [
+        "Customer-Facing Role (CLS/MCS)",
+        "PM",
+        "Engineering Lead"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 120,
+      "keywords": [
+        "customer",
+        "partner",
+        "eval tooling",
+        "use case",
+        "screen share",
+        "deep dive",
+        "issues"
+      ],
+      "rawExcerpt": "Agenda pattern: use-cases, screen share issues, eval tooling deep dive. Example described in Teams planning chat.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "meeting",
+      "title": "1:1 and Small-Group Design Reviews",
+      "participants": [
+        "Manager",
+        "Peer PM"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 90,
+      "keywords": [
+        "design review",
+        "1:1",
+        "process gaps",
+        "eval-driven",
+        "sequencing",
+        "deck review",
+        "manager"
+      ],
+      "rawExcerpt": "Process gaps, eval-driven development sequencing. Example: deck review with manager.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "EvalCon Planning & Positioning Thread",
+      "participants": [
+        "Manager",
+        "Peer PM"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "EvalCon",
+        "planning",
+        "positioning",
+        "topics",
+        "v-team",
+        "tasking",
+        "drive"
+      ],
+      "rawExcerpt": "Email escalation leads to Teams tasking (identify topics, drive v-team). Example thread with manager + peer PMs.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "Eval Tooling Technical Q&A",
+      "participants": [
+        "Engineer/Architect",
+        "SME",
+        "PM"
+      ],
+      "frequency": 10,
+      "timeSpentMinutes": 90,
+      "keywords": [
+        "eval tooling",
+        "CLI",
+        "DA evals",
+        "telemetry",
+        "tool-call accuracy",
+        "citations",
+        "IcM escalation",
+        "SME"
+      ],
+      "rawExcerpt": "Pattern: technical question, SME responses, link to docs/incidents. Examples: tool-call accuracy, citations, IcM escalation.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "ADO Triage & Customer-Ask Deduplication",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "DRI"
+      ],
+      "frequency": 8,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "ADO",
+        "duplicate",
+        "triage",
+        "ownership",
+        "work item",
+        "Eval-DRI",
+        "customer ask",
+        "deduplication"
+      ],
+      "rawExcerpt": "Is this a duplicate? leads to decision leads to work item update. Examples in Eval-DRI channel.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "Camp AIR Logistics & Artifact Sharing",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Team Member"
+      ],
+      "frequency": 6,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "Camp AIR",
+        "logistics",
+        "SharePoint",
+        "Loop",
+        "deck",
+        "prototype",
+        "artifact",
+        "ZIP"
+      ],
+      "rawExcerpt": "Links to SharePoint folders, decks, Loop pages, prototypes. Examples: CAPE Camp AIR document links.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "Agent Architecture & Cross-Org Strategy Discussion",
+      "participants": [
+        "PM",
+        "Architect",
+        "Engineering Lead",
+        "Leadership"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 75,
+      "keywords": [
+        "agent",
+        "A365",
+        "cross-org",
+        "observability",
+        "non-M365 agents",
+        "vision",
+        "strategy",
+        "architecture"
+      ],
+      "rawExcerpt": "Vision-level discussions (A365, non-M365 agents, observability). Example: A365 Cross-Org Collab.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "Team Watercooler & Social Threads",
+      "participants": [
+        "Team Member",
+        "Peer"
+      ],
+      "frequency": 7,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "watercooler",
+        "social",
+        "morale",
+        "BAT team",
+        "lightweight",
+        "pings"
+      ],
+      "rawExcerpt": "Low cognitive load but frequent pings (team morale). Example: BAT watercooler.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "document",
+      "title": "Skill Framework & Automation Artifact Authoring",
+      "participants": [
+        "PM (primary author)"
+      ],
+      "frequency": 7,
+      "timeSpentMinutes": 180,
+      "keywords": [
+        "skill-detector",
+        "Skilluminator",
+        "SKILL.md",
+        "ZIP",
+        "dashboard.html",
+        "framework",
+        "automation"
+      ],
+      "rawExcerpt": "skill-detector, Skilluminator, SKILL.md packages. Examples: skill-detector ZIPs, dashboard.html.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "document",
+      "title": "Cycle Dashboard Creation & Analytical Outputs",
+      "participants": [
+        "PM (primary author)"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 90,
+      "keywords": [
+        "dashboard",
+        "cycle",
+        "analytical",
+        "M365 activity",
+        "patterns",
+        "HTML",
+        "visualization"
+      ],
+      "rawExcerpt": "Cycle dashboards summarizing M365 activity patterns. Example: Skilluminator Cycle 3 dashboard.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "document",
+      "title": "Agent Runtime & Dev Artifact Management",
+      "participants": [
+        "PM (primary author)",
+        "Engineering Lead"
+      ],
+      "frequency": 5,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "agent.db",
+        ".claude.json",
+        "config",
+        "logs",
+        "runtime",
+        "state files",
+        "devbox"
+      ],
+      "rawExcerpt": "Databases, logs, config files (agent.db, .claude.json). Examples: agent state files.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "document",
+      "title": "Dev Environment Setup & Shell Scripting",
+      "participants": [
+        "PM (primary author)"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "setup-devbox.sh",
+        "shell",
+        "environment",
+        "script",
+        "snapshot",
+        "devbox"
+      ],
+      "rawExcerpt": "Devbox setup, shell snapshots. Example: setup-devbox.sh.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "document",
+      "title": "Collaborative Docs Shared via Teams (Loop & Decks)",
+      "participants": [
+        "PM",
+        "Peer PM",
+        "Engineering Lead"
+      ],
+      "frequency": 6,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "Loop",
+        "deck",
+        "PowerPoint",
+        "SharePoint",
+        "shared",
+        "prototype",
+        "collaborative"
+      ],
+      "rawExcerpt": "Loop pages, decks, ZIP prototypes. Examples: Loop page shared in chat.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "Cross-Source: Email to Teams to Document (EvalCon Loop)",
+      "participants": [
+        "PM",
+        "Manager",
+        "Peer PM"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 60,
+      "keywords": [
+        "EvalCon",
+        "email announcement",
+        "Teams planning",
+        "draft content",
+        "deck",
+        "cross-source",
+        "workflow chain"
+      ],
+      "rawExcerpt": "Email announcement leads to Teams planning leads to draft content/decks. Evidence: EvalCon email + Teams thread + shared artifacts.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "Cross-Source: ADO Notification to Teams Triage to ADO Update",
+      "participants": [
+        "PM",
+        "DRI",
+        "Engineering Lead"
+      ],
+      "frequency": 8,
+      "timeSpentMinutes": 30,
+      "keywords": [
+        "ADO",
+        "notification",
+        "Teams",
+        "triage",
+        "duplicate",
+        "ownership",
+        "update",
+        "work item",
+        "cross-source"
+      ],
+      "rawExcerpt": "System email leads to Teams discussion leads to decision on duplication/ownership. Evidence: ADO emails + Eval-DRI threads.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "meeting",
+      "title": "Cross-Source: Meeting to Teams Follow-ups to Document Updates",
+      "participants": [
+        "PM",
+        "Engineering Lead",
+        "Team Member"
+      ],
+      "frequency": 3,
+      "timeSpentMinutes": 45,
+      "keywords": [
+        "Camp AIR",
+        "follow-up",
+        "Teams",
+        "SharePoint",
+        "artifact",
+        "update",
+        "cross-source",
+        "post-meeting"
+      ],
+      "rawExcerpt": "Camp AIR sessions lead to chat links lead to updated SharePoint artifacts. Evidence: Camp AIR meeting + Teams logistics threads.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "email",
+      "title": "Cross-Source: Security Alert to File Edit to Compliance Resolution",
+      "participants": [
+        "Security/Compliance System",
+        "PM"
+      ],
+      "frequency": 4,
+      "timeSpentMinutes": 20,
+      "keywords": [
+        "Purview",
+        "DLP",
+        "alert",
+        "OneDrive",
+        "edit",
+        "unblock",
+        "compliance",
+        "resolution",
+        "cross-source"
+      ],
+      "rawExcerpt": "Purview email leads to OneDrive edit leads to unblock. Evidence: repeated DLP alerts.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    },
+    {
+      "source": "teams",
+      "title": "Cross-Source: Customer Ask to Eval Deep Dive Meeting to Tooling Guidance",
+      "participants": [
+        "Customer-Facing Role (CLS/MCS)",
+        "PM",
+        "Engineering Lead"
+      ],
+      "frequency": 2,
+      "timeSpentMinutes": 90,
+      "keywords": [
+        "customer ask",
+        "eval",
+        "deep dive",
+        "meeting",
+        "tooling",
+        "guidance",
+        "prep",
+        "cross-source"
+      ],
+      "rawExcerpt": "Chat planning leads to meeting leads to shared docs/links. Evidence: customer prep chat + eval tooling threads.",
+      "capturedAt": "2026-03-20T00:00:00.000Z"
+    }
+  ]
 }
