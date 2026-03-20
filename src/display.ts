@@ -101,8 +101,10 @@ export function startupBanner(): void {
   +=============================================================+`));
   console.log();
   console.log(chalk.gray(`  Started:     ${timestamp()}`));
-  console.log(chalk.gray(`  Model:       claude-opus-4-6`));
-  console.log(chalk.gray(`  Cycle delay: 10s`));
-  console.log(chalk.gray(`  Teams:       update posted every cycle`));
+  console.log(chalk.gray(`  Refine:      ${process.env.SKILLUMINATOR_REFINE_MODEL ?? "claude-sonnet-4-6"}`));
+  console.log(chalk.gray(`  Harvest:     ${process.env.SKILLUMINATOR_HARVEST_MODEL ?? "claude-sonnet-4-6"}`));
+  console.log(chalk.gray(`  Max turns:   refine=${process.env.SKILLUMINATOR_REFINE_MAX_TURNS ?? "25"}, harvest=${process.env.SKILLUMINATOR_HARVEST_MAX_TURNS ?? "15"}`));
+  console.log(chalk.gray(`  Focus:       alternating (odd=skill, even=dashboard)`));
+  console.log(chalk.gray(`  Git:         ${process.env.SKILLUMINATOR_SKIP_PR === "true" ? "direct to main" : "branch + PR + squash-merge"}`));
   console.log();
 }
