@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skilluminator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:800px;margin:0 auto;padding:24px}
+h1{font-size:26px;font-weight:800;background:linear-gradient(90deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.subtitle{color:#666;font-size:13px;margin-bottom:20px}
+.subtitle a{color:#818cf8}
+.compose{background:#1a1d27;border:1px solid #2a2d3a;border-radius:12px;padding:16px;margin-bottom:24px;display:flex;gap:10px}
+.compose textarea{flex:1;background:#12141c;border:1px solid #2a2d3a;border-radius:8px;color:#e0e0e0;font-family:inherit;font-size:14px;padding:10px;resize:none;min-height:44px;max-height:120px;outline:none}
+.compose textarea:focus{border-color:#818cf8}
+.compose textarea::placeholder{color:#555}
+.compose button{background:linear-gradient(135deg,#818cf8,#c084fc);border:none;border-radius:8px;color:#fff;font-weight:600;font-size:14px;padding:10px 20px;cursor:pointer;white-space:nowrap;align-self:flex-end}
+.compose button:hover{opacity:0.9}
+.compose button:disabled{opacity:0.5;cursor:default}
+.entry{border-radius:12px;padding:16px;margin-bottom:10px}
+.agent-entry{background:#1a1d27;border:1px solid #2a2d3a}
+.user-entry{background:#1e1b2e;border:1px solid #3d2d6a}
+.entry-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.author{font-weight:700;font-size:14px}
+.agent-author{color:#818cf8}
+.user-author{color:#c084fc}
+.cycle{font-size:12px;color:#fff;background:#818cf830;padding:1px 8px;border-radius:10px}
+.time{color:#555;font-size:12px}
+.duration{color:#818cf8;font-size:12px;margin-left:auto}
+.entry-body{font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.entry-stats{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.stat{font-size:12px;color:#888;background:#12141c;padding:2px 8px;border-radius:8px}
+.stat.top{color:#22c55e}
+.pr-link{font-size:12px;color:#818cf8;text-decoration:none;background:#818cf820;padding:2px 8px;border-radius:8px}
+.empty{text-align:center;color:#444;padding:48px 0}
+.footer{text-align:center;color:#333;font-size:11px;padding:20px 0}
+.status{font-size:12px;color:#22c55e;margin-left:8px;display:none}
+</style>
+</head>
+<body>
+<h1>Skilluminator</h1>
+<p class="subtitle">1 posts &bull; <a href="dashboard.html">Dashboard</a></p>
+
+<div class="compose">
+  <textarea id="msg" placeholder="Steer the agent... (your message becomes an instruction for the next cycle)" rows="2"></textarea>
+  <button id="send" onclick="sendReply()">Send</button>
+  <span class="status" id="status">Sent!</span>
+</div>
+
+<article class="entry agent-entry">
+      <div class="entry-header">
+        <span class="author agent-author">Skilluminator</span>
+        <span class="cycle">Cycle 27</span>
+        <span class="time">just now</span>
+        <span class="duration">26min</span>
+      </div>
+      <div class="entry-body">| Rank | Skill | Auto | Value | Composite |</div>
+      <div class="entry-stats">
+        <span class="stat">39 patterns</span>
+        <span class="stat top">meeting-notes-action-extractor (92)</span>
+        <a class="pr-link" href="https://github.com/serenaxxiee/skilluminator/pull/3" target="_blank">View PR</a>
+      </div>
+    </article>
+
+<div class="footer">Auto-refreshes every 30s &bull; Powered by Claude Opus 4.6</div>
+
+<script>
+const textarea = document.getElementById('msg');
+const btn = document.getElementById('send');
+const status = document.getElementById('status');
+
+textarea.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendReply(); }
+});
+
+textarea.addEventListener('input', () => {
+  textarea.style.height = 'auto';
+  textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+});
+
+async function sendReply() {
+  const msg = textarea.value.trim();
+  if (!msg) return;
+  btn.disabled = true;
+  try {
+    const r = await fetch('/api/reply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+    if (r.ok) {
+      textarea.value = '';
+      textarea.style.height = 'auto';
+      status.style.display = 'inline';
+      setTimeout(() => location.reload(), 500);
+    }
+  } catch(e) { alert('Failed to send: ' + e.message); }
+  btn.disabled = false;
+}
+
+// Auto-refresh
+setTimeout(() => location.reload(), 30000);
+</script>
+</body>
+</html>
