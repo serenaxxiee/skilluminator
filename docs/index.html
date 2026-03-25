@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skilluminator — Infographic</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #08090d;
+    --surface: #12131f;
+    --surface2: #1a1b2e;
+    --border: #2d2f55;
+    --purple: #818cf8;
+    --pink: #c084fc;
+    --rose: #f472b6;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --blue: #60a5fa;
+    --cyan: #22d3ee;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 32px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, #818cf815 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, #c084fc10 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, #f472b608 0%, transparent 60%);
+    animation: heroPulse 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroPulse {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.05) rotate(2deg); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #818cf815, #c084fc15);
+    border: 1px solid #818cf830;
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--purple);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  .hero-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-title .grad {
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 35%, #f472b6 70%, #fb923c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 300% 100%;
+    animation: gradFlow 8s ease-in-out infinite;
+  }
+
+  @keyframes gradFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0 auto 48px;
+    animation: fadeInUp 1.2s ease-out;
+  }
+
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    animation: fadeInUp 1.4s ease-out;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-val {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    width: 24px; height: 24px;
+    border-right: 2px solid var(--purple);
+    border-bottom: 2px solid var(--purple);
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+  /* ── SECTION COMMON ── */
+  .section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 800px) { .problem-grid { grid-template-columns: 1fr; } }
+
+  .problem-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .problem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(129, 140, 248, 0.1);
+  }
+
+  .problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+  }
+
+  .problem-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .problem-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .problem-text {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .problem-stat {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .problem-stat-val {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--rose);
+  }
+
+  .problem-stat-unit {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* ── PIPELINE ── */
+  .pipeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pipeline::before {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 40px;
+    bottom: 40px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--purple), var(--pink), var(--green), var(--amber));
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .pipeline::before { left: 24px; }
+  }
+
+  .pipe-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 24px 0;
+    position: relative;
+  }
+
+  .pipe-num {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s;
+  }
+
+  .pipe-step:hover .pipe-num { transform: scale(1.1); }
+
+  .pipe-num.c1 { background: linear-gradient(135deg, #818cf830, #818cf810); border: 2px solid #818cf860; color: var(--purple); }
+  .pipe-num.c2 { background: linear-gradient(135deg, #a78bfa30, #a78bfa10); border: 2px solid #a78bfa60; color: #a78bfa; }
+  .pipe-num.c3 { background: linear-gradient(135deg, #c084fc30, #c084fc10); border: 2px solid #c084fc60; color: var(--pink); }
+  .pipe-num.c4 { background: linear-gradient(135deg, #e879f930, #e879f910); border: 2px solid #e879f960; color: #e879f9; }
+  .pipe-num.c5 { background: linear-gradient(135deg, #f472b630, #f472b610); border: 2px solid #f472b660; color: var(--rose); }
+  .pipe-num.c6 { background: linear-gradient(135deg, #fb923c30, #fb923c10); border: 2px solid #fb923c60; color: #fb923c; }
+  .pipe-num.c7 { background: linear-gradient(135deg, #fbbf2430, #fbbf2410); border: 2px solid #fbbf2460; color: var(--amber); }
+  .pipe-num.c8 { background: linear-gradient(135deg, #34d39930, #34d39910); border: 2px solid #34d39960; color: var(--green); }
+
+  .pipe-body { flex: 1; padding-top: 12px; }
+
+  .pipe-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .pipe-label.c1 { color: var(--purple); } .pipe-label.c2 { color: #a78bfa; }
+  .pipe-label.c3 { color: var(--pink); }   .pipe-label.c4 { color: #e879f9; }
+  .pipe-label.c5 { color: var(--rose); }   .pipe-label.c6 { color: #fb923c; }
+  .pipe-label.c7 { color: var(--amber); }  .pipe-label.c8 { color: var(--green); }
+
+  .pipe-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .pipe-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .pipe-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .pipe-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .pipe-tag.email { background: #1d4ed815; color: #60a5fa; border: 1px solid #1d4ed830; }
+  .pipe-tag.meeting { background: #15803d15; color: #4ade80; border: 1px solid #15803d30; }
+  .pipe-tag.teams { background: #5b21b615; color: #a78bfa; border: 1px solid #5b21b630; }
+  .pipe-tag.docs { background: #b4530915; color: #fb923c; border: 1px solid #b4530930; }
+  .pipe-tag.ai { background: #818cf815; color: #818cf8; border: 1px solid #818cf830; }
+  .pipe-tag.filter { background: #f4727115; color: #f87171; border: 1px solid #f4727130; }
+
+  /* ── SCORING SECTION ── */
+  .score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 800px) { .score-row { grid-template-columns: 1fr; } }
+
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+
+  .score-card.auto::before { background: linear-gradient(90deg, var(--purple), var(--blue)); }
+  .score-card.value::before { background: linear-gradient(90deg, var(--rose), var(--amber)); }
+
+  .score-card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .score-card.auto .score-card-title { color: var(--purple); }
+  .score-card.value .score-card-title { color: var(--rose); }
+
+  .score-card-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .rubric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff08;
+  }
+
+  .rubric-row:last-child { border-bottom: none; }
+
+  .rubric-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .rubric-pts {
+    font-size: 0.88rem;
+    font-weight: 800;
+    min-width: 50px;
+    text-align: right;
+  }
+
+  .rubric-pts.pos { color: var(--green); }
+  .rubric-pts.neg { color: #f87171; }
+
+  /* ── FORMULA ── */
+  .formula-box {
+    margin-top: 48px;
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .formula-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .formula {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+  }
+
+  .formula .auto-c { color: var(--purple); }
+  .formula .value-c { color: var(--rose); }
+  .formula .op { color: var(--muted); }
+  .formula .result { background: linear-gradient(135deg, var(--amber), #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .tier-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .tier-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tier-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  .tier-dot.strong { background: var(--green); box-shadow: 0 0 12px #34d39940; }
+  .tier-dot.moderate { background: var(--amber); box-shadow: 0 0 12px #fbbf2440; }
+  .tier-dot.exploring { background: var(--muted); box-shadow: 0 0 12px #94a3b840; }
+
+  .tier-label { font-size: 0.85rem; font-weight: 600; }
+  .tier-range { font-size: 0.8rem; color: var(--muted); margin-left: 4px; }
+
+  /* ── WHAT YOU GET ── */
+  .output-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 800px) { .output-grid { grid-template-columns: 1fr; } }
+
+  .output-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: transform 0.3s;
+  }
+
+  .output-card:hover { transform: translateY(-3px); }
+
+  .output-icon {
+    width: 52px; height: 52px; min-width: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .output-icon.purple { background: linear-gradient(135deg, #818cf825, #818cf810); border: 1px solid #818cf835; }
+  .output-icon.pink   { background: linear-gradient(135deg, #c084fc25, #c084fc10); border: 1px solid #c084fc35; }
+  .output-icon.green  { background: linear-gradient(135deg, #34d39925, #34d39910); border: 1px solid #34d39935; }
+  .output-icon.amber  { background: linear-gradient(135deg, #fbbf2425, #fbbf2410); border: 1px solid #fbbf2435; }
+
+  .output-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+  .output-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── SETUP ── */
+  .setup-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 680px;
+  }
+
+  .setup-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    transition: transform 0.2s;
+  }
+
+  .setup-step:hover { transform: translateX(4px); }
+
+  .setup-num {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #818cf825, #c084fc15);
+    border: 1px solid #818cf840;
+    color: var(--purple);
+  }
+
+  .setup-content { flex: 1; }
+  .setup-title { font-weight: 700; margin-bottom: 6px; }
+
+  .setup-code {
+    background: #0a0b10;
+    border: 1px solid #1e2035;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--green);
+    margin-top: 10px;
+    overflow-x: auto;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    text-align: center;
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 50%, #818cf80a 0%, transparent 70%);
+  }
+
+  .cta-content { position: relative; z-index: 2; }
+
+  .cta-heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .cta-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-cmd {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 40px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--green);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+
+  .cta-cmd:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px #818cf815;
+  }
+
+  .cta-prompt { color: var(--muted); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: #475569;
+  }
+
+  .footer a { color: var(--purple); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--purple) 50%, var(--border) 80%, transparent 100%);
+    opacity: 0.5;
+  }
+
+  /* ── COMPAT GRID ── */
+  .compat-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+
+  .compat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 100px;
+  }
+
+  .compat-circle {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.3s;
+  }
+
+  .compat-circle:hover { transform: scale(1.1); }
+
+  .compat-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── FLOW VISUAL ── */
+  .flow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 48px 0;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .flow-node-icon { font-size: 2rem; }
+
+  .flow-node-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .flow-arrow {
+    font-size: 1.5rem;
+    color: var(--purple);
+    animation: arrowPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes arrowPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .section { padding: 60px 20px; }
+    .hero { padding: 40px 20px; }
+    .hero-stats { gap: 24px; }
+    .pipe-step { gap: 16px; }
+    .pipe-num { width: 48px; height: 48px; min-width: 48px; font-size: 1rem; }
+    .pipeline::before { left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Claude Code Skill</div>
+    <h1 class="hero-title"><span class="grad">Skilluminator</span></h1>
+    <p class="hero-sub">
+      Scans your <strong>Microsoft 365 activity</strong> to find your most repetitive work patterns
+      and tells you exactly which ones to <strong>automate first</strong>.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">15</div>
+        <div class="hero-stat-label">WorkIQ Queries</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">4</div>
+        <div class="hero-stat-label">M365 Sources</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">12</div>
+        <div class="hero-stat-label">Scoring Rubric Items</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">1</div>
+        <div class="hero-stat-label">Command to Run</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    scroll
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ DATA SOURCES ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">Data Sources</div>
+  <h2 class="section-heading">Your M365 activity, decoded</h2>
+  <p class="section-desc">Skilluminator pulls from every corner of your Microsoft 365 environment through WorkIQ &mdash; no manual logging, no surveys, no guessing.</p>
+
+  <div class="flow-container">
+    <div class="flow-node">
+      <div class="flow-node-icon">&#9993;</div>
+      <div class="flow-node-label" style="color: var(--blue)">Email</div>
+    </div>
+    <div class="flow-arrow">&#10230;</div>
+    <div class="flow-node">
+      <div class="flow-node-icon">&#128197;</div>
+      <div class="flow-node-label" style="color: var(--green)">Meetings</div>
+    </div>
+    <div class="flow-arrow">&#10230;</div>
+    <div class="flow-node">
+      <div class="flow-node-icon">&#128172;</div>
+      <div class="flow-node-label" style="color: var(--pink)">Teams</div>
+    </div>
+    <div class="flow-arrow">&#10230;</div>
+    <div class="flow-node">
+      <div class="flow-node-icon">&#128196;</div>
+      <div class="flow-node-label" style="color: var(--amber)">Documents</div>
+    </div>
+    <div class="flow-arrow">&#10230;</div>
+    <div class="flow-node" style="background: linear-gradient(135deg, #818cf812, #c084fc08); border: 1px solid #818cf830; border-radius: 12px; padding: 20px 24px;">
+      <div class="flow-node-icon">&#9889;</div>
+      <div class="flow-node-label" style="color: var(--purple)">Skilluminator</div>
+    </div>
+  </div>
+
+  <div class="compat-row">
+    <div class="compat-item">
+      <div class="compat-circle">&#128231;</div>
+      <div class="compat-name">Outlook</div>
+    </div>
+    <div class="compat-item">
+      <div class="compat-circle">&#128221;</div>
+      <div class="compat-name">Teams</div>
+    </div>
+    <div class="compat-item">
+      <div class="compat-circle">&#128197;</div>
+      <div class="compat-name">Calendar</div>
+    </div>
+    <div class="compat-item">
+      <div class="compat-circle">&#128194;</div>
+      <div class="compat-name">SharePoint</div>
+    </div>
+    <div class="compat-item">
+      <div class="compat-circle">&#9729;</div>
+      <div class="compat-name">OneDrive</div>
+    </div>
+    <div class="compat-item">
+      <div class="compat-circle">&#128209;</div>
+      <div class="compat-name">Word</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ THE PROBLEM ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">The Problem</div>
+  <h2 class="section-heading">You're doing the same work over and over</h2>
+  <p class="section-desc">Knowledge workers spend a huge chunk of their week on repetitive tasks they don't even realize are automatable.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="problem-icon">&#128337;</span>
+      <div class="problem-title">Hidden repetition</div>
+      <div class="problem-text">The same email templates, the same meeting summaries, the same status updates &mdash; week after week. But it feels like "just work" so nobody questions it.</div>
+      <div class="problem-stat">
+        <span class="problem-stat-val">60%</span>
+        <span class="problem-stat-unit">of knowledge work is recurring processes</span>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <span class="problem-icon">&#127919;</span>
+      <div class="problem-title">Wrong automation targets</div>
+      <div class="problem-text">Teams automate what's easy, not what's impactful. Without data on frequency, time cost, and downstream impact, automation picks are guesses.</div>
+      <div class="problem-stat">
+        <span class="problem-stat-val">80%</span>
+        <span class="problem-stat-unit">of automation ROI comes from 20% of patterns</span>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <span class="problem-icon">&#128566;</span>
+      <div class="problem-title">Invisible to you</div>
+      <div class="problem-text">You can't audit your own habits. Your most repetitive work is invisible because it's spread across email, meetings, Teams, and docs. You need a system to surface it.</div>
+      <div class="problem-stat">
+        <span class="problem-stat-val">4+</span>
+        <span class="problem-stat-unit">tools to manually cross-reference</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-heading">8 steps, fully automated</h2>
+  <p class="section-desc">One command triggers the entire pipeline. No configuration, no surveys, no manual data entry. Just your M365 activity and AI analysis.</p>
+
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="pipe-num c1">1</div>
+      <div class="pipe-body">
+        <div class="pipe-label c1">Harvest</div>
+        <div class="pipe-title">Query your M365 activity</div>
+        <div class="pipe-desc">Runs 15 targeted WorkIQ queries across email, meetings, Teams chats, and documents for your chosen time range.</div>
+        <div class="pipe-tags">
+          <span class="pipe-tag email">Email</span>
+          <span class="pipe-tag meeting">Meetings</span>
+          <span class="pipe-tag teams">Teams</span>
+          <span class="pipe-tag docs">Documents</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c2">2</div>
+      <div class="pipe-body">
+        <div class="pipe-label c2">Extract</div>
+        <div class="pipe-title">Parse into structured signals</div>
+        <div class="pipe-desc">Each distinct repeating behavior becomes a signal with source, frequency, time cost, and participants. No data is invented &mdash; every number traces back to WorkIQ.</div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c3">3</div>
+      <div class="pipe-body">
+        <div class="pipe-label c3">Cluster</div>
+        <div class="pipe-title">Group signals into patterns</div>
+        <div class="pipe-desc">Signals that share source type, topic, action, or trigger-output chain are merged. A pattern needs 2+ signals &mdash; lone signals are dropped.</div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c4">4</div>
+      <div class="pipe-body">
+        <div class="pipe-label c4">Verify</div>
+        <div class="pipe-title">Confirm real attendance</div>
+        <div class="pipe-desc">Calendar invites don't equal attendance. Validates actual meeting participation through WorkIQ telemetry before building meeting-based patterns.</div>
+        <div class="pipe-tags">
+          <span class="pipe-tag filter">Attendance Check</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c5">5</div>
+      <div class="pipe-body">
+        <div class="pipe-label c5">Filter</div>
+        <div class="pipe-title">Remove already-automated work</div>
+        <div class="pipe-desc">Checks every pattern against M365 built-in features (Teams Copilot Recap, Focused Inbox, Viva Insights). If it's already handled, it's not a skill candidate.</div>
+        <div class="pipe-tags">
+          <span class="pipe-tag filter">M365 Check</span>
+          <span class="pipe-tag filter">Relevance Threshold</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c6">6</div>
+      <div class="pipe-body">
+        <div class="pipe-label c6">Score</div>
+        <div class="pipe-title">Rate automation feasibility + value</div>
+        <div class="pipe-desc">12-item dual rubric: Automation Score (how rule-based?) and Value Score (how much does it cost you?). Composite score ranks every pattern.</div>
+        <div class="pipe-tags">
+          <span class="pipe-tag ai">Automation 0-100</span>
+          <span class="pipe-tag ai">Value 0-100</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c7">7</div>
+      <div class="pipe-body">
+        <div class="pipe-label c7">Dashboard</div>
+        <div class="pipe-title">Generate interactive analytics</div>
+        <div class="pipe-desc">Self-contained HTML dashboard with ranked patterns, bubble chart, source breakdown, rubric details, and estimated time savings. Zero dependencies.</div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-num c8">8</div>
+      <div class="pipe-body">
+        <div class="pipe-label c8">Build</div>
+        <div class="pipe-title">Scaffold the skill with one command</div>
+        <div class="pipe-desc">Pick any candidate and run <code style="background:#1e2035;padding:2px 8px;border-radius:4px;color:var(--green);font-size:0.82rem">/skill-creator</code> to generate a working Claude skill from the analysis.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ SCORING ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">Scoring Engine</div>
+  <h2 class="section-heading">Transparent, rubric-based scoring</h2>
+  <p class="section-desc">No black boxes. Every score shows exactly which criteria applied and why. You can verify every number against the raw WorkIQ data.</p>
+
+  <div class="score-row">
+    <div class="score-card auto">
+      <div class="score-card-title">Automation Score</div>
+      <div class="score-card-sub">How rule-based and repetitive is this pattern?</div>
+      <div class="rubric-row"><span class="rubric-name">Clear trigger event</span><span class="rubric-pts pos">+20</span></div>
+      <div class="rubric-row"><span class="rubric-name">Fixed output format</span><span class="rubric-pts pos">+20</span></div>
+      <div class="rubric-row"><span class="rubric-name">Same steps every time</span><span class="rubric-pts pos">+20</span></div>
+      <div class="rubric-row"><span class="rubric-name">No sensitive sign-off needed</span><span class="rubric-pts pos">+15</span></div>
+      <div class="rubric-row"><span class="rubric-name">Single M365 source</span><span class="rubric-pts pos">+10</span></div>
+      <div class="rubric-row"><span class="rubric-name">High volume (20+/week)</span><span class="rubric-pts pos">+10</span></div>
+      <div class="rubric-row" style="opacity:0.7"><span class="rubric-name">Requires nuanced judgment</span><span class="rubric-pts neg">-20</span></div>
+      <div class="rubric-row" style="opacity:0.7"><span class="rubric-name">External party involvement</span><span class="rubric-pts neg">-10</span></div>
+    </div>
+
+    <div class="score-card value">
+      <div class="score-card-title">Value Score</div>
+      <div class="score-card-sub">How much does this pattern cost you?</div>
+      <div class="rubric-row"><span class="rubric-name">High time cost (2+ hrs/week)</span><span class="rubric-pts pos">+25</span></div>
+      <div class="rubric-row"><span class="rubric-name">High frequency (10+/week)</span><span class="rubric-pts pos">+20</span></div>
+      <div class="rubric-row"><span class="rubric-name">Blocks other people</span><span class="rubric-pts pos">+20</span></div>
+      <div class="rubric-row"><span class="rubric-name">Critical workflow</span><span class="rubric-pts pos">+15</span></div>
+      <div class="rubric-row"><span class="rubric-name">Pain expressed</span><span class="rubric-pts pos">+10</span></div>
+      <div class="rubric-row" style="opacity:0.7"><span class="rubric-name">Low impact if skipped</span><span class="rubric-pts neg">-15</span></div>
+      <div class="rubric-row" style="opacity:0.7"><span class="rubric-name">Already partially automated</span><span class="rubric-pts neg">-10</span></div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Composite Score Formula</div>
+    <div class="formula">
+      <span class="result">Composite</span>
+      <span class="op"> = (</span><span class="auto-c">Automation</span>
+      <span class="op"> &times; 0.55) + (</span><span class="value-c">Value</span>
+      <span class="op"> &times; 0.45)</span>
+    </div>
+    <div class="tier-row">
+      <div class="tier-item">
+        <div class="tier-dot strong"></div>
+        <span class="tier-label">Strong Candidate</span>
+        <span class="tier-range">70+</span>
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot moderate"></div>
+        <span class="tier-label">Moderate Candidate</span>
+        <span class="tier-range">50&ndash;69</span>
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot exploring"></div>
+        <span class="tier-label">Worth Exploring</span>
+        <span class="tier-range">&lt;50</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ WHAT YOU GET ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">Output</div>
+  <h2 class="section-heading">What you get</h2>
+  <p class="section-desc">Every run produces a complete analysis package &mdash; no fluff, full transparency, ready to act on.</p>
+
+  <div class="output-grid">
+    <div class="output-card">
+      <div class="output-icon purple">&#128202;</div>
+      <div>
+        <div class="output-title">Interactive Dashboard</div>
+        <div class="output-text">Self-contained HTML with ranked patterns, bubble chart (automation vs. value), signal source donut, and full rubric breakdowns. Opens in any browser.</div>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-icon pink">&#127942;</div>
+      <div>
+        <div class="output-title">Ranked Skill Candidates</div>
+        <div class="output-text">Every pattern scored, tiered, and explained in plain language. Includes WHAT it does, WHY it matters, and WHAT your work looks like after automation.</div>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-icon green">&#9201;</div>
+      <div>
+        <div class="output-title">Time Savings Estimates</div>
+        <div class="output-text">Hours saved per week per pattern, with transparent formulas. Every estimate traces back to WorkIQ data &mdash; no invented numbers.</div>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-icon amber">&#128736;</div>
+      <div>
+        <div class="output-title">Ready-to-Build Skeletons</div>
+        <div class="output-text">Each candidate includes a skill skeleton: trigger, input, steps, and output. One command to scaffold it into a working Claude skill.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ SETUP ═══════════════════════ -->
+<section class="section">
+  <div class="section-label">Get Started</div>
+  <h2 class="section-heading">Three steps to insight</h2>
+  <p class="section-desc">No configuration files. No API keys. Just Claude Code, WorkIQ, and one command.</p>
+
+  <div class="setup-steps">
+    <div class="setup-step">
+      <div class="setup-num">1</div>
+      <div class="setup-content">
+        <div class="setup-title">Copy the skill kit into your project</div>
+        <div class="setup-code">.claude/commands/ &nbsp;&bull;&nbsp; .claude/skills/ &nbsp;&bull;&nbsp; scripts/</div>
+      </div>
+    </div>
+
+    <div class="setup-step">
+      <div class="setup-num">2</div>
+      <div class="setup-content">
+        <div class="setup-title">Add WorkIQ as an MCP server</div>
+        <div class="setup-code">claude mcp add workiq -- npx -y @microsoft/workiq@latest mcp</div>
+      </div>
+    </div>
+
+    <div class="setup-step">
+      <div class="setup-num">3</div>
+      <div class="setup-content">
+        <div class="setup-title">Run the analysis</div>
+        <div class="setup-code">/skilluminator past 30 days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CTA ═══════════════════════ -->
+<section class="cta">
+  <div class="cta-content">
+    <h2 class="cta-heading">Stop guessing.<br><span class="grad">Start automating what matters.</span></h2>
+    <p class="cta-sub">Your M365 data already knows what to automate. Skilluminator just reads it for you.</p>
+    <div class="cta-cmd">
+      <span class="cta-prompt">$</span> /skilluminator past 30 days
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  Skilluminator &mdash; Powered by <a href="https://claude.ai/claude-code">Claude Code</a> + WorkIQ &nbsp;&middot;&nbsp; Works with any M365 role
+</div>
+
+</body>
+</html>
