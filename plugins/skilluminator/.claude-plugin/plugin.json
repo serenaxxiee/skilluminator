@@ -1,0 +1,12 @@
+{
+  "name": "skilluminator",
+  "description": "Scans your Microsoft 365 activity to find your most repetitive work patterns and tells you exactly which ones to automate first",
+  "version": "1.0.0",
+  "author": {
+    "name": "serenaxxiee"
+  },
+  "homepage": "https://serenaxxiee.github.io/skilluminator/",
+  "repository": "https://github.com/serenaxxiee/skilluminator",
+  "license": "MIT",
+  "keywords": ["m365", "automation", "workiq", "skills", "productivity", "dashboard"]
+}

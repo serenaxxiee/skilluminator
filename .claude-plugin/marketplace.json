@@ -1,0 +1,25 @@
+{
+  "name": "skilluminator-marketplace",
+  "owner": {
+    "name": "serenaxxiee"
+  },
+  "metadata": {
+    "description": "Skilluminator — analyze your M365 work activity to discover which repeated patterns to automate first",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "skilluminator",
+      "description": "Scans your Microsoft 365 activity (email, meetings, Teams, documents) to find your most repetitive work patterns and tells you exactly which ones to automate first. Generates a scored dashboard with rubric breakdowns and ready-to-build skill skeletons.",
+      "source": "./plugins/skilluminator",
+      "version": "1.0.0",
+      "author": {
+        "name": "serenaxxiee"
+      },
+      "homepage": "https://serenaxxiee.github.io/skilluminator/",
+      "repository": "https://github.com/serenaxxiee/skilluminator",
+      "keywords": ["m365", "automation", "workiq", "skills", "productivity", "dashboard"],
+      "category": "productivity"
+    }
+  ]
+}
