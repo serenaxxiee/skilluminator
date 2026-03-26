@@ -80,12 +80,66 @@ Score ALL surviving patterns using the rubrics from the Skilluminator skill. For
 
 ## STEP 6 — WRITE patterns.json
 
-Write results to `patterns.json` in the current directory using the exact output schema from the Skilluminator skill. Include:
-- `analyzedAt`, `timeRange`, `weekOf`, `signalCount`, `queriesRun`, `queryErrors`
-- Full `patterns` array with rubric breakdowns for ALL scored patterns
-- `filteredPatterns` for patterns removed by the automation check or relevance threshold (label + reason)
+Write results to `patterns.json` in the current directory. Sort by `compositeScore` descending.
 
-Sort by `compositeScore` descending.
+**CRITICAL — the dashboard generator will break if you get these wrong:**
+
+1. **Scores are 0–100, NOT 0–10.** `automationScore`, `valueScore`, and `compositeScore` must all be integers or floats on a 0–100 scale. Example: `"automationScore": 85`, NOT `"automationScore": 8.5`.
+
+2. **`sources` must be source types**, not query numbers. Valid values: `"email"`, `"meeting"`, `"teams"`, `"document"`. Example: `"sources": ["email", "meeting"]`, NOT `"sources": ["Q2", "Q5"]`.
+
+3. **Numeric fields must be numbers, not zero.** Every pattern MUST have:
+   - `signalCount` (integer, how many signals clustered into this pattern)
+   - `occurrenceCount` (integer, estimated weekly occurrences from WorkIQ data — if WorkIQ didn't report, estimate conservatively and note "estimated" in llmRationale)
+   - `timeSpentHours` (float, hours per week — if WorkIQ didn't report exact hours, estimate from frequency × typical duration and note "estimated")
+   - `estHoursSavedPerWeek` (float, calculated from timeSpentHours × savePct per the SKILL.md formula)
+
+4. **Tier labels** are derived from compositeScore: `"strong"` (70+), `"moderate"` (50–69), `"exploring"` (<50).
+
+**Each pattern object must have ALL of these fields:**
+
+```json
+{
+  "patternId": "kebab-case-id",
+  "label": "Human Readable Name",
+  "sources": ["email", "meeting"],
+  "signalCount": 3,
+  "occurrenceCount": 12,
+  "participantCount": 3,
+  "timeSpentHours": 4.5,
+  "automationScore": 85,
+  "automationRubric": {
+    "clearTrigger": 20,
+    "fixedOutput": 20,
+    "sameSteps": 20,
+    "noSensitiveSignoff": 15,
+    "singleSource": 10,
+    "highVolume": 0,
+    "deductions": 0,
+    "notes": "Rubric explanation"
+  },
+  "valueScore": 78,
+  "valueRubric": {
+    "timeCost": 25,
+    "frequency": 20,
+    "blocksOthers": 0,
+    "criticalWorkflow": 15,
+    "painExpressed": 0,
+    "deductions": -5,
+    "notes": "Rubric explanation"
+  },
+  "compositeScore": 81.9,
+  "tier": "strong",
+  "candidateSkillName": "kebab-case-skill-name",
+  "estHoursSavedPerWeek": 3.15,
+  "llmRationale": "Plain-language explanation"
+}
+```
+
+**Top-level fields:**
+- `analyzedAt`, `timeRange`, `weekOf`, `signalCount`, `queriesRun`, `queryErrors`
+- `patterns` array (all scored patterns with full rubric breakdowns)
+- `filteredPatterns` array (patterns removed by automation check or relevance threshold, each with `label` and `reason`)
 
 ## STEP 7 — GENERATE DASHBOARD
 
