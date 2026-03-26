@@ -12,19 +12,20 @@ Then STOP.
 
 ## STEP 2 — FIND THE GENERATOR SCRIPT
 
-Look for `scripts/generate-dashboard.js`:
-1. Check `scripts/generate-dashboard.js` relative to the repo root
-2. If not found, search: `find . -name "generate-dashboard.js" -type f 2>/dev/null | head -3`
+Find `generate-dashboard.js` by searching these locations in order:
+1. `scripts/generate-dashboard.js` in the current working directory
+2. Use the Glob tool to search for `**/generate-dashboard.js` (it may be inside the plugin cache at `~/.claude/plugins/cache/**/scripts/generate-dashboard.js`)
+3. If still not found, use Bash: `find ~/.claude/plugins -name "generate-dashboard.js" -type f 2>/dev/null | head -3`
 
-If not found, tell the user: "Dashboard generator script not found. Make sure you're in the skilluminator directory."
+If not found after all searches, tell the user: "Dashboard generator script not found. Try running `/reload-plugins` and retry."
 
 Then STOP.
 
 ## STEP 3 — GENERATE
 
-Run the generator:
+Run the generator using the **full absolute path** found in Step 2:
 ```bash
-node scripts/generate-dashboard.js --input <patterns.json path> --output output/dashboard.html
+node "<full-path-to-generate-dashboard.js>" --input <patterns.json path> --output output/dashboard.html
 ```
 
 Create the `output/` directory first if it doesn't exist.

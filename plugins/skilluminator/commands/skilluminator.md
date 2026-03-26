@@ -145,9 +145,12 @@ Write results to `patterns.json` in the current directory. Sort by `compositeSco
 
 After writing patterns.json, generate the dashboard:
 
-1. Look for `scripts/generate-dashboard.js` in the current repo
-2. If found, run: `node scripts/generate-dashboard.js --input patterns.json --output output/dashboard.html`
-3. If not found, tell the user the dashboard script is missing and skip to Step 8
+1. Find the dashboard script. Search these locations in order:
+   a. `scripts/generate-dashboard.js` in the current working directory
+   b. Use the Glob tool to search for `**/generate-dashboard.js` (it may be inside the plugin cache at `~/.claude/plugins/cache/**/scripts/generate-dashboard.js`)
+   c. If still not found, use Bash: `find ~/.claude/plugins -name "generate-dashboard.js" -type f 2>/dev/null | head -3`
+2. Once found, run: `node "<full-path-to-generate-dashboard.js>" --input patterns.json --output output/dashboard.html`
+3. If not found after all searches, tell the user the dashboard script is missing and skip to Step 8
 4. Open the dashboard in the browser:
    - Windows: `start output/dashboard.html`
    - Mac: `open output/dashboard.html`
