@@ -1,0 +1,6 @@
+# Skilluminator run outputs — contain personal M365 data, never commit
+patterns.json
+output/
+
+# Node
+node_modules/
